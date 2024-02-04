@@ -1,6 +1,5 @@
 package chapter11;
-//created:
-//updated:
+
 public class Method_20 {
 
 	/*
