@@ -1,4 +1,6 @@
-package chapter2;/*
+package chapter2;
+
+/*
  * ===========================================================
  * fileName       : Boolean02
  * date           : 2024-01-06
