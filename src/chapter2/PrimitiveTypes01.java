@@ -32,7 +32,7 @@ public class PrimitiveTypes01 {
 		// 같은 4바이트이지만 int -> float의 경우 는 되고 그 반대는 안된다.
 		// 큰 자료형에서 작은 자료형으로의 자동 형변환은 불가능하며, 명시적인 형변환이 필요하다
 
-		int d = (int) c;
+		int d = (int) c;  // 강제형변환 (float -> int)
 		// java: incompatible types: possible lossy conversion from float to int
 		System.out.println(d);
 	}
