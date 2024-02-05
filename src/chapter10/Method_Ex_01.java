@@ -1,7 +1,12 @@
 package chapter10;
 
-//created : 2024-01-9
-//updated : 2024-01-10
+/**
+ * ===========================================================
+ * fileName       : aa
+ * date           : 2024-01-24
+ * description    :
+ * ===========================================================
+ */
 import java.util.Random;
 import java.util.Scanner;
 
