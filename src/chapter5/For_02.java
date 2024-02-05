@@ -1,5 +1,12 @@
 package chapter5;
 
+/**
+ * ===========================================================
+ * fileName       : For_02
+ * date           : 2024-01-24
+ * description    : for문 연습_02
+ * ===========================================================
+ */
 public class For_02 {
 
 	public static void main(String[] args) {

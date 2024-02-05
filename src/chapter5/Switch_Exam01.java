@@ -1,8 +1,14 @@
 package chapter5;
 
 import java.util.Scanner;
-
-public class Ex_01 {
+/**
+ * ===========================================================
+ * fileName       : Switch_Exam01
+ * date           : 2024-01-24
+ * description    : switch 문 문제1
+ * ===========================================================
+ */
+public class Switch_Exam01 {
 	public static void main(String[] args) {
 		/*
 		 * 사용자에게 성적을 입력받아 switch 문을 사용해서 학점을 출력하는 코드를 완성하세요. 입력은 0 ~ 100 까지 입력이 됩니다. 기준은

@@ -3,7 +3,7 @@ package chapter2;
 /*
  * ===========================================================
  * fileName       : PrimitiveTypes02
- * date           : 2024-01-06
+ * date           : 2024-02-05
  * description    :
  * ===========================================================
  */
@@ -15,13 +15,11 @@ public class PrimitiveTypes02 {
 		char ch = 'A';
 		System.out.println("char ch : " + ch); // A
 
-
 		int code = (int) ch; // ch에 저장된 값을 int 형으로 변환하여 저장한다. int는 4바이트 ch는 2바이트 이므로 자동 형변환이 일어난다.
 		System.out.println("(int) chn: " + code);
 
 		char ch2 = 65; // 숫자를 대입해도 된다. char 문자 자료형은 아스키 코드(정수)랑 매핑이 되기 때문
 		System.out.println("char ch2 : "+ch2);
-
 
 		int code2 = 68;
 		char ch3 = (char) code2;

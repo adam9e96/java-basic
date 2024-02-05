@@ -1,18 +1,29 @@
 package chapter2;
 
-public class MyVar_09 {
+/**
+ * ===========================================================
+ * fileName       : String_02
+ * date           : 2024-01-24
+ * description    : 문자열 타입 -> 기본 타입 변한
+ * 문자열을 기본 타입으로 강제 타입 변환.
+ * String 은 int 나 char 형 처럼 기본 자료 타입이 아니라
+ * 클래스의 객체 형태라서 일반적인 형 변환과는 다르다.
+ *
+ * ===========================================================
+ */
+
+public class String_02 {
 	public static void main(String[] args) {
-		/*
-		 * 문자열을 기본 타입으로 강제 타입 변환.
-		 * String 은 int 나 char 처럼 기본 자료 타입이 아니라
-		 * 클래스의 객체 형태라서 일반적인 형 변환과 다름
-		 */
+
 		String str = "1a";
-//		 int value = Integer.parseInt(str); // 문자열A에 숫자외의 문자가 있으면 되지 않음
+//		 int value = Integer.parseInt(str);
 		/*
-		 * String 값이 소수점인 경우 int로 변환할려고 할 떄 java.lang.NumberFormatException 라는 오류가 발생한다.
-		 * 이유 : int는 소수점을 받아내지 못하기 때문이다.
-		 * 해결 방법 : double.parsedouble() 이나 Float.parseFloat())를 이용하면 된다.
+		  위 주석 코드가 안되는 경우
+		   1. 문자열A에 숫자외의 문자가 있으면 되지 않음 // NumberFormatException
+
+		   2.  String 값이 소수점인 경우 int로 변환할려고 할 떄 java.lang.NumberFormatException 라는 오류가 발생한다.
+		      * 이유 : int는 소수점을 받아내지 못하기 때문이다.
+		      * 해결 방법 : double.parsedouble() 이나 Float.parseFloat())를 이용하면 된다.
 		 */
 
 		// String -> 정수형

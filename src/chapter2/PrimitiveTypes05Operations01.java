@@ -1,6 +1,13 @@
 package chapter2;
 
-public class Exam004 {
+/**
+ * ===========================================================
+ * fileName       : PrimitiveTypes05Operations01
+ * date           : 2024-01-24
+ * description    : 연산자 연습1
+ * ===========================================================
+ */
+public class PrimitiveTypes05Operations01 {
 
 	public static void main(String[] args) {
 		/*
@@ -16,6 +23,7 @@ public class Exam004 {
 		System.out.println(num1 / num2); // 3
 		System.out.println(num1 % num2); // 나머지 연산. a를 b로 나눈 후 나머지를 반환.
 		// 나머지 연산을 짝수, 홀수 구분에 사용. // 1
+
 		System.out.println(num1 % 2); // 0
 		System.out.println(num2 % 2); // 1
 	}
