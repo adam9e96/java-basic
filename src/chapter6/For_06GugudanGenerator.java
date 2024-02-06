@@ -1,6 +1,13 @@
 package chapter6;
 
-public class For_06 {
+/**
+ * ===========================================================
+ * fileName       : For_06GugudanGenerator
+ * date           : 2024-01-24
+ * description    : For 문을 이용한 구구단 출력
+ * ===========================================================
+ */
+public class For_06GugudanGenerator {
 
 	public static void main(String[] args) {
 		/*

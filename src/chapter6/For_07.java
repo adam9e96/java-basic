@@ -1,5 +1,12 @@
 package chapter6;
 
+/**
+ * ===========================================================
+ * fileName       : For_07
+ * date           : 2024-01-24
+ * description    : For문연습_7
+ * ===========================================================
+ */
 public class For_07 {
 	public static void main(String[] args) {
 		/*

@@ -1,6 +1,12 @@
 package chapter6;
-
-public class For_05 {
+/**
+ * ===========================================================
+ * fileName       : For_05
+ * date           : 2024-02-05
+ * description    : for문 연습_05 FloatingPointPrecision
+ * ===========================================================
+ */
+public class For_05FloatingPointPrecision {
 
 	public static void main(String[] args) {
 		/*
@@ -25,5 +31,4 @@ public class For_05 {
 		// 반복문을 빠져 나오는 경우
 		// break문을 만나거나 조건식을 벗어났거나
 	}
-
 }

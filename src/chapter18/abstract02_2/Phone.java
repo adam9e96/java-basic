@@ -5,6 +5,7 @@ package chapter18.abstract02_2;
  * fileName       : Phone
  * date           : 2024-01-22
  * description    : 추상클래스 연습:2-2
+ * Phone 추상 클래스
  * ===========================================================
  */
 public abstract class Phone {

@@ -9,7 +9,8 @@ package chapter18.abstract01;
  */
 public class Main {
     public static void main(String[] args) {
-        Pikachu pikachu = new Pikachu();
+        Pikachu pikachu = new Pikachu();    // 반복되는 코드라 경고 발생.
+
         System.out.println("이 포켓몬은 " + pikachu.getName());
         pikachu.attack();
         pikachu.sound();
@@ -19,5 +20,10 @@ public class Main {
         squirtle.attack();
         squirtle.sound();
 
+        Pokemon pikachu2 = new Pikachu();   // 부모 타입 변수명 = 자식 객체
+        pikachu2.attack();                  // 업캐스팅
+        pikachu2.sound();
+
+        
     }
 }
