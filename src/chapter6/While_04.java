@@ -2,11 +2,18 @@ package chapter6;
 
 import java.util.Scanner;
 
+/**
+ * ===========================================================
+ * fileName       : While_04
+ * date           : 2024-01-24
+ * description    :
+ * ===========================================================
+ */
 public class While_04 {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		String answer = "Y"; // while이 시작될 수 있도록 응답 값을 초기화
+		String answer = "Y"; // `while`이 시작될 수 있도록 응답 값을 초기화
 
 		int count = 0;
 

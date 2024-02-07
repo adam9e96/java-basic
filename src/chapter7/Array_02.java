@@ -29,8 +29,5 @@ public class Array_02 {
         for (int i = 0; i < size; i++) {
             numbers4[i] = i + 1;
         }
-
-
-
     }
 }

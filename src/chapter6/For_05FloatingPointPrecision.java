@@ -3,7 +3,7 @@ package chapter6;
  * ===========================================================
  * fileName       : For_05
  * date           : 2024-02-05
- * description    : for문 연습_05 FloatingPointPrecision
+ * description    : For 문 연습_05 FloatingPointPrecision
  * ===========================================================
  */
 public class For_05FloatingPointPrecision {

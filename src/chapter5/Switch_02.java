@@ -8,7 +8,7 @@ import java.util.Scanner;
  * date           : 2024-02-04
  * description    : 스위치문 연습_02
  * - switch 문
- * 입력 변수의 값과 일치하는 csse 입력값(입력값1, 입력값2...) 이 있다면 해당 case 문에 속한 문장들이 실행된다.
+ * 입력 변수의 값과 일치하는 case 입력값(입력값1, 입력값2...) 이 있다면 해당 case 문에 속한 문장들이 실행된다.
  * <p>
  * - break
  * switch 문에서도 break문이 쓰이는데 각 case 의 영역을 구분하는 역할을 한다.
