@@ -1,8 +1,15 @@
 package chapter7;
 
 import java.util.Scanner;
-
-public class Exam_04 {
+/**
+ * ===========================================================
+ * fileName       : While_Ex04
+ * date           : 2024-01-24
+ * description    :
+ * 사용자로부터 돈을 사용하는 프로그램4
+ * ===========================================================
+ */
+public class While_Ex04 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		// 잔액이 10000원. 사용할 금액을 입력받아 잔액이 0원이 되도록

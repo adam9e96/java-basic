@@ -1,16 +1,24 @@
 package chapter7;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
-
-public class Ex_01_Array_03 {
+/**
+ * ===========================================================
+ * fileName       : Array_Ex02
+ * date           : 2024-01-24
+ * description    : 학생의 수와 각 학생들의 점수를 입력받아 최고 점수 및 평균 점수를 계산하는 프로그램
+ * 수정 예정
+ * # 음수 값을 넣지 못하도록 방지
+ * # 성적 1~100 사이값만 넣을 수 있도록
+ * ===========================================================
+ */
+public class Array_Ex02 {
 	public static void main(String[] args) {
 		/* 키보드로 부터 학생 수와 각 학생들의 점수를 입력받아서, 최고 점수 및 평균 점수를 구하는 프로그램입니다.
         실행결과를 보고 알맞게 작성해 보세요.
 
         실행 예)
-        -----------------------------------------------------
+        ------------------------1-----------------------------
         1.학생수 | 2.점수입력 | 3.점수리스트 | 4.분석 | 5.종료
         -----------------------------------------------------
         선택> 1
@@ -63,7 +71,7 @@ public class Ex_01_Array_03 {
 //				for (int i=0 ; i<=studentNum; i++) {
 				scores = new int[studentNum];
 //				}
-				System.out.println(Arrays.toString(scores));
+				System.out.println(Arrays.toString(scores));	// 테스트 코드
 			} else if (selectNo == 2) {
 				// 작성 위치. 생성된 배열의 갯수 만큼 점수 입력
 				for (int i = 0; i < scores.length; i++) {
