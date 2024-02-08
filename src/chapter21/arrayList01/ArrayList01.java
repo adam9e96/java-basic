@@ -15,54 +15,56 @@ import java.util.List;
  * 특정위치의 요소를 얻으며, 마지막으로 요소를 제거한 후 ArrayList의 크기를 출력하는 예제
  * Q. 일반 배열과의 차이점
  * A. ArrayList는 제한없이 객체를 추가할 수 있다.
+ * 일반 배열은 크기가 고정되어 있고 요소를 추가하거나 제거할 때 크기를 조정해야 하지만,
+ * ArrayList는 동적으로 크기를 조정할 수 있다는 점 등을 언급할 수 있습니다.
  * ===========================================================
  */
 public class ArrayList01 {
     // String 객체를 저장하는 ArrayList
     public static void main(String[] args) {
-      List<String> list = new ArrayList<>();    // <> 안에 부분을 제네릭이라고 함.
+//      List<String> list = new ArrayList<>();    // <> 안에 부분을 제네릭이라고 함.
 //      제네릭을 지정안해도되는데 성능상 문제가 있어서(모든걸 넣을수있도록하게됨) // ArrayList03 참고
 
         // 문자열을 저장하는 ArrayList 생성
-        ArrayList<String> stringList = new ArrayList<>();
+        List<String> smartphoneBrands = new ArrayList<>();
 
-        // ArrayList에 문자열 추가
-        stringList.add("갤럭시");  // 0
-        stringList.add("아이폰");  // 1
-        stringList.add("낫싱");   // 2
-        stringList.add("샤오미");  // 3
-        stringList.add("화웨이");  // 4
+        // ArrayList에 문자열 추가         // 인덱스 번호
+        smartphoneBrands.add("갤럭시");  // 0
+        smartphoneBrands.add("아이폰");  // 1
+        smartphoneBrands.add("낫싱");   // 2
+        smartphoneBrands.add("샤오미");  // 3
+        smartphoneBrands.add("화웨이");  // 4
 
         // ArrayList 특정 인덱스에 값 추가
-        stringList.add(3, "레노버");
+        smartphoneBrands.add(3, "레노버");
 
         // ArrayList에 저장된 배열 출력
         // ArrayList의 모든 요소 출력
-        for (String string : stringList) {
+        for (String string : smartphoneBrands) {
             System.out.print(string + " ");
         }
         System.out.println();
 
         // ArrayList에서 특정 위치의 요소 얻기
-        String str = stringList.get(2);
+        String str = smartphoneBrands.get(2);
         System.out.println("스마트폰 브랜드 3번째 위치 : " + str);
 
         // ArrayList에서 요소 제거
-        stringList.remove(1);   // 2번쨰 위치 제거
-        System.out.println("스마트폰 2번째 인덱스 값 제거 : " + stringList);
+        smartphoneBrands.remove(1);   // 2번쨰 위치 제거
+        System.out.println("스마트폰 2번째 인덱스 값 제거 : " + smartphoneBrands);  // 아이폰 제거
 
-        stringList.remove("갤럭시");
-        System.out.println("스마트폰 브랜드 갤럭시 제거" + stringList);
-        System.out.println("갤럭시를 제거한 후 ArrayList의 모든 요소:");
-        for (String smartphone : stringList) {
+        smartphoneBrands.remove("갤럭시");
+        System.out.println("갤럭시 제거 : " + smartphoneBrands);
+        System.out.println("갤럭시를 제거한 후 ArrayList의 모든 요소 출력 : ");
+        for (String smartphone : smartphoneBrands) {
             System.out.print(smartphone + " ");
         }
         System.out.println();
         // ArrayList의 크기 출력
-        System.out.println("ArrayList의 크기: " + stringList.size());
+        System.out.println("ArrayList의 크기: " + smartphoneBrands.size());
 
         // 테스트코드
-        System.out.println(stringList);
+        System.out.println(smartphoneBrands);
         /*
         ArrayList 클래스는 자체적으로 toString() 메서드를 구현하고 있다.
         그래서 `System.out.println(stringList);`을 호출하면 내부적으로 ArrayList의 toString() 메서드가 호출되어서 
