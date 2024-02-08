@@ -1,5 +1,6 @@
 package chapter21.arrayList03;
 
+import javax.management.AttributeList;
 import java.util.ArrayList;
 
 /**
@@ -26,12 +27,13 @@ public class ArrayList03 {
         list.add(30);
 
         System.out.print("초기상태 : "); // ArrayList는 순서대로 저장됨
-        System.out.println(list);   // 초기상태 : [A, C, E, D, 30]  // ArrayList가 자체적으로 toString을 구현해서 모든 내용이 출력됨
+        System.out.println(list);   // 초기상태 : [A, C, E, D, 30]
+        // `ArrayList`가 자체적으로 `toString` 을 구현해서 모든 내용이 출력됨
 
         System.out.print("인덱스 1 위치에 B 추가 : "); // 1번 인덱스에 B를 넣고 인덱스 1 이후로는 한칸씩 다밀림
         list.add(1, "B");   // 인덱스 번호를 지정하고 추가하는 형태
         // 1번 인덱스에 B를 넣어라. // 자료에 순서가 있다면 인덱스가 있다는 뜻이다. list 인터페이스를 구현한 ArrayList는 인덱스가 있다는 말.
-//        list.add("B"); 를 했다면 맨 뒤에 B가 붙음 // stack 자료구조와 유사함
+//        list.add("B"); 를 했다면 맨 뒤에 B가 g붙음 // stack 자료구조와 유사함
         System.out.println(list);   // 인덱스 1 위치에 B 추가 : [A, B, C, E, D, 30]
 
         System.out.print("인덱스 2 위치의 값 삭제 : ");  // C 삭제
