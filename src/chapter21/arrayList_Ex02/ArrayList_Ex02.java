@@ -1,4 +1,4 @@
-package chapter21.exam02;
+package chapter21.arrayList_Ex02;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * fileName       : Student
  * date           : 2024-01-25
  * description    : Array -> ArrayList로 변환
- *  todo 연습더해야됨 2024-01-27
  * ===========================================================
  */
 /*
@@ -74,11 +73,9 @@ class Student { // 외부 클래스
     ArrayList<Course>  getCourseList() {  // 내부 클래스 객체 배열 리턴(=학생이 수강한 과목 배열을 반환)
         return courses;
     }
-
-
 }
 
-public class Exam02 {
+public class ArrayList_Ex02 {
     public static void main(String[] args) {
         Student student = new Student("a1234", "tom");  // 외부 클래스 객체 생성 및 초기화
         student.addCourse("java", "A");
@@ -98,5 +95,6 @@ public class Exam02 {
          */
         // 테스트 코드
         System.out.println(courses);
+
     }
 }

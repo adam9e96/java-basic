@@ -1,4 +1,4 @@
-package chapter22.stack01.test;/*
+package chapter22.stack_01.test;/*
  * ===========================================================
  * fileName       : MainTest
  * date           : 2024-01-28

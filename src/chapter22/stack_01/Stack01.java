@@ -1,4 +1,4 @@
-package chapter22.stack01;
+package chapter22.stack_01;
 /*
  * ===========================================================
  * fileName       : Stack01
