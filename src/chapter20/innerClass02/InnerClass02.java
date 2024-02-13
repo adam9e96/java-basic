@@ -4,7 +4,7 @@ package chapter20.innerClass02;
  * ===========================================================
  * fileName       : InnerClass02
  * date           : 2024-01-24
- * description    : // todo #3 봐야 할거
+ * description    :
  * ===========================================================
  * 인스턴스 내부 클래스의 정의와 형식
  * 외부 클래스의 멤버처럼 정의된 클래스
@@ -14,13 +14,13 @@ package chapter20.innerClass02;
  * '고객정보 >> 이름: 홍길동, 나이:20, 주소: 세종시 세종구'
  */
 
-class MyOuter {
+class MyOuter { // 외부 클래스
     private String name; // 외부 클래스 변수
     private int age; // 외부 클래스 변수
 
     // 내부 클래스를 정의한다.
     public class Inner {
-        private String address;
+        private String address; // 내부 클래스 필드
 
         public Inner(String address) { // 내부 클래스 생성자
             this.address = address;
@@ -31,7 +31,7 @@ class MyOuter {
         }
     }   // 내부 클래스 끝
 
-    public MyOuter(String name, int age) {
+    public MyOuter(String name, int age) {  // 외부 클래스 생성자
         this.name = name;
         this.age = age;
     }
@@ -48,9 +48,9 @@ class MyOuter {
 public class InnerClass02 {
     public static void main(String[] args) {
 
-        MyOuter myOuter = new MyOuter("홍길동", 20);
+        MyOuter myOuter = new MyOuter("홍길동", 20);   // 외부 클래스 인스턴스 생성
         MyOuter.Inner inner = myOuter.new Inner("세종시 세종구");
 
-        System.out.println("고객정보 >> " + inner.getCustomerInfo());
+        System.out.println("고객정보 >> " + inner.getCustomerInfo());   // 외부 클래스의 멤버를 사용가능하다.
     }
 }

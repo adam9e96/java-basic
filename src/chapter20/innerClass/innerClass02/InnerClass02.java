@@ -1,4 +1,5 @@
-package chapter20.innerClass.innerClass02;/*
+package chapter20.innerClass.innerClass02;
+/*
  * ===========================================================
  * fileName       : InnerClass02
  * date           : 2024-01-29
