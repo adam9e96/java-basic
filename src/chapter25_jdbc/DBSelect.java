@@ -18,7 +18,7 @@ public class DBSelect extends DB {
         /* 전체출력 */
         System.out.println("전체 회원 목록입니다.");
         String sql = "SELECT * FROM tUser ";
-        printUser(sql);
+        printUser(sql); //printUser 메소드 실행
         System.out.println("=========");
     }
 
@@ -34,7 +34,7 @@ public class DBSelect extends DB {
         // ResultSet 의 개수를 구하는 메서드는 없어서 다른 방법으로 개수를 구함.
         resultSet.last();   // 마지막 row 로 이동.
         totalRow = resultSet.getRow(); // row count 를 추출.
-        System.out.println(resultSet.getRow()); // 테스트 코드
+        System.out.println("resultSet.getRow() : "+resultSet.getRow()); // 테스트 코드
         resultSet.beforeFirst();    // 처음 row 로 커서를 이동.(초기 상태로 돌려 놓음)
 //        System.out.println(resultSet.getRow()); // 테스트 코드
         if (totalRow == 1) {

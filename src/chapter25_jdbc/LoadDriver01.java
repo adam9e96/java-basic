@@ -4,11 +4,11 @@ package chapter25_jdbc;
  * ===========================================================
  * fileName       : LoadDriver01
  * date           : 2024-02-14
- * description    :
+ * description    : DB 연결 1단계
  * - JDBC 를 이용하는 프로그램 작성 과정.
  * 1. 사용하고자 하는 RDBMS 에서 제공하는 JDBC 드라이버를 설치.
- * 2. JDBC 드라이버를 로딩.
- * 드라이버를 로딩할 때는 클래스의 동적 바인딩을 제공하는 Class 클래스의 메서드인 forName() 메서드를 사용.
+ * 2. JDBC 드라이버를 로딩. (메모리로 로딩하는 것임)
+ * 드라이버를 로딩할 때는 클래스의 동적 바인딩을 제공하는 Class 클래스의 메서드인 forName() 메서드를 사용. todo 동적 바인딩?
  * 3. DBMS 와 연결을 설정.
  * java.sql 패키지가 제공하는 Connection 객체를 사용.
  * 4. SQL 을 실행.
@@ -22,14 +22,15 @@ public class LoadDriver01 { // JDBC 드라이버를 로드하는 메인 클래�
     // 드라이버 클래스를 로드
     public static void loadDriver() {   // JDBC 드라이버를 로드하기 위한 메소드
         try {   // Class의 static forName 메소드를 사용
-            Class.forName("org.mariadb.jdbc.Driver"); // org.mariadb.jdbc.Driver 클래스를 메모리에 로딩
+            Class.forName("org.mariadb.jdbc.Driver"); // org.mariadb.jdbc.Driver 클래스를 메모리에 로딩   // Point1
             System.out.println("Driver Load Success!"); // 로드를 성공하면 실행될 코드
-        } catch (ClassNotFoundException e) { // 만약 클래스를 찾을 수 없다면 `ClassNotFoundException`이 발생하고 해당 예외가 처리
+        } catch (ClassNotFoundException e) { // 만약 JDBC Driver 클래스를 찾을 수 없다면 `ClassNotFoundException`이 발생하므로 예외 처리를 해야 한다.
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {    /// 메인 메소드
         loadDriver();
     }
 }
+// 위 과정이 성공하면((DriverManager에 JDBC Driver)가 등록되면 ) getConnection() 메소드로 DB와 연결을 할 수 있다.

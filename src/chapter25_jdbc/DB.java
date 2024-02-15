@@ -1,6 +1,7 @@
 package chapter25_jdbc;
 
 import java.sql.*;
+
 // 자바에서 정석적인 DB 연결 방법
 /**
  * ===========================================================
@@ -21,26 +22,29 @@ public class DB {
         /* 데이터 베이스 연결 */
         // 데이터베이스 접속정보 // DB정보가 변경되면 이것만 수정해주면됨
         final String driver = "org.mariadb.jdbc.Driver";
-        final String DB_HOST = "127.0.0.1";
-        final String DB_PORT = "3306";
-        final String DB_NAME = "sample_java";  // 데이터 베이스 이름
-        final String DB_URL = "jdbc:mariadb://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
+        final String DB_HOST = "127.0.0.1"; // localhost 주소
+        final String DB_PORT = "3306";  // Port 번호
+        final String DB_NAME = "sample_java";  // 데이터 베이스 이름    // DB 명
+        final String DB_URL = "jdbc:mariadb://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME; // 첫번째 매개값. 연결 문자열
         final String DB_USER = "root";
         final String DB_PASS = "3033";
     // URL 양식 동일함 e.g) http://naver.com:443/
 //                          jdbc:mariadb://127.0.0.1:3306/
         // 디비 접속
         try {
-            Class.forName(driver);    // JDBC 드라이버 등록.
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);   // 디비 연결
-            if (conn != null) {
-                System.out.println("DB 접속 성공");
+            //JDBC Driver 등록
+            Class.forName(driver);    // JDBC 드라이버 등록. point1
+            //연결하기
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);   // 디비 연결    // point2
+            //  DriverManager.getConnection : 데이터베이스 연결을 설정
+            if (conn != null) { // null 이 아니라면. 객체가 저장되어 있다면
+                System.out.println("DB 접속 성공"); // 연결 성공
             }
-        } catch (ClassNotFoundException e) { // JDBC 드라이버 등록실패 시
+        } catch (ClassNotFoundException e) { // JDBC 드라이버 등록실패 시 point1 예외
             e.printStackTrace();
-        } catch (SQLException e) {   // DRiverManger.getConnection() 실패 시
+        } catch (SQLException e) {   // DRiverManger.getConnection() 실패 시 // point2 예외
             System.out.println("DB 접속 실패");
-            e.printStackTrace();
+            e.printStackTrace(); // todo 모르겠음 ??
         }
     }
 
@@ -57,7 +61,7 @@ public class DB {
                 conn.close();
                 System.out.println("DB 접속 해제");
             }
-        } catch (SQLException e) {
+        } catch (SQLException e) {  // DB를 끊을 때 SQLException 이 발생할 수 있어서 예외 처리가 필요하다.
             e.printStackTrace();
         }
     }
