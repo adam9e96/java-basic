@@ -14,7 +14,7 @@ public class SelectUser {
         DBSelect myDB = new DBSelect();
         myDB.connectDB();
         myDB.getAllUser();
-//        myDB.getOneUser();
+        myDB.getOneUser();
         myDB.closeDB();
     }
 }

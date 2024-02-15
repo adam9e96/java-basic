@@ -34,7 +34,9 @@ public class DBSelect extends DB {
         // ResultSet 의 개수를 구하는 메서드는 없어서 다른 방법으로 개수를 구함.
         resultSet.last();   // 마지막 row 로 이동.
         totalRow = resultSet.getRow(); // row count 를 추출.
+        System.out.println(resultSet.getRow()); // 테스트 코드
         resultSet.beforeFirst();    // 처음 row 로 커서를 이동.(초기 상태로 돌려 놓음)
+//        System.out.println(resultSet.getRow()); // 테스트 코드
         if (totalRow == 1) {
             // 데이터가 하나
             if (resultSet.next()) {
@@ -79,5 +81,26 @@ public class DBSelect extends DB {
         }
         // ResultSet 은 SELECT 문에 기술된 컬럼으로 구서오딘 행 row 의 집합
         return resultSet;
+    }
+
+    public void getOneUser() throws SQLException {
+        /* 조건 출력 */
+        String sql;
+        String userID;
+        String validateTemp;
+        boolean validate = false;
+
+        do {
+            System.out.println("정보 검색 할 회원의 아이디를 입력하세요: ");
+            userID = scanner.next();
+
+            System.out.println("검색할 회원의 아이디가 " + userID + " 이 맞습니까? (y/n)");
+            validateTemp = scanner.next();
+
+            // 입력 값이 y  가 아닌 경우 true, 같은 경우 false 반환
+            validate = !validateTemp.equals("y");
+        } while (validate);
+        sql = "SELECT * FROM tUser WHERE userID = '" + userID + "'";
+        printUser(sql);
     }
 }
