@@ -35,7 +35,7 @@ public class DB {
             //JDBC Driver 등록
             Class.forName(driver);    // JDBC 드라이버 등록. point1
             //연결하기
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);   // 디비 연결    // point2
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);   // 디비 연결    // point2   // todo 팩토리 메소드 // 커넥션풀
             //  DriverManager.getConnection : 데이터베이스 연결을 설정
             if (conn != null) { // null 이 아니라면. 객체가 저장되어 있다면
                 System.out.println("DB 접속 성공"); // 연결 성공
