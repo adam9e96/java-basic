@@ -9,14 +9,14 @@ import java.sql.*;
  * date           : 2024-02-14
  * description    :
  * DBMS 와 연결하기.
- * <p>
+ * <p>// 메시지를 어떻게 보지.
  * ===========================================================
  */
-public class DB {
+public class DB { // 상속만 하면 스프링가면 그냥 된다고 하더라구요. 이런게 알아서
     // 사용할 객체를 위한 참조변수 선언. 클래스 내의 여러 메서드에서 사용해야 되서 인스턴스 변수로 선언.
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null; // 쿼리시에 결과를 저장하는 용도로 사용. select 에 주로 사용
+    Connection conn = null; // DB와 자바프로그램과 연결을 하기 위해 사용
+    PreparedStatement preparedStatement = null; // 쿼리문을 임시로 저장하는 ? 용도? 일단을 이해 .저장 및 실행?
+    ResultSet resultSet = null; // 쿼리시에 결과를 저장하는 용도로 사용. select 에 주로 사용 // 쿼리문을 실행하고 저장하는 용도
 
     public void connectDB() {
         /* 데이터 베이스 연결 */
@@ -44,8 +44,9 @@ public class DB {
             e.printStackTrace();
         } catch (SQLException e) {   // DRiverManger.getConnection() 실패 시 // point2 예외
             System.out.println("DB 접속 실패");
-            e.printStackTrace(); // todo 모르겠음 ??
+            e.printStackTrace();
         }
+
     }
 
     public void closeDB() {

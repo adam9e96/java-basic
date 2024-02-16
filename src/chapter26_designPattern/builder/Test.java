@@ -13,7 +13,6 @@ package chapter26_designPattern.builder;
 public class Test {
     public static void main(String[] args) {
         /*
-
             객체 생성 시에 일정하지 않은 여러개의 조합으로 객체를 생성할 경우
             많은 수의 생성자를 만들어야 함
             빌더패턴은 유연하게 일정하지 않은 초기값으로 객체를 생성할 수 있음
@@ -38,7 +37,9 @@ public class Test {
         // 예금주를 초기값으로 객체 생성
         Account account5 = new Account.Builder().cusName("홍길동").build();
         System.out.println(account5);
-
+        /*
+        각 메서드(Build내부클래스의 메서드)가 'Builder' 객체를 반환 하므로, 이머지는
+         */
     }
 }
 // 자바 백엔드가면 어노테이션만 이용하면 @Builder 만 집어넣어도 자동으로 필드를 `Builder`로 만들어 주므로 원리를 아는게 중요.

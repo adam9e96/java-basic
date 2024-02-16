@@ -4,7 +4,7 @@ package chapter26_designPattern.builder;
  * ===========================================================
  * fileName       : Account
  * date           : 2024-02-16
- * description    :
+ * description    : Builder 패턴 연습01
  * ===========================================================
  */
 public class Account {
@@ -23,7 +23,6 @@ public class Account {
         this.cusName = cusName;
     }
 
-
     @Override
     public String toString() {
         return "Account{" +
@@ -33,7 +32,7 @@ public class Account {
                 '}';
     }
 
-    // 빌더라는 내부 클래스 를 생성함    // static 을 사용해야 함
+    // 빌더라는 내부 클래스를 생성함    // static 을 사용해야 함
     public static class Builder {   // 객체 생성을 위해서 내부 클래스를 이용하므로 static가 필요함. //Builder 내부 클래스를 이용해서 Account 외부 클래스 객체를 생성하는 거임.
 
         // 외부 클래스와 동일한 필드를 가짐
@@ -55,7 +54,7 @@ public class Account {
 
         public Builder balance(int balance) {   // 메소드가 아니고 객체임 반환형 Builder(객체)
             this.balance = balance;
-            return this;
+            return this;    // 이 구무은 빌더 패턴에서 사용되는 체이닝(연쇄) 메서드를 구현하는데 사용된다. // 이 구문은 현재 객체를 가르키는 키워드인 `this` 를 반환한다.
         }
         // 이 메서드는 빌더 패턴에서 사용되는 체이닝 메서드의 일종으로, balance 필드 값을 설정하고 빌더 객체 자체를 반환
 

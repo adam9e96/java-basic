@@ -23,7 +23,7 @@ public class CheckingAccount extends BankAccount {
 
     @Override
     public void withdraw(double amount) {
-        setBalance(getBalance() - (amount + (amount * this.chargeRate)));
+        setBalance(getBalance() - amount - ((amount * this.chargeRate) / 100));
         System.out.println("결과: 출금이 성공되었습니다.");
     }
 

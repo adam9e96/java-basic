@@ -12,8 +12,8 @@ import java.sql.SQLException;
 public class InsertUser {
     public static void main(String[] args) throws SQLException {
         DBInsert myDB = new DBInsert();
-        myDB.connectDB();
-        myDB.insertUser();
-        myDB.closeDB();
+        myDB.connectDB();// DB
+        myDB.insertUser();  // 직접 구현한 코드
+        myDB.closeDB(); // DB
     }
 }

@@ -18,7 +18,7 @@ public class SavingAccount extends BankAccount {
 
     @Override
     public void deposit(double amount) {
-        setBalance(getBalance() + (amount + (amount * this.interestRate)));
+        setBalance(getBalance() + amount + ((amount * this.interestRate) / 100));
         System.out.println("결과: 예금이 성공되었습니다.");
     }
 

@@ -5,12 +5,23 @@ package chapter26_designPattern.adapter;
  * fileName       : Adapter
  * date           : 2024-02-16
  * description    : Adapter 디자인 패턴 적용
+ * Adapater 패턴을 적용하여 `AdapterService` 인터페이스를 통해 두 클래스의 기능을 표준화된 방식으로 호출하는 것을 보여준다.
+ *
  * ===========================================================
  */
-interface AdapterService {// JDBC API
+// 인터페이스 정의
+// AdapterService 인터페이스를 정의하여 표준화된 메서드 runService()를 사용하여 서로 다른 클래스의 기능을 호출할 수 있도록 함.
+interface AdapterService {// e.g ) JDBC API
     void runService();
 }
 
+// 어댑터 클래스 구현
+//  AdapterServiceA와 AdapterServiceB 클래스가 AdapterService 인터페이스를 구현하여
+//  각각의 클래스의 기능을 runService() 메서드로 노출시킴
+
+// Adapter 클래스 사용: Adapter 클래스에서는 AdapterService 인터페이스를 통해
+// AdapterServiceA와 AdapterServiceB 객체를 생성하고,
+// 표준화된 방식으로 각각의 서비스를 실행하는 것을 보여줍니다.
 class AdapterServiceA implements AdapterService {   // MySQL
     WorkMan workMan = new WorkMan();
 
@@ -50,14 +61,9 @@ public class Adapter {
 
 어댑터 패턴의 주요 구성 요소는 다음과 같습니다:
 
-1. **타겟(Target)**: 클라이언트가 기대하는 인터페이스입니다. 클라이언트가 사용할 수 있는 작업을 정의합니다.
-
-2. **어댑티(Adaptee)**: 클라이언트가 직접 사용할 수 없는 기존 인터페이스입니다. 호환성 때문에 직접적으로 사용할 수 없는 인터페이스입니다.
-
-3. **어댑터(Adapter)**: 타겟 인터페이스를 구현하고, 어댑티의 인스턴스를 포함하는 클래스입니다. 클라이언트의 요청을 어댑티가 이해할 수 있는 형식으로 변환하고 적절히 전달합니다.
-
-어댑터 패턴을 사용하면 기존 시스템, 써드파티 라이브러리 또는 서로 다른 인터페이스를 가진 클래스를 소스 코드를 수정하지 않고도 애플리케이션에 통합할 수 있습니다. 이는 코드 재사용성, 유연성 및 시스템 유지보수성을 촉진합니다.
+어댑터 패턴을 사용하면 기존 시스템, 써드파티 라이브러리 또는 서로 다른 인터페이스를 가진 클래스를 소스 코드를 수정하지
+않고도 애플리케이션에 통합할 수 있습니다. 이는 코드 재사용성, 유연성 및 시스템 유지보수성을 촉진합니다.
  */
 
 // 우리는 해당 제조사가 구현한 디테일한 내용에 대해 알 필요가 없다.
-// 표준화된 기술과 방법을 알고 있으면 어떤 환경에서든 쉽게 사용이 가능하다.
+// 표준화된 기술과 표준화된 사용방법만 알고 있으면 어떤 환경에서든 쉽게 사용이 가능하다.

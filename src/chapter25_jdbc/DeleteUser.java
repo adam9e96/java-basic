@@ -12,11 +12,11 @@ import java.sql.SQLException;
 public class DeleteUser {
     public static void main(String[] args) throws SQLException {
         DBDelete myDB = new DBDelete();
-        myDB.connectDB();
-        myDB.getAllUser();
-        myDB.deleteUser();
-        myDB.getAllUser();
-        myDB.closeDB();
+        myDB.connectDB();   // DB 꺼
+        myDB.getAllUser();  // DBSelect 꺼
+        myDB.deleteUser();  // DBDelete 클래스에서 직접 구현한 코드
+        myDB.getAllUser(); // DBSelect 꺼
+        myDB.closeDB(); //DB 꺼
     }
 }
 /*
