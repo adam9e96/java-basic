@@ -6,18 +6,20 @@ package chapter26_designPattern.adapter;
  * date           : 2024-02-16
  * description    : Adapter 디자인 패턴 적용
  * Adapater 패턴을 적용하여 `AdapterService` 인터페이스를 통해 두 클래스의 기능을 표준화된 방식으로 호출하는 것을 보여준다.
+ * 어댑터 패턴(Adapter Pattern)은 서로 다른 인터페이스를 가진 클래스들이 함께 작동할 수 있도록 중간에 매개체 역할을 하는 디자인 패턴입니다.
  *
  * ===========================================================
  */
 // 인터페이스 정의
 // AdapterService 인터페이스를 정의하여 표준화된 메서드 runService()를 사용하여 서로 다른 클래스의 기능을 호출할 수 있도록 함.
-interface AdapterService {// e.g ) JDBC API
-    void runService();
+interface AdapterService {// e.g ) JDBC API // 타겟 인터페이스 역할을 한다
+    void runService();  // 공통된 기능을 하는 표준화된 메서드 선언
 }
 
-// 어댑터 클래스 구현
-//  AdapterServiceA와 AdapterServiceB 클래스가 AdapterService 인터페이스를 구현하여
+//  어댑터 클래스 구현 // 어앱터 역할을 한다.
+//  AdapterServiceA와 AdapterServiceB 클래스가 `AdapterService` 인터페이스를 구현하여
 //  각각의 클래스의 기능을 runService() 메서드로 노출시킴
+//  이들 클래스는 각각 WorkMan과 StudyStudent 클래스(어댑티)의 기능을 runService 메서드를 통해 표준화된 방식으로 제공
 
 // Adapter 클래스 사용: Adapter 클래스에서는 AdapterService 인터페이스를 통해
 // AdapterServiceA와 AdapterServiceB 객체를 생성하고,
@@ -40,12 +42,12 @@ class AdapterServiceB implements AdapterService {   // SQLServer
     }
 }
 
-public class Adapter {
+public class Adapter_01 {
     public static void main(String[] args) {
         AdapterService asa1 = new AdapterServiceA();
         AdapterService asb1 = new AdapterServiceB();
 
-        // 동일한 메서드 명을 사용할 수 있음. => 동일한 표준을 사용한다는 뜻
+        // 동일한 메서드 명을 사용할 수 있음. => 즉, 동일한 표준을 사용한다는 뜻
         asa1.runService();
         asb1.runService();
         // 해당 메소드는 표준화된 규격이라고 볼 수 있음.
