@@ -12,11 +12,11 @@ package chapter26_designPattern.mvc;
     로직을 갖고 있지 않는 순수한 데이터 객체이며 속성과 그 속성에 접근하기 위한
     getter, setter 메소드만 가진 클래스
  */
-public class Account {
+public class Account {  // Model
     private int id; // 계좌
     private String name; // 이름
     private long balance;  // 잔액
-
+    // DB는 모델에 없기는 한데
     public Account() {
 
     }

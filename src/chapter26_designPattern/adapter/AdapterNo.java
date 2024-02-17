@@ -2,10 +2,10 @@ package chapter26_designPattern.adapter;
 
 /**
  * ===========================================================
- * fileName       : AdapterNo
+ * fileName       : AdapterNo // 어탭터 디자인 패턴을 사용하지 않았을 때의 예시에요.
  * date           : 2024-02-16
  * description    :  Adapter 패턴 사용 X
- * Adapter 패턴을 사용하지 않았을 때 발생하는 문제점
+ * Adapter 패턴을 사용하지 않았을 때 발생하는 문제점 (요거는 gpt로 검색한 결과)
  *     1. 인터페이스 불일치: WorkMan과 StudyStudent 클래스는 서로 다른 인터페이스를 가지고 있음.
  *     이들을 `동일한 방식`으로 사용하기 위해서는 각 클래스의 메서드를 호출하는 방식을 다르게 구현해야 합니다.
  *
@@ -16,7 +16,7 @@ package chapter26_designPattern.adapter;
  *     이를 재사용하기 위해서는 해당 클래스를 그대로 사용해야 합니다. 즉, 다른 클래스에서도 같은 기능을 사용하기 위해서는 중복 코드가 발생할 수 있습니다.
  * ===========================================================
  */
-class WorkMan {
+class WorkMan { // WorkMan, StudyStudent 클래스를 선언하고
     void runWork() {
         System.out.println("work");
     }
@@ -37,5 +37,7 @@ public class AdapterNo {
         // 유사한 기능이라 하더라도 새로운 클래스가 생성되면 메서드의 사용법을 공부해야 함.
         workMan.runWork();
         studyStudent.runStudy();
+        // 사용 시 단점이 보인다.
+
     }
 }

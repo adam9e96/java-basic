@@ -9,7 +9,7 @@ import java.util.Scanner;
  * description    :
  * ===========================================================
  */
-public class AccountView{
+public class AccountView{   // View 역할
     public static void printMenu() {
 
         System.out.println("==========Menu==========");
@@ -23,8 +23,8 @@ public class AccountView{
 
     }
 
-    public static void main(String[] args) {
-        AccountManager manager = new AccountManager();
+    public static void main(String[] args) {    // Controller 객체 생성만해도.     // DB연결 // 내부적으로 쓸 리스트 배열 , 스캐너 객체
+        AccountManager manager = new AccountManager(); // Controll 객체를 생성해서 가져다 쓰기만함
         Scanner stdIn = new Scanner(System.in);
 
         while (true) {
@@ -32,26 +32,26 @@ public class AccountView{
             System.out.print("선택:");
             int choice = stdIn.nextInt();
             switch (choice) {
-                case 1:
-                    manager.makeAccount();
+                case 1:// 일반 테이블은 이미 Account가 생성되어있고 여기서 makeAccount는 값을 넣는 의미
+                    manager.makeAccount();  // 내부 로직
                     break;
                 case 2:
-                    manager.deposit();
+                    manager.deposit();  // 입금
                     break;
                 case 3:
-                    manager.withdraw();
+                    manager.withdraw(); // 출금
                     break;
                 case 4:
-                    System.out.println("계좌번호\t성명\t잔액");
-                    manager.inquire();
+                    System.out.println("계좌번호\t성명\t잔액");     // \t 탭 : 스페이스 4번한거랑 같음
+                    manager.inquire(); // 문의?
                     break;
                 case 5:
                     System.out.println("계좌번호\t성명\t금액");
-                    manager.display();
+                    manager.display();  // 잔액조회
                     break;
                 case 6:
                     System.out.println("종료합니다.");
-                    stdIn.close();
+                    stdIn.close();  // 종료
                     return;
                 default:
                     System.out.println("잘못누르셨습니다. \n다시선택해주세요.");

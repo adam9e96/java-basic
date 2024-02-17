@@ -6,6 +6,7 @@ package chapter26_designPattern.adapter;
  * date           : 2024-02-16
  * description    : Adapter 디자인 패턴 적용
  * Adapater 패턴을 적용하여 `AdapterService` 인터페이스를 통해 두 클래스의 기능을 표준화된 방식으로 호출하는 것을 보여준다.
+ *
  * 어댑터 패턴(Adapter Pattern)은 서로 다른 인터페이스를 가진 클래스들이 함께 작동할 수 있도록 중간에 매개체 역할을 하는 디자인 패턴입니다.
  *
  * ===========================================================
@@ -25,7 +26,7 @@ interface AdapterService {// e.g ) JDBC API // 타겟 인터페이스 역할을 
 // AdapterServiceA와 AdapterServiceB 객체를 생성하고,
 // 표준화된 방식으로 각각의 서비스를 실행하는 것을 보여줍니다.
 class AdapterServiceA implements AdapterService {   // MySQL
-    WorkMan workMan = new WorkMan();
+    WorkMan workMan = new WorkMan();    // 원래 클래스를 여기서 생성을 함
 
     @Override
     public void runService() {
@@ -37,7 +38,7 @@ class AdapterServiceB implements AdapterService {   // SQLServer
     StudyStudent studyStudent = new StudyStudent();
 
     @Override
-    public void runService() {
+    public void runService() {  // 오버라이딩하여 표준화된 메서드에 넣음
         studyStudent.runStudy();
     }
 }
@@ -53,6 +54,10 @@ public class Adapter_01 {
         // 해당 메소드는 표준화된 규격이라고 볼 수 있음.
     }
 }
+// 예시가
+// 이 디자인 패턴이 OOP 에서만 사용가능해요.
+// JDBC
+// JDBC 드라이버를 쓰는 프로그램이 mySQL, 마리아DB, 오라클DB 등
 /*
 어댑터 패턴(Adapter Pattern)은 소프트웨어 엔지니어링에서 사용되는 구조적 디자인 패턴으로,
 호환되지 않는 인터페이스 간에 작동할 수 있도록 합니다.
