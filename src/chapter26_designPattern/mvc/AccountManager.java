@@ -57,6 +57,7 @@ public class AccountManager {   // Controller 역할 // 내부 로직? 같은거
         System.out.print("입금액: ");
         account.setBalance(stdIn.nextLong()); // 10000
 //        list.add(account);  // ArrayList 에 추가 DB로 할거니까 필요X // 이건 DB랑 연결안하고 자바에서만 저장할거면
+        // Account 타입의 인스턴스(콘솔로 Id,Name,Balance 를 입력한)를 넘겨준다.
         if (addAccount(account)) {  // 이게 INSER INTO 쿼리를 해서 성공한 결과를 불린값으로 돌려주기만 하면 되서 그래요
             System.out.println("계좌가 개설되었습니다.");
 //            System.out.println(list.toString()+ "\t");
@@ -68,19 +69,22 @@ public class AccountManager {   // Controller 역할 // 내부 로직? 같은거
     }
 
     // 내부에서 호출되어 사용되기만 하기 때문에 private 로 지정
-    private boolean addAccount(Account account) {   //계좌 . 즉 계좌에 데이터를 입력하는 쿼리문
+    private boolean addAccount(Account account) {   //계좌는 id를 의미함 // 매개변수로 Account 타입의 변수를 받는다.
         /* 계좌 생성 */
         Statement statement = null;
-        if (isAccount(account.getId())) { // 계좌 생성전에 동일한 계좌 번호가 존재하는지 확인
+        if (isAccount(account.getId())) { // 계좌 생성전에 동일한 계좌 번호가 존재하는지 확인 // 중복검사
             System.out.println(account.getId() + " 계좌가 존재합니다.");
             return false;
         }
+        // 중복검사에서 0 이 나온경우 false 인경우
         boolean res = false;
         int cnt = 0;
         try {           // insert into account (id, name, balance) VALUES (9999,'이수빈',100000);
-            String sql = String.format("INSERT INTO account VALUES (%d, '%s', %d)"
-                    , account.getId(), account.getName(), account.getBalance());
+            String sql = String.format("INSERT INTO account VALUES (%d, '%s', %d)" //  Java에서 문자열을 형식화(format)하기 위해 사용하는 메소드
+                    , account.getId(), account.getName(), account.getBalance()); // printf 라고 보면됨
+                    // 이 메소드를 사용하면 변수의 값을 문자열 안에 삽입하거나, 특정 형식에 맞춰 문자열을 구성할 수 있습니다.
             System.out.println(sql); // 테스트 코드
+            // INSERT INTO account VALUES (9999, '이수빈', 100000)
             statement = connection.createStatement();
             cnt = statement.executeUpdate(sql); // insert, update 등은 반환값 int
         } catch (Exception e) {
@@ -98,23 +102,24 @@ public class AccountManager {   // Controller 역할 // 내부 로직? 같은거
         // 이건 성공 여부
         res = (cnt == 0) ? false : true; // insert into ~~ 해서 성공하면 1이니까
         return res; // // res가 쿼리 실행한 결과값으로 1 아니면 0
-
     }
 
     private boolean isAccount(int id) { // 동일한 계좌가 있는지 // 중복 검사
         int res = 0;
         try {
+            // SELECT COUNT(*) AS cnt FROM account WHERE id =9999;
             String sql = "SELECT COUNT(*) AS cnt FROM account WHERE id ='" + id + "'";
 //            System.out.println(sql); // 테스트 코드
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             resultSet.next();
-            res = resultSet.getInt("cnt");
+            res = resultSet.getInt("cnt"); // 라벨을 이용해서 값을 얻어 낼 수도 있다.
 //            System.out.println(res);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return res != 0 ? true : false; //true 면 계좌 생성을 중지
+//        return res != 0;
+        return res != 0 ? true : false; //true 면 계좌 생성을 중지 1이 나온경우다 쿼리문 결과가
     }
 
     public void deposit() { // 입금
@@ -175,8 +180,8 @@ public class AccountManager {   // Controller 역할 // 내부 로직? 같은거
 
     public void display() { // 출력
  // todo 숙제임  노션에 있는거 붙이면 된다. resultSet을 Account 객체로 변환해서 출력하는 거임
-    //여기서 노션에 있던 코드
-//            private ArrayList<Account> selectAll()
+        //
+//            private ArrayList<Account> selectAll();
 //    {
 //                // 전체 정보 전달
 //                Statement statement = null;
