@@ -21,12 +21,12 @@ public class DBDelete extends DBSelect {    // DBSelect가 DB를 상속받고 �
 
         String deleteSQL = "DELETE FROM tUser WHERE userID='" + userID + "' ";
 
-//        preparedStatement = conn.prepareStatement(deleteSQL);   // 쿼리 실행 준비
-//        int cnt = preparedStatement.executeUpdate(); // 영향을 받은 데이터 갯수 반환
-        //preparedStatement.setString(1, userID);
-
-        Statement statement = conn.createStatement();
-        int cnt = statement.executeUpdate(deleteSQL);// 값을 실행할때 넘겨줘요 쿼리문을 statement 객체는
+        preparedStatement = conn.prepareStatement(deleteSQL);   // 쿼리 실행 준비
+        preparedStatement.setString(1, userID);
+        int cnt = preparedStatement.executeUpdate(); // 영향을 받은 데이터 갯수 반환
+        System.out.println(deleteSQL);
+//        Statement statement = conn.createStatement();
+//        int cnt = statement.executeUpdate(deleteSQL);// 값을 실행할때 넘겨줘요 쿼리문을 statement 객체는
         // 삭제 성공하면 1  /실패하면 0
 
         /*

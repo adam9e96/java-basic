@@ -19,7 +19,7 @@ public class DBCreate extends DB {
     );
      */
     public void createTableUser() {
-        String tableName = "tuser3";
+        String tableName = "tuser2";
         String sql = "CREATE TABLE " + tableName + " (UserID VARCHAR(100) PRIMARY KEY, "
                 + "name VARCHAR(100), age INT, job VARCHAR(100)) ";
         createTable(tableName, sql);
@@ -43,6 +43,7 @@ public class DBCreate extends DB {
             resultSet = preparedStatement.executeQuery();   // 쿼리 실행 후 결과 받음    // show 나 select 같은건 Query
             // 테이블에 대한 정보는 resultSet에 담겼는데 이제 중복  검사 할 시간
             // 중복검사는 while로 하는게 편하고 또 다른 방법이 하나 있었던거 같은데
+            System.out.println("resultSet 객체 배열 (show tables후) : "+resultSet); // 테스트 코드
             while (resultSet.next()) {                      // getString 은 1번부터 시작함.
                 System.out.println(tableName.equals(resultSet.getString(1)));
                 if (tableName.equals(resultSet.getString(1))) {  // 동일한 테이블이 있는 경우
@@ -54,8 +55,8 @@ public class DBCreate extends DB {
                 System.out.println(tableName + "이란 이름의 테이블이 이미 존재합니다.");
             } else {    // 테이블이 없는 경우 생성한다. // isTalbe가 끝까지 false 인경우
                 preparedStatement = conn.prepareStatement(sql); // 쿼리 실행 준비
-                resultSet = preparedStatement.executeQuery(); // 쿼리 실행 후 결과 받음
-//              System.out.println(resultSet); // org.mariadb.jdbc.client.result.CompleteREsult@3c5c5a99da <-- 제대로 들어가있으면
+                resultSet = preparedStatement.executeQuery(); // 쿼리 실행 후 결과 받음  // select, create => executeQuery() 메소드
+              System.out.println("cerate table resultSet : "+resultSet); // org.mariadb.jdbc.client.result.CompleteREsult@3c5c5a99da <-- 제대로 들어가있으면
                 if (resultSet != null) {
                     System.out.println(tableName + "테이블 생성에 성공했습니다.");
                 } else {    // null 인경우

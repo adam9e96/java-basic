@@ -95,7 +95,7 @@ public class DBInsert extends DB {
     }
 
     // 중복 검사하는 방법 case 1
-    private boolean isDupUserID(String userID) throws SQLException {
+    private boolean isDupUserID2(String userID) throws SQLException {
         /* 중복이 되면 true 반환*/
         int totalRow;   // 레코드 수를 저장 // 0
         String sql = "SELECT * FROM tUser WHERE userID = ?";
@@ -114,7 +114,7 @@ public class DBInsert extends DB {
         return totalRow == 1; // true/false 를 반환하는데   // == 두번은 검사라 불린값이 나옴 todo 나중에. // insert는 끝.
     }
 
-    private boolean isDupUserID2(String userID) throws SQLException {
+    private boolean isDupUserID(String userID) throws SQLException {
         /* 중복이 되면 true 반환 */    // 아까처럼 show tables해서 while next() 문으로 중복검사를 해도 되요
         // 만약 이미 생성한 userID가 fpkm3033 이라면
 //        show tables 할때는 where 뒤에 조건이나 값을 넣을 필요가 없어서 ?를ㄹ 안썼음
@@ -127,7 +127,7 @@ public class DBInsert extends DB {
         resultSet = preparedStatement.executeQuery();   // 쿼리 실행
 
         resultSet.next();   // boolean next() -> 다음 행이 있을 경우 true, 없을 경우 false 이걸 안하고 getInt/getString 메소드 실행시 에러뜸 // 커서가 아무것도 가르키지 않고 있기 때문.
-        System.out.println(resultSet.getInt(1));// 테스트 코드
+        System.out.println(resultSet.getInt(1));// 테스트 코드   // count에서 한개만 나왔다면 false
         return resultSet.getInt(1) == 1; // 나올 수 있는 수가 0 아니면 1임. // getInt(1) 는 해당 컬럼의 1번째 해당 값을 불러옴.
     }
 }

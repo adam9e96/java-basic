@@ -24,7 +24,7 @@ public class DBUpdate extends DBSelect { // `DBSelect`는 DB를 상속 받아서
             System.out.println("정보 수정 할 회원의 아이디를 입력하세요: ");
             user.userID = scanner.nextLine();
 
-            if (!isDupUserID(user.userID)){ // 반대로 중복겂사 아니라 없냐 검사
+            if (!isDupUserID(user.userID)){ // 반대로 중복겂사 아니라 없냐 검사 INSERT INTO 결과와 반대
                 System.out.println(user.userID+ " 는 없는 아이디 입니다. 다시 입력해주세요.");
                 validate = true;
                 continue;

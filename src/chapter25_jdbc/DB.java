@@ -8,11 +8,10 @@ import java.sql.*;
  * fileName       : DB
  * date           : 2024-02-14
  * description    :
- * DBMS 와 연결하기.
- * <p>// 메시지를 어떻게 보지.
+ * DBMS 와 연결하기. 및 해제하는 로직
  * ===========================================================
  */
-public class DB { // 상속만 하면 스프링가면 그냥 된다고 하더라구요. 이런게 알아서
+public class DB {
     // 사용할 객체를 위한 참조변수 선언. 클래스 내의 여러 메서드에서 사용해야 되서 인스턴스 변수로 선언.
     Connection conn = null; // DB와 자바프로그램과 연결을 하기 위해 사용
     PreparedStatement preparedStatement = null; // 쿼리문을 임시로 저장하는 ? 용도? 일단을 이해 .저장 및 실행?
@@ -35,11 +34,12 @@ public class DB { // 상속만 하면 스프링가면 그냥 된다고 하더라
             //JDBC Driver 등록
             Class.forName(driver);    // JDBC 드라이버 등록. point1
             //연결하기
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);   // 디비 연결    // point2   // todo 팩토리 메소드 // 커넥션풀
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);   // 디비 연결    // point2
             //  DriverManager.getConnection : 데이터베이스 연결을 설정
             if (conn != null) { // null 이 아니라면. 객체가 저장되어 있다면
                 System.out.println("DB 접속 성공"); // 연결 성공
             }
+//            System.out.println("conn 객체 주소: "+conn); // 테스트 코드
         } catch (ClassNotFoundException e) { // JDBC 드라이버 등록실패 시 point1 예외
             e.printStackTrace();
         } catch (SQLException e) {   // DRiverManger.getConnection() 실패 시 // point2 예외
@@ -51,6 +51,8 @@ public class DB { // 상속만 하면 스프링가면 그냥 된다고 하더라
 
     public void closeDB() {
         /* 데이터베이스 연결 해제 */
+//                System.out.println("result 객체주소 : "+resultSet);  // 테스트 코드
+//                System.out.println("preparedStatement 객체주소 : "+preparedStatement); // 테스트 코드
         try {
             if (resultSet != null) {    // 열린 경우 닫음
                 resultSet.close();

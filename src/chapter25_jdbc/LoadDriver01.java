@@ -1,5 +1,7 @@
 package chapter25_jdbc;
 
+import java.sql.Connection;
+
 /**
  * ===========================================================
  * fileName       : LoadDriver01
@@ -19,10 +21,11 @@ package chapter25_jdbc;
  */
 
 // 아래의 과정은 2번임.
+    //  Java에서 JDBC(Java Database Connectivity) 드라이버를 로드하는 과정
 public class LoadDriver01 { // JDBC 드라이버를 로드하는 메인 클래스
     // 드라이버 클래스를 로드
     public static void loadDriver() {   // JDBC 드라이버를 로드하기 위한 메소드
-        try {   // Class의 static forName 메소드를 사용    // 메모리에 로드 시키는 건데 그냥 하면 끝나요. 이거는
+        try {   // Class의 static forName 메소드를 사용    // Class.forName() 메소드를 사용하여 문자열로 지정된 클래스를 JVM 메모리에 로드 -> 로드가 되면 드라이버 클래스는 초기화되며, JDBC 드라이버가 `DriverManager`에 자동으로 등록됨
             Class.forName("org.mariadb.jdbc.Driver"); // org.mariadb.jdbc.Driver 클래스를 메모리에 로딩   // Point1
             System.out.println("Driver Load Success!"); // 로드를 성공하면 실행될 코드
         } catch (ClassNotFoundException e) { // 만약 JDBC Driver 클래스를 찾을 수 없다면 `ClassNotFoundException`이 발생하므로 예외 처리를 해야 한다.

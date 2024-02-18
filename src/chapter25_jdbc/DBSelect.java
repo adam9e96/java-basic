@@ -37,7 +37,7 @@ public class DBSelect extends DB {
         System.out.println("resultSet.getRow() : "+resultSet.getRow()); // 테스트 코드 // 결과값 11
         resultSet.beforeFirst();    // 처음 row 로 커서를 이동.(초기 상태로 돌려 놓음)
 //        System.out.println(resultSet.getRow()); // 테스트 코드
-        if (totalRow == 1) { // 11 == 1 은 true 인가? => todo 일단은 0이 아니니까 true로 가정 이게 갑자기 이가 안됨
+        if (totalRow == 1) { // 11, 1
             // 데이터가 하나
 //            next()를 돌리는데 while 이 아니고 if 돌렸다는 거는 1번 실행할려고 하는 거에요
             if (resultSet.next()) { //  " INSERT INTO tUser (userID, name, age, job) VALUES (?,?,?,?) "; // select
