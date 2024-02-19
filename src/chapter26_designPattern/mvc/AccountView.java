@@ -1,5 +1,6 @@
 package chapter26_designPattern.mvc;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -23,7 +24,7 @@ public class AccountView{   // View 역할
 
     }
 
-    public static void main(String[] args) {    // Controller 객체 생성만해도.     // DB연결 // 내부적으로 쓸 리스트 배열 , 스캐너 객체
+    public static void main(String[] args) throws SQLException {    // Controller 객체 생성만해도.     // DB연결 // 내부적으로 쓸 리스트 배열 , 스캐너 객체
         AccountManager manager = new AccountManager(); // Controll 객체를 생성해서 가져다 쓰기만함
         Scanner stdIn = new Scanner(System.in);
 
@@ -51,7 +52,7 @@ public class AccountView{   // View 역할
                     break;
                 case 6:
                     System.out.println("종료합니다.");
-                    stdIn.close();  // 종료
+                    manager.disConnect();
                     return;
                 default:
                     System.out.println("잘못누르셨습니다. \n다시선택해주세요.");
