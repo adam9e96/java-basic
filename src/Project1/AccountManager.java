@@ -60,7 +60,7 @@ public class AccountManager implements IAccountManager {
         account.setAccountNumber(stdIn.nextInt());
         System.out.print("잔액: ");
         account.setBalance(stdIn.nextDouble());
-
+//
         // 사용중인 아이디인지
         if (isMember(member.getUserId())) {
             // 사용중인 계좌 번호인지
