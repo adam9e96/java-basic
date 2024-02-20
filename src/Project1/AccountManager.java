@@ -40,7 +40,13 @@ public class AccountManager implements IAccountManager{
         System.out.print("거주지: ");
         member.setAddress(stdIn.nextLine());
 
-//        if ()
+        if (accountDAO.insertMember(member)){
+            // 성공하면 1
+            System.out.println();
+        } else {
+
+        }
+
 //
 //                // Account 타입의 인스턴스(콘솔로 Id,Name,Balance 를 입력한)를 넘겨준다.
 //        if (this.addAccount(account)) {  // 이게 INSER INTO 쿼리를 해서 성공한 결과를 불린값으로 돌려주기만 하면 되서 그래요
