@@ -16,12 +16,12 @@ public class AccountView {
 
     public static void main(String[] args) {
 
-        AccountManager accountManager = new AccountManager();
+        AccountManager accountManager = new AccountManager(); // DTO 인스턴스 생성
         Scanner scanner = new Scanner(System.in);
 
 
         while (true) {
-            printMenu();
+            printMenu();    // 콘솔 화면
             System.out.print("선택:");
             int choice = scanner.nextInt();
             switch (choice) {
