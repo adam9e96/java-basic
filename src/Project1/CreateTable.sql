@@ -22,6 +22,7 @@ CREATE TABLE account
         FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
 
+<<<<<<< HEAD
 INSERT INTO member VALUES (0, 'test', 'test', 25, 'test');   # memberid : 1번
 insert into member values (2,'test1','test1',26,'addrtest'); # memberid : 2번
 insert into account values (2,1,3033,10000,0.5);
@@ -46,6 +47,18 @@ select memberId from member where userId='test');
 
 select * from account where memberid= (
 SELECT member.memberId FROM member WHERE userid = 'test1');
+=======
+# 테스트 (중복검사 관련 ) 
+INSERT INTO member
+VALUES (0, 'test', 'test', 25, 'test');
+SELECT *
+FROM member;
+SELECT *
+FROM ACCOUNT;
+SELECT *
+FROM member
+WHERE userid = 'test';
+>>>>>>> 0ef9cbcdf5b5a66e02cd5268c10c517b6e375b2a
 
 INSERT INTO ACCOUNT
 VALUES ((SELECT memberid FROM member WHERE userid = 'test'), 1, 3355, 1000, 0.5);
@@ -55,6 +68,7 @@ WHERE memberid = (SELECT memberid
                   FROM ACCOUNT
                   WHERE accountNumber = 3355);
 
+<<<<<<< HEAD
 # CREATE TABLE accountHistory
 # (
 # #회원테이블의 아이디
@@ -63,9 +77,20 @@ WHERE memberid = (SELECT memberid
 #     balance       DECIMAL(10, 2) NOT NULL, #입,출금 때 사용할 거
 #     amount        DECIMAL(10, 2) NOT NULL  #거래당시 초기 금액
 # );
+=======
+# 테스트 중인거 
+CREATE TABLE accountHistory
+(
+#회원테이블의 아이디
+#account 테이블의 계좌번호 원금, 이자, 수수료, 거래금액, 거래당시금액
+    accountNumber INT            NOT NULL, #계좌번호
+    balance       DECIMAL(10, 2) NOT NULL, #입,출금 때 사용할 거
+    amount        DECIMAL(10, 2) NOT NULL  #거래당시 초기 금액
+);
+>>>>>>> 0ef9cbcdf5b5a66e02cd5268c10c517b6e375b2a
 
 
-
+# 이건 정상
 create table accountHistory
 (
     accountHistoryId   int auto_increment primary key, # 거래내역 일련번호
@@ -78,5 +103,3 @@ create table accountHistory
 #     foreign key (memberId) references member (memberId), # accountId가 이미 account 테이블 -> member와 연결외어 있어서 의미 없음
     foreign key (accountNumber) references account (accountNumber)
 );
-
-# 아직 수정안된거
