@@ -5,15 +5,15 @@ package Project1;
  * fileName       : Member
  * date           : 2024-02-20
  * description    : Member DTO
- * Member 클래스 최종.
+ * Member DTO 최종.
  * ===========================================================
  */
 public class Member {
-    private int memberId; // 완성
-    private String userId; // 완성
-    private String name;    // 완성
-    private int age;    // 완선
-    private String addr; //완성
+    private int memberId; // 유저_일련번호
+    private String userId; // 유저_아이디
+    private String name;    // 유저_이름
+    private int age;    // 유저_나이
+    private String addr; //유저_거주지
 
     // 기본 생성자
     public Member() {
@@ -65,5 +65,16 @@ public class Member {
 
     public void setAddr(String addr) {
         this.addr = addr;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberId=" + memberId +
+                ", userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", addr='" + addr + '\'' +
+                '}';
     }
 }

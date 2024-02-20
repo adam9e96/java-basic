@@ -5,13 +5,14 @@ package Project1;
  * fileName       : AccountHistory
  * date           : 2024-02-20
  * description    : AccountHistory DTO
+ *
  * ===========================================================
  */
 public class AccountHistory {
     private int accountHistoryId;
-    private int transactionType;
+    private int transactionType;    // 거래유형
     private int accountId;
-    private double Transaction_amount;
+    private double Transaction_amount;  // 거래금액
 
     public AccountHistory(int accountHistoryId, int transactionType, int accountId, double transaction_amount) {
         this.accountHistoryId = accountHistoryId;

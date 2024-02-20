@@ -9,12 +9,13 @@ package Project1;
  */
 
 public class Account {
-    private int memberid; // 유저ID // FK 이자 PK
-    private int accountType; // 완성
-    private int accountNumber; // 완성
-    private double balance; // 완성
+    private int memberid; // 유저ID
+    private int accountType; // 계좌 유형 (1 : 예금계좌, 2 : 대출계좌)
+    private int accountNumber; // 계좌 번호
+    private double balance; // 잔액
     private double typeRate; // 수수료율 / 이자율
 
+    public Account(){}
 
     public Account(int memberid, int accountType, int accountNumber, double balance, double typeRate) {
         this.memberid = memberid;

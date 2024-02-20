@@ -8,7 +8,8 @@ CREATE TABLE member
     age      INT(3)      NOT NULL,           #유저나이
     addr     VARCHAR(20) NOT NULL            #유저거주지
 );
-DESC member;
+# userid는 Unique 걸어 놓지 않았음
+# 로직에서 중복검사를 돌리기 떄문에
 
 CREATE TABLE account
 (
@@ -21,15 +22,23 @@ CREATE TABLE account
         FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
 
-INSERT INTO member
-VALUES (0, 'test', 'test', 25, 'test');
-SELECT *
-FROM member;
-SELECT *
-FROM ACCOUNT;
-SELECT *
-FROM member
-WHERE userid = 'test';
+INSERT INTO member VALUES (0, 'test', 'test', 25, 'test');   # memberid : 1번
+insert into member values (2,'test1','test1',26,'addrtest'); # memberid : 2번
+insert into account values (2,1,3033,10000,0.5);
+
+select * from member where userId='test';
+
+SELECT * FROM member;
+SELECT * FROM ACCOUNT;
+SELECT * FROM member WHERE userid = 'test';
+
+select memberid from account where accountType= 1;
+select * from member
+select count(accountType) from account where memberid= (
+select memberId from member where userId='test');
+
+select * from account where memberid= (
+SELECT member.memberId FROM member WHERE userid = 'test1');
 
 INSERT INTO ACCOUNT
 VALUES ((SELECT memberid FROM member WHERE userid = 'test'), 1, 3355, 1000, 0.5);
@@ -39,14 +48,14 @@ WHERE memberid = (SELECT memberid
                   FROM ACCOUNT
                   WHERE accountNumber = 3355);
 
-CREATE TABLE accountHistory
-(
-#회원테이블의 아이디
-#account 테이블의 계좌번호 원금, 이자, 수수료, 거래금액, 거래당시금액
-    accountNumber INT            NOT NULL, #계좌번호
-    balance       DECIMAL(10, 2) NOT NULL, #입,출금 때 사용할 거
-    amount        DECIMAL(10, 2) NOT NULL  #거래당시 초기 금액
-);
+# CREATE TABLE accountHistory
+# (
+# #회원테이블의 아이디
+# #account 테이블의 계좌번호 원금, 이자, 수수료, 거래금액, 거래당시금액
+#     accountNumber INT            NOT NULL, #계좌번호
+#     balance       DECIMAL(10, 2) NOT NULL, #입,출금 때 사용할 거
+#     amount        DECIMAL(10, 2) NOT NULL  #거래당시 초기 금액
+# );
 
 
 
