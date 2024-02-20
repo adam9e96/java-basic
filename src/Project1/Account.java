@@ -11,16 +11,16 @@ package Project1;
 public class Account {
     private int memberid; // 유저ID
     private int accountType; // 계좌 유형 (1 : 예금계좌, 2 : 대출계좌)
-    private int accountNumber; // 계좌 번호
+    private String accountId; // 계좌 번호
     private double balance; // 잔액
     private double typeRate; // 수수료율 / 이자율
 
     public Account(){}
 
-    public Account(int memberid, int accountType, int accountNumber, double balance, double typeRate) {
+    public Account(int memberid, int accountType, String accountId, double balance, double typeRate) {
         this.memberid = memberid;
         this.accountType = accountType;
-        this.accountNumber = accountNumber;
+        this.accountId = accountId;
         this.balance = balance;
         this.typeRate = typeRate;
     }
@@ -41,12 +41,12 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public int getAccountNumber() {
-        return accountNumber;
+    public String getAccountNumber() {
+        return accountId;
     }
 
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAccountNumber(String accountNumber) {
+        this.accountId = accountNumber;
     }
 
     public double getBalance() {
