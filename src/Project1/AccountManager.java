@@ -16,7 +16,7 @@ public class AccountManager implements IAccountManager {
     private final Scanner stdIn;
     private final AccountDao accountDAO;
     private ArrayList<Account> list;
-    private Connection connection;
+    private Connection connection = null;
     private Member member = new Member();
     private Account account = new Account();
 
@@ -66,16 +66,17 @@ public class AccountManager implements IAccountManager {
             // 사용중인 계좌 번호인지
             if (isAccount(member.getUserId())) {
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
-                if (isPart()==1) { // todo 여기를 모르겠음
-                    accountDAO.insertAccount(account);
-                    System.out.println("계좌 등록이 되었습니다.");
-                } else {
-                    System.out.println("이미 계좌가 개설되어 있습니다.");
-                }else{
-                    System.out.println(account.getAccountNumber() + "는 사용중인 계좌번호입니다.");
-                } else{
-                    System.out.println(member.getMemberId() + "는 없는아이디입니다.");
-                }
+//                if (isPart()==1) { // todo 1 여기를 모르겠음
+//                    accountDAO.insertAccount(account);
+//                    System.out.println("계좌 등록이 되었습니다.");
+//                } else {
+//                    System.out.println("이미 계좌가 개설되어 있습니다.");
+//                }
+//            else{
+//                    System.out.println(account.getAccountNumber() + "는 사용중인 계좌번호입니다.");
+//                } else{
+//                    System.out.println(member.getMemberId() + "는 없는아이디입니다.");
+//                }
 
             }
         }
@@ -83,22 +84,40 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public void deposit() { // case 3번
+        System.out.print("계좌번호: ");
+        account.setAccountNumber(stdIn.nextInt());
+        System.out.print("입금액: ");
+        double money = stdIn.nextDouble();
 
+        if (isAccount(member.getUserId())){
+            accountDAO.updateBalance(String.valueOf(account.getMemberid()),money);
+        } else {
+            System.out.println("해당 계좌번호가 존재하지 않습니다.");
+        }
     }
 
     @Override
     public void withdraw() { // case 4번
-
+        System.out.print("계좌번호: ");
+        account.setAccountNumber(stdIn.nextInt());
+        System.out.print("출금액: ");
+        double money = stdIn.nextDouble();
+        if (!isAccount(member.getUserId())){
+            accountDAO.updateBalance(String.valueOf(account.getMemberid()),money);
+        } else {
+            System.out.println("해당 계좌번호가 존재하지 않습니다.");
+        }
     }
 
     @Override
     public void viewHistory() { // case 5번
-
+        // todo 2 미완성
     }
 
     @Override
     public void disConnect() { // case 6번
-
+        accountDAO.disConnect();
+        stdIn.close();
     }
 
     @Override
@@ -120,6 +139,7 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isPart(Account account) {
+        // todo 못한거3
 //        if (accountDAO.selectAccount(account.getAccountType()))
         // select count(accountType) from account where memberid= (
         // select memberId from member where userId='test');
