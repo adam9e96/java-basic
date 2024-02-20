@@ -21,6 +21,7 @@ CREATE TABLE account
         FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
 
+# 테스트 (중복검사 관련 ) 
 INSERT INTO member
 VALUES (0, 'test', 'test', 25, 'test');
 SELECT *
@@ -39,6 +40,7 @@ WHERE memberid = (SELECT memberid
                   FROM ACCOUNT
                   WHERE accountNumber = 3355);
 
+# 테스트 중인거 
 CREATE TABLE accountHistory
 (
 #회원테이블의 아이디
@@ -49,7 +51,7 @@ CREATE TABLE accountHistory
 );
 
 
-
+# 이건 정상
 create table accountHistory
 (
     accountHistoryId   int auto_increment primary key, # 거래내역 일련번호
@@ -62,5 +64,3 @@ create table accountHistory
 #     foreign key (memberId) references member (memberId), # accountId가 이미 account 테이블 -> member와 연결외어 있어서 의미 없음
     foreign key (accountNumber) references account (accountNumber)
 );
-
-# 아직 수정안된거
