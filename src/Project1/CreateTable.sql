@@ -14,8 +14,8 @@ create table account
     accountType   int not null check ( accountType in (1,2)),           # NOT NULL check (accountType < 3), # 계좌종류 (1: 예금계좌, 2: 대출계좌)
     accountNumber int            NOT NULL,                         # 계좌번호
     balance       DECIMAL(12, 2) NOT NULL,                         # 잔액
-    interestRate  double,                                          # 이자율 null 허용, 예금 계좌에서만 사용
-    chargeRate    double,                                          # 수수료율, null 허용, 대출 계좌에서만 사용
+    interestRate  DECIMAL(12, 2),                                          # 이자율 null 허용, 예금 계좌에서만 사용
+    chargeRate    DECIMAL(12, 2),                                    # 수수료율, null 허용, 대출 계좌에서만 사용
     userId        VARCHAR(50)    not null,                         # member아이디 (외래키)
     # Rate의 경우 double로 할지 DECIMAL로 할지 모르겠음.
     constraint unique_account UNIQUE (accountType, userId),        # 타입은 중복이 안되므로(각 1개씩 생성가능함)
