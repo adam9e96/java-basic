@@ -114,6 +114,10 @@ public class AccountManager implements IAccountManager {
     @Override
     public void viewHistory() { // case 5번
         // todo 2 미완성
+//        list = accountDAO.selectAccount(isPart(a));
+//        for (Account account: list ) {
+//            System.out.println();
+//        }
     }
 
     @Override

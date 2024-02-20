@@ -44,7 +44,7 @@ public class AccountView {   // View 역할
                     break;
                 case 4:
                     System.out.println("계좌번호\t성명\t잔액");     // \t 탭 : 스페이스 4번한거랑 같음
-                    manager.inquire(); // 문의?
+                    manager.inquire();
                     break;
                 case 5:
                     System.out.println("계좌번호\t성명\t금액");

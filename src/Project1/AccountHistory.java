@@ -5,20 +5,23 @@ package Project1;
  * fileName       : AccountHistory
  * date           : 2024-02-20
  * description    : AccountHistory DTO
- *
  * ===========================================================
  */
 public class AccountHistory {
-    private int accountHistoryId;
+    private int accountHistoryId;  // 거래내역 일련 번호
     private int transactionType;    // 거래유형
-    private int accountId;
-    private double Transaction_amount;  // 거래금액
+    private double amount;
+    private double balanceAfter;
+    private String transactionDate;
+    private String accountId;
 
-    public AccountHistory(int accountHistoryId, int transactionType, int accountId, double transaction_amount) {
+    public AccountHistory(int accountHistoryId, int transactionType, double amount, double balanceAfter, String transactionDate, String accountId) {
         this.accountHistoryId = accountHistoryId;
         this.transactionType = transactionType;
+        this.amount = amount;
+        this.balanceAfter = balanceAfter;
+        this.transactionDate = transactionDate;
         this.accountId = accountId;
-        Transaction_amount = transaction_amount;
     }
 
     public int getAccountHistoryId() {
@@ -37,19 +40,35 @@ public class AccountHistory {
         this.transactionType = transactionType;
     }
 
-    public int getAccountId() {
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getBalanceAfter() {
+        return balanceAfter;
+    }
+
+    public void setBalanceAfter(double balanceAfter) {
+        this.balanceAfter = balanceAfter;
+    }
+
+    public String getTransactionDate() {
+        return transactionDate;
+    }
+
+    public void setTransactionDate(String transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
+    public void setAccountId(String accountId) {
         this.accountId = accountId;
-    }
-
-    public double getTransaction_amount() {
-        return Transaction_amount;
-    }
-
-    public void setTransaction_amount(double transaction_amount) {
-        Transaction_amount = transaction_amount;
     }
 }
