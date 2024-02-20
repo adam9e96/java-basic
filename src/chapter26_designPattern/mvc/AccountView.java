@@ -10,7 +10,7 @@ import java.util.Scanner;
  * description    :
  * ===========================================================
  */
-public class AccountView{   // View 역할
+public class AccountView {   // View 역할
     public static void printMenu() {
 
         System.out.println("==========Menu==========");
@@ -24,9 +24,9 @@ public class AccountView{   // View 역할
 
     }
 
-    public static void main(String[] args) throws SQLException {    // Controller 객체 생성만해도.     // DB연결 // 내부적으로 쓸 리스트 배열 , 스캐너 객체
-        AccountManager manager = new AccountManager(); // Controll 객체를 생성해서 가져다 쓰기만함
-        Scanner stdIn = new Scanner(System.in);
+    public static void main(String[] args) throws SQLException {    // Controller 객체 생성만해도.     // DB연결됨(생성자를 통해 getConnection() 실행됨 // 내부적으로 쓸 리스트 배열 , 스캐너 객체
+        AccountManager manager = new AccountManager(); // DTO 객체 생성 // DTO에게 요청을 하고 DTO가 쿼리 명령을 DAO에게 요청해서 받아온 결과를 돌려 받음
+        Scanner stdIn = new Scanner(System.in); // 입력을 받기 위해 Scanner 객체 생성
 
         while (true) {
             printMenu();

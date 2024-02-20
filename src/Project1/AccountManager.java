@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class AccountManager implements IAccountManager{
 
-    // Controll 역할을 하는 클래스
+    // Controller 역할을 하는 클래스
     private final Scanner stdIn;
     private final AccountDAO accountDAO;
     private ArrayList<Account> list;
@@ -23,7 +23,7 @@ public class AccountManager implements IAccountManager{
 
 
     public AccountManager() {
-        this.accountDAO = new AccountDAO();  // AccountDAO 인스턴스 생성
+        this.accountDAO = new AccountDAO();  // AccountDAO 인스턴스 생성 // getConnection() 실행
         this.stdIn = new Scanner(System.in);
     }
 
