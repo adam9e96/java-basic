@@ -38,16 +38,14 @@ public class AccountManager implements IAccountManager {
         System.out.print("거주지: ");
         member.setAddr(stdIn.nextLine());
 
-             // 회원가입 시 아이디 중복 검사
+        // 회원가입 시 아이디 중복 검사
         if (accountDAO.selectMemberIdCnt(member.getUserId()) == 1) {
             // 회원 등록
-            if (accountDAO.insertMember(member)) {
-                System.out.println("회원 등록이 되었습니다.");
-            }
+            accountDAO.insertMember(member);
+            System.out.println("회원 등록이 되었습니다.");
         } else { // 중복검사해서 중복이 나온 경우
             System.out.println(member.getUserId() + "는 사용중인 아이디입니다.");
         }
-
     }
 
     @Override
@@ -65,36 +63,27 @@ public class AccountManager implements IAccountManager {
         // 사용중인 아이디인지
         if (accountDAO.selectMemberIdCnt(member.getUserId()) == 0) {    // 중복이여야 한다 (중복은  0반환)
             // 사용중인 계좌 번호인지
-            if (accountDAO.selectAccountIdCnt(account.getAccountNumber()) == 1){ // 중복이 아니여야 한다.
+            if (accountDAO.selectAccountIdCnt(String.valueOf(account.getAccountNumber())) == 1) { // 중복이 아니여야 한다.
+                // todo 여기부터
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
-                if (accountDAO.selectAccountIdCnt(member.getUserId()) == accountDAO.selectMemberIdCnt(member.getUserId()) ){
-                    if (accountDAO.insertAccount(account)){
-                        System.out.println("계좌 등록이 되었습니다.");
-                    }
-                    accountDAO.selectAccount(account.getAccountType()){
-                        // 2024-02-20 수정중..
-                    }
-                }
+//                if(accountDAO.selectAccountIdCnt(){
+                
+                    accountDAO.insertAccount(account);
+                    System.out.println("계좌 등록이 되었습니다.");
+                    // 쿼리문 
+                    // select count(accountType) from account where memberid= (
+                    // select memberId from member where userId='test');
+
+//                } else {
+//                    System.out.println("이미 계좌가 개설되어 있습니다.");
+//                } // todo 여기까지 잘 모르겠음
+            } else {
+                System.out.println(account.getAccountNumber() + "는 사용중인 계좌번호입니다.");
             }
-
-        }
-
-        if (accountDAO.selectMemberIdCnt(member.getUserId()) == 1 { //
-            if (accountDAO.selectAccountIdCnt(account.getAccountNumber())) {
-
-            }
-        } else{
-            System.out.println(member.getMemberId() + "는 없는 아이디입니다.");
-        }
-        if (accountDAO.insertAccount(account)) {
-//            insertAccount 메소드 -> private 중복 아이디 검사 메소드 -> 다시 insertAccount로 돌아와 계좌번호
-//            검사 후 insert into 실행 -> 해당 아이디 동일 계좌를 가지고 있는지 검사 후 - 결과값 boolean으로 반환
-//            계좌 등록시 1) 사용중인 아이디인지 2) 사용중인 계좌번호인지 3) 해당 아이디가 같은 계좌 종류를 사용중인지
-//            체크 후에 계좌를 개설.
-            System.out.println("계좌 등록이 되었습니다.");
         } else {
-            System.out.println(member.getMemberId() + "는 없는 아이디입니다.");
+            System.out.println(member.getMemberId() + "는 없는아이디입니다.");
         }
+
 
     }
 

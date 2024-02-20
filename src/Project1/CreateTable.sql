@@ -32,10 +32,16 @@ SELECT * FROM member;
 SELECT * FROM ACCOUNT;
 SELECT * FROM member WHERE userid = 'test';
 
-select memberid from account where accountType= 1;
-select * from member
+
+
+select * from member where memberId=(
+select memberId from member where memberId=2);
+
+select memberId from member where memberId=2;
+
 select count(accountType) from account where memberid= (
 select memberId from member where userId='test');
+
 
 select * from account where memberid= (
 SELECT member.memberId FROM member WHERE userid = 'test1');
