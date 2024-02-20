@@ -53,7 +53,7 @@ where memberid = (select member.memberId
 select * from member b where b.memberid in ( # get으로 현재 memberid 가져오기
 select c.memberid from account c where c.accountType = 1) ; # get으로 현재 타입 가져오기
 
-select * from member
+select * from member;
 
 
 

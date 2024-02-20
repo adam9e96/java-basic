@@ -103,8 +103,9 @@ public class AccountManager implements IAccountManager {
         account.setAccountNumber(stdIn.nextLine());
         System.out.print("출금액: ");
         double money = stdIn.nextDouble();
+
         if (!isAccount(member.getUserId())) {
-            accountDAO.updateBalance(String.valueOf(account.getMemberid()), money);
+            accountDAO.updateBalance(account.getAccountNumber(), money);
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
