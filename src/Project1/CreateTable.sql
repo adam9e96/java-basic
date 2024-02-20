@@ -11,7 +11,7 @@ create table account
 (
     accountId     int AUTO_INCREMENT primary key,                  # 계좌 일련번호 #기본키
     # 계좌 아이디가 필요한듯 -> 예제 보니 계좌 아이디라는건 없고 member 테이블에서 생성한 userId를 이용함으로 외래키 설정함
-    accountType   enum('예금계좌','대출계좌'),             # NOT NULL check (accountType < 3), # 계좌종류 (1: 예금계좌, 2: 대출계좌)
+    accountType   int not null check ( accountType in (1,2)),           # NOT NULL check (accountType < 3), # 계좌종류 (1: 예금계좌, 2: 대출계좌)
     accountNumber int            NOT NULL,                         # 계좌번호
     balance       DECIMAL(12, 2) NOT NULL,                         # 잔액
     interestRate  double,                                          # 이자율 null 허용, 예금 계좌에서만 사용
