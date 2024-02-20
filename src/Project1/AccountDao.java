@@ -1,5 +1,8 @@
 package Project1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -10,9 +13,29 @@ import java.util.ArrayList;
  * ===========================================================
  */
 public class AccountDao implements IAccountDao{
-    @Override
-    public void getConnection() {
+    private Connection connection = null;
 
+    public AccountDao() {
+        getConnection();
+    }
+
+    @Override
+    public void getConnection() {  // DB랑 연결하는 메소드
+        // 디비 연결. 생성자에서 실행
+        try {
+            final String DB_URL = "jdbc:mariadb://localhost:3306/sample_java"; // 첫번째 매개값. 연결 문자열
+            final String DB_USER = "root";
+            final String DB_PASS = "3033";
+
+            try {
+                Class.forName("org.mariadb.jdbc.Driver");    // JDBC 드라이버 등록. point1
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            this.connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

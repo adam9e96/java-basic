@@ -1,5 +1,10 @@
 package Project1;
 
+import chapter22.hashSet_exam01.Member;
+import chapter26_designPattern.mvc.AccountDAO;
+
+import java.util.Scanner;
+
 /**
  * ===========================================================
  * fileName       : AccountManager
@@ -8,10 +13,17 @@ package Project1;
  * ===========================================================
  */
 public class AccountManager implements IAccountManager{
+    // Controll 역할을 하는 클래스
+    private final Scanner stdIn;
+    private final AccountDAO accountDAO;
+    public AccountManager() {
+        this.accountDAO = new AccountDAO();  // AccountDAO 인스턴스 생성
+        this.stdIn = new Scanner(System.in);
+    }
+
     @Override
     public void addMember() {
-
-    }
+           }
 
     @Override
     public void addAccount() {
