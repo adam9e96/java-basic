@@ -11,13 +11,14 @@ import java.util.Scanner;
  * description    :
  * ===========================================================
  */
-public class AccountManager implements IAccountManager{
+public class AccountManager implements IAccountManager {
 
     // Controller 역할을 하는 클래스
     private final Scanner stdIn;
     private final AccountDao accountDAO;
     private ArrayList<Account> list;
     private Connection connection;
+    private Member member = new Member();
 
 
     public AccountManager() {
@@ -27,7 +28,6 @@ public class AccountManager implements IAccountManager{
 
     @Override
     public void addMember() { // choice : 1 일때
-       Member member = new Member();
 
         System.out.print("아이디: ");    // test 입력
         member.setId(stdIn.nextLine()); // test (문자열형식)
@@ -40,28 +40,43 @@ public class AccountManager implements IAccountManager{
         System.out.print("거주지: ");
         member.setAddress(stdIn.nextLine());
 
-        if (accountDAO.insertMember(member)){
+        if (accountDAO.insertMember(member)) {
             // 성공하면 1
-            System.out.println();
+            System.out.println("회원 등록이 되었습니다.");
         } else {
-
+            // 0 // 중복인 경우
+            System.out.println(member + "는 사용중인 아이디입니다.");
         }
-
-//
-//                // Account 타입의 인스턴스(콘솔로 Id,Name,Balance 를 입력한)를 넘겨준다.
-//        if (this.addAccount(account)) {  // 이게 INSER INTO 쿼리를 해서 성공한 결과를 불린값으로 돌려주기만 하면 되서 그래요
-//            System.out.println("계좌가 개설되었습니다.");
-////            System.out.println(list.toString()+ "\t");
-//        } else {    // 0 일때         // insert into account (id, name, balance) VALUES (9999,'이수빈',100000); 이게 안된 경우
-//            System.out.println("계좌 생성에 실패했습니다.");
-//        }
-////        System.out.println("계좌가 개설되었습니다.");
-////        System.out.println(list.toString() +
-
     }
 
     @Override
     public void addAccount() {
+        Account account = null;
+        System.out.print("아이디: ");
+        member.setId(stdIn.nextLine());
+        System.out.print("계좌종류: (1: 예금계좌, 2: 대출계좌): ");
+        account.setAccountType(stdIn.nextInt()); // 1 혹은 2만 입력 가능하도록 제약을 걸어두었음
+        System.out.print("계좌번호: ");
+        account.setAccountNumber(stdIn.nextInt());
+        System.out.print("잔액: ");
+        account.setBalance(stdIn.nextDouble());
+
+
+        if (account.getAccountType() == 1){
+            System.out.print("이자율: ");
+            account.setInterestRate(stdIn.nextDouble());
+        } else if (account.getAccountType() ==2) {
+            System.out.print("수수료율: ");
+            account.setChargeRate(stdIn.nextDouble());
+        }
+
+        if (!(member.getId().equals(accountDAO.selectAccount(member.getId())))){
+            // 아이디가 없으면
+            System.out.println(member.getId()+"는 없는 아이디 입니다.");
+        }
+//            if (account.getAccountNumber() == accountDAO.selectAccount(account.)) {
+//
+//        }
 
     }
 

@@ -28,12 +28,12 @@ create table accountHistory
     accountHistoryId   int auto_increment primary key, # 거래내역 일련번호
 #     memberId         int not null,
     transactionType    int            not null,        # 거래유형
-    accountId          int            not null,        # 계좌일련번호
-    Transaction_amount DECIMAL(12, 2) NOT NULL,
+    accountNumber          int            not null,        # 계좌일련번호
+    Transaction_amount DECIMAL(12, 2) NOT NULL,        # 거래금액
 
-    CONSTRAINT UNIQUE_AH unique (transactionType, accountId),
+    CONSTRAINT UNIQUE_AH unique (transactionType, accountNumber),
 #     foreign key (memberId) references member (memberId), # accountId가 이미 account 테이블 -> member와 연결외어 있어서 의미 없음
-    foreign key (accountId) references account (accountId)
+    foreign key (accountNumber) references account (accountNumber)
 );
 
 # 아직 수정안된거
