@@ -39,13 +39,14 @@ public class AccountManager implements IAccountManager {
         member.setAddr(stdIn.nextLine());
 
         // 회원가입 시 아이디 중복 검사
-        if (accountDAO.selectMemberIdCnt(member.getUserId()) == 1) {
+        if (isMember(member.getUserId())){
             // 회원 등록
             accountDAO.insertMember(member);
             System.out.println("회원 등록이 되었습니다.");
         } else { // 중복검사해서 중복이 나온 경우
             System.out.println(member.getUserId() + "는 사용중인 아이디입니다.");
         }
+         
     }
 
     @Override
@@ -83,32 +84,34 @@ public class AccountManager implements IAccountManager {
         } else {
             System.out.println(member.getMemberId() + "는 없는아이디입니다.");
         }
+    }
 
+    @Override
+    public void deposit() { // case 3번
 
     }
 
     @Override
-    public void deposit() {
+    public void withdraw() { // case 4번
 
     }
 
     @Override
-    public void withdraw() {
+    public void viewHistory() { // case 5번
 
     }
 
     @Override
-    public void viewHistory() {
-
-    }
-
-    @Override
-    public void disConnect() {
+    public void disConnect() { // case 6번
 
     }
 
     @Override
     public boolean isMember(String memberId) {
+        if (accountDAO.selectMemberIdCnt(memberId) == 1){
+            // select count(userId) from member where userId='test';
+            return true;
+        }
         return false;
     }
 

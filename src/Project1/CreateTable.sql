@@ -32,6 +32,7 @@ SELECT * FROM member;
 SELECT * FROM ACCOUNT;
 SELECT * FROM member WHERE userid = 'test';
 
+select count(userId) from member where userId='test';
 
 
 select * from member where memberId=(
