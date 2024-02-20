@@ -12,22 +12,20 @@ public class Member {
     private String username;
     private String name;
     private int age;
-    private String address;
+    private String addr;
 
     // 기본 생성자
     public Member() {
     }
 
-    // 매개변수가 있는 생성자
     public Member(String id, String username, String name, int age, String address) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.age = age;
-        this.address = address;
+        this.addr = address;
     }
 
-    // Getter와 Setter 메소드
     public String getId() {
         return id;
     }
@@ -61,14 +59,13 @@ public class Member {
     }
 
     public String getAddress() {
-        return address;
+        return addr;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.addr = address;
     }
 
-    // toString 메소드
     @Override
     public String toString() {
         return "MemberDTO{" +
@@ -76,7 +73,7 @@ public class Member {
                 ", username='" + username + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", address='" + address + '\'' +
+                ", address='" + addr + '\'' +
                 '}';
     }
 }

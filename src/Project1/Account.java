@@ -2,25 +2,27 @@ package Project1;
 
 /**
  * ===========================================================
- * fileName       : Account DTO
+ * fileName       : Account
  * date           : 2024-02-20
- * description    : // 여기에 필요한 필드 멤버 모두 때려 박나요?
+ * description    : Account DTO
  * ===========================================================
  */
+
 public class Account {
     private int accountId;
-    private int accountType ;
+    private int accountType;
     private int accountNumber;
     private double balance;
-    private double interestRate;
-    private double chargeRate;
+    private Double interestRate;
+    private Double chargeRate;
+    private String userId;
 
-    private String userId; // 외래키
-    public Account(){
-
+    // 기본 생성자
+    public Account() {
     }
 
-    public Account(int accountId, int accountType, int accountNumber, double balance, double interestRate, double chargeRate, String userId) {
+    // 매개변수가 있는 생성자
+    public Account(int accountId, int accountType, int accountNumber, double balance, Double interestRate, Double chargeRate, String userId) {
         this.accountId = accountId;
         this.accountType = accountType;
         this.accountNumber = accountNumber;
@@ -62,19 +64,19 @@ public class Account {
         this.balance = balance;
     }
 
-    public double getInterestRate() {
+    public Double getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(Double interestRate) {
         this.interestRate = interestRate;
     }
 
-    public double getChargeRate() {
+    public Double getChargeRate() {
         return chargeRate;
     }
 
-    public void setChargeRate(double chargeRate) {
+    public void setChargeRate(Double chargeRate) {
         this.chargeRate = chargeRate;
     }
 
@@ -84,5 +86,19 @@ public class Account {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    // toString() 메소드
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "accountId=" + accountId +
+                ", accountType=" + accountType +
+                ", accountNumber=" + accountNumber +
+                ", balance=" + balance +
+                ", interestRate=" + interestRate +
+                ", chargeRate=" + chargeRate +
+                ", userId='" + userId + '\'' +
+                '}';
     }
 }
