@@ -1,26 +1,53 @@
+#회원등록 테이블
 CREATE TABLE member
 (
-    memberId INT AUTO_INCREMENT PRIMARY KEY, # 일련번호
-    userId   VARCHAR(50) UNIQUE NOT NULL,    #아이디 #중복 불가 처리
-    name     VARCHAR(10)        NOT NULL,    # 이름
-    age      INT                NOT NULL,    # 나이
-    addr     VARCHAR(50)        NOT NULL     #거주지
+#자동증가정수, 아이디, 이름, 나이, 거주지
+    memberId int AUTO_INCREMENT PRIMARY KEY, #자동증가 #중복 불가
+    userId   VARCHAR(20) NOT NULL,           #유저아이디
+    name     VARCHAR(20) NOT NULL,           #유저이름
+    age      INT(3)      NOT NULL,           #유저나이
+    addr     VARCHAR(20) NOT NULL            #유저거주지
+);
+DESC member;
+
+CREATE TABLE account
+(
+    memberid      INT PRIMARY KEY,                                                  # 유저아이디
+    accountType   INT           NOT NULL CHECK (accountType = 1 or accountType = 2),# (1 : 예금계좌, 2 : 대출계좌)
+    accountNumber INT           NOT NULL,                                           # 계좌 번호
+    balance       DECIMAL(10, 2),                                                   # 잔액
+    typeRate      DECIMAL(5, 2) NULL,                                               # 이자율/ 수수료율
+    CONSTRAINT fk_m
+        FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
 
-create table account
+INSERT INTO member
+VALUES (0, 'test', 'test', 25, 'test');
+SELECT *
+FROM member;
+SELECT *
+FROM ACCOUNT;
+SELECT *
+FROM member
+WHERE userid = 'test';
+
+INSERT INTO ACCOUNT
+VALUES ((SELECT memberid FROM member WHERE userid = 'test'), 1, 3355, 1000, 0.5);
+SELECT *
+FROM member
+WHERE memberid = (SELECT memberid
+                  FROM ACCOUNT
+                  WHERE accountNumber = 3355);
+
+CREATE TABLE accountHistory
 (
-    accountId     int AUTO_INCREMENT primary key,                  # 계좌 일련번호 #기본키
-    # 계좌 아이디가 필요한듯 -> 예제 보니 계좌 아이디라는건 없고 member 테이블에서 생성한 userId를 이용함으로 외래키 설정함
-    accountType   int not null check ( accountType in (1,2)),           # NOT NULL check (accountType < 3), # 계좌종류 (1: 예금계좌, 2: 대출계좌)
-    accountNumber int            NOT NULL,                         # 계좌번호
-    balance       DECIMAL(12, 2) NOT NULL,                         # 잔액
-    interestRate  DECIMAL(12, 2),                                          # 이자율 null 허용, 예금 계좌에서만 사용
-    chargeRate    DECIMAL(12, 2),                                    # 수수료율, null 허용, 대출 계좌에서만 사용
-    userId        VARCHAR(50)    not null,                         # member아이디 (외래키)
-    # Rate의 경우 double로 할지 DECIMAL로 할지 모르겠음.
-    constraint unique_account UNIQUE (accountType, userId),        # 타입은 중복이 안되므로(각 1개씩 생성가능함)
-    foreign key (userId) references member (userId)
+#회원테이블의 아이디
+#account 테이블의 계좌번호 원금, 이자, 수수료, 거래금액, 거래당시금액
+    accountNumber INT            NOT NULL, #계좌번호
+    balance       DECIMAL(10, 2) NOT NULL, #입,출금 때 사용할 거
+    amount        DECIMAL(10, 2) NOT NULL  #거래당시 초기 금액
 );
+
 
 
 create table accountHistory
@@ -28,7 +55,7 @@ create table accountHistory
     accountHistoryId   int auto_increment primary key, # 거래내역 일련번호
 #     memberId         int not null,
     transactionType    int            not null,        # 거래유형
-    accountNumber          int            not null,        # 계좌일련번호
+    accountNumber      int            not null,        # 계좌일련번호
     Transaction_amount DECIMAL(12, 2) NOT NULL,        # 거래금액
 
     CONSTRAINT UNIQUE_AH unique (transactionType, accountNumber),

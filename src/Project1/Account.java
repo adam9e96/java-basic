@@ -9,35 +9,27 @@ package Project1;
  */
 
 public class Account {
-    private int accountId;
-    private int accountType;
-    private int accountNumber;
-    private double balance;
-    private Double interestRate;
-    private Double chargeRate;
-    private String userId;
+    private int memberid; // 유저ID // FK 이자 PK
+    private int accountType; // 완성
+    private int accountNumber; // 완성
+    private double balance; // 완성
+    private double typeRate; // 수수료율 / 이자율
 
-    // 기본 생성자
-    public Account() {
-    }
 
-    // 매개변수가 있는 생성자
-    public Account(int accountId, int accountType, int accountNumber, double balance, Double interestRate, Double chargeRate, String userId) {
-        this.accountId = accountId;
+    public Account(int memberid, int accountType, int accountNumber, double balance, double typeRate) {
+        this.memberid = memberid;
         this.accountType = accountType;
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.interestRate = interestRate;
-        this.chargeRate = chargeRate;
-        this.userId = userId;
+        this.typeRate = typeRate;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public int getMemberid() {
+        return memberid;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setMemberid(int memberid) {
+        this.memberid = memberid;
     }
 
     public int getAccountType() {
@@ -64,41 +56,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public Double getInterestRate() {
-        return interestRate;
+    public double getTypeRate() {
+        return typeRate;
     }
 
-    public void setInterestRate(Double interestRate) {
-        this.interestRate = interestRate;
-    }
-
-    public Double getChargeRate() {
-        return chargeRate;
-    }
-
-    public void setChargeRate(Double chargeRate) {
-        this.chargeRate = chargeRate;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    // toString() 메소드
-    @Override
-    public String toString() {
-        return "AccountDTO{" +
-                "accountId=" + accountId +
-                ", accountType=" + accountType +
-                ", accountNumber=" + accountNumber +
-                ", balance=" + balance +
-                ", interestRate=" + interestRate +
-                ", chargeRate=" + chargeRate +
-                ", userId='" + userId + '\'' +
-                '}';
+    public void setTypeRate(double typeRate) {
+        this.typeRate = typeRate;
     }
 }

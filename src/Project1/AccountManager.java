@@ -19,6 +19,7 @@ public class AccountManager implements IAccountManager {
     private ArrayList<Account> list;
     private Connection connection;
     private Member member = new Member();
+    private Account account = new Account();
 
 
     public AccountManager() {
@@ -50,10 +51,10 @@ public class AccountManager implements IAccountManager {
     }
 
     @Override
-    public void addAccount() {
-        Account account = null;
+    public void addAccount() { // choice : 2 일 때 
+      
         System.out.print("아이디: ");
-        member.setId(stdIn.nextLine());
+        member.setId(stdIn.nextLine()); // member 테이블의 멤버 아이디
         System.out.print("계좌종류: (1: 예금계좌, 2: 대출계좌): ");
         account.setAccountType(stdIn.nextInt()); // 1 혹은 2만 입력 가능하도록 제약을 걸어두었음
         System.out.print("계좌번호: ");

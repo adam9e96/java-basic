@@ -5,41 +5,42 @@ package Project1;
  * fileName       : Member
  * date           : 2024-02-20
  * description    : Member DTO
+ * Member 클래스 최종.
  * ===========================================================
  */
 public class Member {
-    private String id;
-    private String username;
-    private String name;
-    private int age;
-    private String addr;
+    private int memberId; // 완성
+    private String userId; // 완성
+    private String name;    // 완성
+    private int age;    // 완선
+    private String addr; //완성
 
     // 기본 생성자
     public Member() {
     }
 
-    public Member(String id, String username, String name, int age, String address) {
-        this.id = id;
-        this.username = username;
+    public Member(int memberId, String userId, String name, int age, String addr) {
+        this.memberId = memberId;
+        this.userId = userId;
         this.name = name;
         this.age = age;
-        this.addr = address;
+        this.addr = addr;
     }
 
-    public String getId() {
-        return id;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -58,22 +59,11 @@ public class Member {
         this.age = age;
     }
 
-    public String getAddress() {
+    public String getAddr() {
         return addr;
     }
 
-    public void setAddress(String address) {
-        this.addr = address;
-    }
-
-    @Override
-    public String toString() {
-        return "MemberDTO{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", address='" + addr + '\'' +
-                '}';
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 }
