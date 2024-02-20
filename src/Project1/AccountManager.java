@@ -3,6 +3,8 @@ package Project1;
 import chapter22.hashSet_exam01.Member;
 import chapter26_designPattern.mvc.AccountDAO;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,9 +15,14 @@ import java.util.Scanner;
  * ===========================================================
  */
 public class AccountManager implements IAccountManager{
+
     // Controll 역할을 하는 클래스
     private final Scanner stdIn;
     private final AccountDAO accountDAO;
+    private ArrayList<Account> list;
+    private Connection connection;
+
+
     public AccountManager() {
         this.accountDAO = new AccountDAO();  // AccountDAO 인스턴스 생성
         this.stdIn = new Scanner(System.in);
