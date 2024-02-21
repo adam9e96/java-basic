@@ -214,5 +214,3 @@ where accountId = '3033';
 select *
 from account
 where accountId = 'ACC0001';
-
-

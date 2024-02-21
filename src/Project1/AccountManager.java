@@ -140,6 +140,8 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public void viewHistory() { // case 5번
+        String type = "";
+
         System.out.print("계좌번호: ");
 //        String ad = stdIn.nextLine();
         account.setAccountId(stdIn.nextLine());
@@ -155,7 +157,12 @@ public class AccountManager implements IAccountManager {
         }
         System.out.println(list);
         for (AccountHistory accountHistory1 : list) {
-            System.out.println(accountHistory1.getTransactionType() + "\t" + accountHistory1.getAmount() + "\t" + accountHistory1.getBalanceAfter());
+            if (accountHistory1.getAccountHistoryId() == 1) {
+                type = "입금";
+            } else {
+                type = "출금";
+            }
+            System.out.println(type + "\t" + accountHistory1.getAmount() + "\t" + accountHistory1.getBalanceAfter());
         }
         System.out.println("잔액 : " + account.getBalance());
     }
