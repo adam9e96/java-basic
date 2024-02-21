@@ -56,14 +56,21 @@ VALUES (1, 1, 'ACC0001', 10000.00, 1.5), -- 예금계좌, 이자율 1.5%
        (3, 1, 'ACC0003', 15000.00, 1.2);
 -- 예금계좌, 이자율 1.2%
 
-# 테스트 코드 start
+# 테스트 코드 start !!
 insert into member (userId, name, age, addr)
 VALUES ('test', 'test', 25, 'test');
+insert into member (userId, name, age, addr)
+VALUES ('abc', '스몰더', 20, '경주');
+select * from member;
 insert into account (memberid, accountType, accountId, balance, typeRate)
 VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
+insert into account (memberid, accountType, accountId, balance, typeRate)
+VALUES (2, 2, 'list9999', 1000, 5.0);
 insert into accountHistory (transactionType, amount, balanceAfter, accountId)
 VALUES (1, 2000, 12000, 'fpkm3033');
-# 테스트 코드 end
+# 테스트 코드 end !!!
+
+
 insert into account (memberid, accountType, accountId, balance, typeRate)
 values (4, 2, '3033', 100000, 3.0);
 
@@ -132,9 +139,8 @@ where memberId = 2;
 
 select accountType
 from account
-where memberid = (select memberId
-                  from member
-                  where userId = 'test'); # get으로 id 가져오기
+where memberid = (
+select memberId from member where userId = 'abc'); # get으로 id 가져오기
 
 
 select *
@@ -208,4 +214,5 @@ where accountId = '3033';
 select *
 from account
 where accountId = 'ACC0001';
+
 
