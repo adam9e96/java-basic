@@ -41,12 +41,12 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public String getAccountNumber() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountId = accountNumber;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public double getBalance() {

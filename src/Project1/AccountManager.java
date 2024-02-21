@@ -59,14 +59,14 @@ public class AccountManager implements IAccountManager {
         System.out.print("계좌종류: (1: 예금계좌, 2: 대출계좌): ");
         account.setAccountType(stdIn.nextInt()); // 1 혹은 2만 입력 가능하도록 제약을 걸어두었음
         System.out.print("계좌번호: ");
-        account.setAccountNumber(stdIn.nextLine());
+        account.setAccountId(stdIn.nextLine());
         System.out.print("잔액: ");
         account.setBalance(stdIn.nextDouble());
 //
         // 사용중인 아이디인지
         if (isMember(member.getUserId())) {
             // 사용중인 계좌 번호인지
-            if (isAccount(account.getAccountNumber())) {
+            if (isAccount(account.getAccountId())) {
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
                 if (isPart(account)) {
                     accountDAO.insertAccount(account);
@@ -75,7 +75,7 @@ public class AccountManager implements IAccountManager {
                     System.out.println("이미 계좌가 개설되어 있습니다.");
                 }
             } else {
-                System.out.println(account.getAccountNumber() + "는 사용중인 계좌번호입니다.");
+                System.out.println(account.getAccountId() + "는 사용중인 계좌번호입니다.");
             }
         } else {
             System.out.println(member.getMemberId() + "는 없는아이디입니다.");
@@ -86,18 +86,18 @@ public class AccountManager implements IAccountManager {
     @Override
     public void deposit() { // case 3번
         System.out.print("계좌번호: ");
-        account.setAccountNumber(stdIn.nextLine());
+        account.setAccountId(stdIn.nextLine());
         System.out.print("입금액: ");
         double money = stdIn.nextDouble();
 
         if (isAccount(member.getUserId())) {
             if (isPart(account)) {
                 // true : 예금 계좌
-                accountDAO.updateBalance(account.getAccountNumber(), money);
+                accountDAO.updateBalance(account.getAccountId(), money);
 
             } else {
                 // false : 출금 계좌
-                accountDAO.updateBalance(account.getAccountNumber(), money + money * account.getTypeRate());
+                accountDAO.updateBalance(account.getAccountId(), money + money * account.getTypeRate());
             }
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
@@ -107,17 +107,17 @@ public class AccountManager implements IAccountManager {
     @Override
     public void withdraw() { // case 4번
         System.out.print("계좌번호: ");
-        account.setAccountNumber(stdIn.nextLine());
+        account.setAccountId(stdIn.nextLine());
         System.out.print("출금액: ");
         double money = stdIn.nextDouble();
 
-        if (isAccount(member.getUserId())) {
+        if (isAccount(account.getAccountId())) {
             if (isPart(account)) {
                 // true : 예금 계좌
-                accountDAO.updateBalance(account.getAccountNumber(), money);
+                accountDAO.updateBalance(account.getAccountId(), money);
             } else {
                 // false : 출금 계좌
-                accountDAO.updateBalance(account.getAccountNumber(), -(money + money * account.getTypeRate()));
+                accountDAO.updateBalance(account.getAccountId(), -(money + money * account.getTypeRate()));
             }
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
@@ -126,7 +126,11 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public void viewHistory() { // case 5번
+        System.out.print("계좌번호: ");
+        account.setAccountId(stdIn.nextLine());
+        if (isAccount(account.getAccountId())) {
 
+        }
 
     }
 

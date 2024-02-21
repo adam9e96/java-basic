@@ -7,7 +7,6 @@ CREATE TABLE member
     name     VARCHAR(20) NOT NULL,           #유저이름
     age      INT(3)      NOT NULL,           #유저나이
     addr     VARCHAR(20) NOT NULL            #유저거주지
-
 );
 # userid는 Unique 걸어 놓지 않았음
 # 로직에서 중복검사를 돌리기 떄문에
