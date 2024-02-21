@@ -7,6 +7,7 @@ CREATE TABLE member
     name     VARCHAR(20) NOT NULL,           #유저이름
     age      INT(3)      NOT NULL,           #유저나이
     addr     VARCHAR(20) NOT NULL            #유저거주지
+
 );
 # userid는 Unique 걸어 놓지 않았음
 # 로직에서 중복검사를 돌리기 떄문에
@@ -149,3 +150,6 @@ FROM member
 WHERE memberid = (SELECT memberid
                   FROM ACCOUNT
                   WHERE accountId = 3355);
+
+select count(*) from account where accountId='3033';
+select count(accountNumber) from account where accountNumber=3033;

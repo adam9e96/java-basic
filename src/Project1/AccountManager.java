@@ -40,6 +40,7 @@ public class AccountManager implements IAccountManager {
 
         // 회원가입 시 아이디 중복 검사
         if (isMember(member.getUserId())) {
+
             // 회원 등록
             accountDAO.insertMember(member);
 //           ㄴ INSERT INTO member (userId, name, age, addr) VALUES  ( 'test', '김유니', 25, '경북');
@@ -129,7 +130,7 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean isMember(String userId) { // 해당 아이디의 회원 개수를 반환
         if (accountDAO.selectMemberIdCnt(userId) == 1) {
-            // select count(userId) from member where userId='test'; // test는 예시
+            // select count(*) from member where userId='test'; // test는 예시
             return true;
         }
         return false;
@@ -138,7 +139,7 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean isAccount(String accountId) {    // 해당 계좌번호의 계좌 개수를 반환
         if (accountDAO.selectAccountIdCnt(accountId) == 1) {
-            // select count(accountNumber) from account where accountNumber=3033;
+            //select count(*) from account where accountId='3033';
             return true;
         }
         return false;
