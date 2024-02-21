@@ -26,12 +26,12 @@ CREATE TABLE account
 
 CREATE TABLE accountHistory
 (
-    accountHistoryId int auto_increment primary key,                                   # 거래내역의 고유 번호
+    accountHistoryId int auto_increment primary key,                             # 거래내역의 고유 번호
     transactionType  INT            NOT NULL check ( transactionType in (1, 2)), # 거래 유형 (예: 1 - 입금, 2 출금)
-    amount           DECIMAL(10, 2) NOT NULL,                                          # 거래 금액 (예금,출금시 money 값을 저장)
-    balanceAfter     DECIMAL(10, 2) NOT NULL,                                          # 거래 후 잔액
-    accountId        varchar(20)    NOT NULL,                                          # 계좌 번호
-    foreign key (accountId) references account (accountId)                             # 계좌번호 외래키,
+    amount           DECIMAL(10, 2) NOT NULL,                                    # 거래 금액 (예금,출금시 money 값을 저장)
+    balanceAfter     DECIMAL(10, 2) NOT NULL,                                    # 거래 후 잔액
+    accountId        varchar(20)    NOT NULL,                                    # 계좌 번호
+    foreign key (accountId) references account (accountId)                       # 계좌번호 외래키,
 );
 
 # 테스트용 데이터
@@ -60,9 +60,9 @@ insert into account (memberid, accountType, accountId, balance, typeRate)
 values (4, 2, '3033', 100000, 3.0);
 
 INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
-VALUES (1, 10000.00, 10000.00, 'ACC0001'), -- ACC001 계좌에 대한 입금 거래
-       (2, 5000.00, 5000.00, 'ACC0002'),   -- ACC002 계좌에 대한 출금 거래
-       (3, 200.00, 10200.00, 'ACC0001');
+VALUES (1, 10000.00, 10000.00, 'ACC0001'), -- ACC001 계좌에 대한 입금 거래 # 1은 입금
+       (2, 5000.00, 5000.00, 'ACC0002'),   -- ACC002 계좌에 대한 출금 거래 # 2는 출금
+       (1, 200.00, 10200.00, 'ACC0001');
 -- ACC001 계좌에 대한 이자지급 거래
 
 # 조회
@@ -73,6 +73,8 @@ from account;
 select *
 from accountHistory;
 
+select amount as 거래금액, balanceAfter as "입/출금하고 금액"
+from accountHistory;
 
 select count(userid)
 from member
@@ -151,11 +153,40 @@ WHERE memberid = (SELECT memberid
                   FROM ACCOUNT
                   WHERE accountId = 3355);
 
-select count(*) from account where accountId='3033';
-select count(accountId) from account where accountId=3033;
+select count(*)
+from account
+where accountId = '3033';
+select count(accountId)
+from account
+where accountId = 3033;
 
-select * from member;
+select *
+from member;
 SELECT COUNT(*) AS UserCount
 FROM member
 WHERE userId = 'test';
 
+
+
+
+
+# accountHistory 거래 내역 데이터 (테스트용)
+INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
+VALUES (1, 1000.00, 1000.00, 'ACC0001'), -- ACC0001에 대한 입금 거래
+       (2, 200.00, 800.00, 'ACC0001'),   -- ACC0001에 대한 출금 거래
+       (1, 1500.00, 1500.00, 'ACC0002'), -- ACC0002에 대한 입금 거래
+       (2, 500.00, 1000.00, 'ACC0002'),  -- ACC0002에 대한 출금 거래
+       (1, 2000.00, 2000.00, 'ACC0003'), -- ACC0003에 대한 입금 거래
+       (2, 1000.00, 1000.00, 'ACC0003'), -- ACC0003에 대한 출금 거래
+       (1, 3000.00, 3000.00, '3033'),    -- 3033에 대한 입금 거래
+       (2, 1500.00, 1500.00, '3033'); -- 3033에 대한 출금 거래
+
+# case 5번
+select * from accountHistory where accountId='ACC0001';
+# transactionType : 1  ==> 입금
+# transactionType : 2  ==> 출금
+
+
+select * from account;
+
+select * from member;
