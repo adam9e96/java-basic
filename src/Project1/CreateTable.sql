@@ -14,29 +14,29 @@ CREATE TABLE member
 ## 계좌 테이블
 CREATE TABLE account
 (
-    memberid    INT,                                                               # 유저아이디
+    memberid    INT           NOT NULL,                                            # 유저아이디
     accountType INT           NOT NULL CHECK (accountType = 1 or accountType = 2), # (1 : 예금계좌, 2 : 대출계좌) # 종류
-    accountId   VARCHAR(20)   NOT NULL UNIQUE,                                     # 계좌 번호 - UNIQUE 제약 조건 추가
+    accountId   VARCHAR(20) PRIMARY KEY,                                           # 계좌 번호 - UNIQUE 제약 조건 추가
     balance     DECIMAL(10, 2),                                                    # 잔액
-    typeRate    DECIMAL(5, 2) NULL,                                                # 이자율/ 수수료율 # 비율
-    PRIMARY KEY (memberid),
+    typeRate    DECIMAL(5, 2) NOT NULL,                                            # 이자율/ 수수료율 # 비율
     FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
 
 CREATE TABLE accountHistory
 (
-    accountHistoryId int auto_increment primary key,                             # 거래내역의 고유 번호
-    transactionType  INT            NOT NULL check ( transactionType in (1, 2)), # 거래 유형 (예: 1 - 입금, 2 출금)
+    accountHistoryId INT AUTO_INCREMENT PRIMARY KEY,                             # 거래내역의 고유 번호
+    transactionType  INT            NOT NULL CHECK ( transactionType in (1, 2)), # 거래 유형 (예: 1 - 입금, 2 출금) #in 은 1 또는
     amount           DECIMAL(10, 2) NOT NULL,                                    # 거래 금액 (예금,출금시 money 값을 저장)
     balanceAfter     DECIMAL(10, 2) NOT NULL,                                    # 거래 후 잔액
-    accountId        varchar(20)    NOT NULL,                                    # 계좌 번호
-    foreign key (accountId) references account (accountId)                       # 계좌번호 외래키,
+    accountId ㄴ       varchar(20)    NOT NULL,                                    # 계좌 번호
+    FOREIGN KEY (accountId) REFERENCES account (accountId)                       # 계좌번호 외래키,
 );
 
 # 테스트용 데이터
-select *
+
+select count(*)
 from member
-where memberId = 'test';
+where userId = 'test';
 
 INSERT INTO member
 VALUES (0, 'test', 'test', 25, 'test'); # memberid : 1번
@@ -53,21 +53,17 @@ VALUES ('fpkm', '홍길순', 25, '경기'); # memberid : 1번
 INSERT INTO account (memberid, accountType, accountId, balance, typeRate)
 VALUES (1, 1, 'ACC0001', 10000.00, 1.5), -- 예금계좌, 이자율 1.5%
        (2, 2, 'ACC0002', -5000.00, 2.0), -- 대출계좌, 수수료율 2.0%
-       (3, 1, 'ACC0003', 15000.00, 1.2); -- 예금계좌, 이자율 1.2%
+       (3, 1, 'ACC0003', 15000.00, 1.2);
+-- 예금계좌, 이자율 1.2%
 
-insert into member ( userId, name, age, addr)
-VALUES ('test','test',25,'test');
+# 테스트 코드 start
+insert into member (userId, name, age, addr)
+VALUES ('test', 'test', 25, 'test');
 insert into account (memberid, accountType, accountId, balance, typeRate)
 VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
-select *
-from account;
-select *
-from member;
 insert into accountHistory (transactionType, amount, balanceAfter, accountId)
 VALUES (1, 2000, 12000, 'fpkm3033');
-select *
-from accountHistory;
-
+# 테스트 코드 end
 insert into account (memberid, accountType, accountId, balance, typeRate)
 values (4, 2, '3033', 100000, 3.0);
 
