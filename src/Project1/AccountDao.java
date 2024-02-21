@@ -87,4 +87,9 @@ public class AccountDao implements IAccountDao{
     public int selectMemberIdCnt(String memberId) {
         return 0;
     }
+
+    public int selectTypeRate(Account account) {
+        // 현재 계좌의 유형 중복검사
+        return 1;
+    }
 }

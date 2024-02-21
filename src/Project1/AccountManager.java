@@ -69,7 +69,7 @@ public class AccountManager implements IAccountManager {
             // 사용중인 계좌 번호인지
             if (isAccount(account.getAccountNumber())) {
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
-                if (isPart(account)) { // todo 여기 isPart 메소드 못함
+                if (isPart(account)) {
                     accountDAO.insertAccount(account);
                     System.out.println("계좌 등록이 되었습니다.");
                 } else {
@@ -149,11 +149,8 @@ public class AccountManager implements IAccountManager {
     }
 
     @Override
-    public boolean isPart(Account account) {    // 계좌 유형이 에금인지 출력인지 검사하는 메소드
-
-        return false;
-        // select count(accountType) from account where memberid = (
-        //select memberId from member where userId = 'test'); # get으로 id 가져오기
+    public boolean isPart(Account account) { // 계좌 유형 중복검사
+        return accountDAO.selectTypeRate(account) == 1; // DAO 클래스에서 만드는 편이 좋을듯 합니다.
 
     }
 }
