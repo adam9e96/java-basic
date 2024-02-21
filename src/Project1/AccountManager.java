@@ -149,8 +149,6 @@ public class AccountManager implements IAccountManager {
             System.out.println(accountHistory1.getTransactionType() + "\t" + accountHistory1.getAmount() + "\t" + accountHistory1.getBalanceAfter());
         }
         System.out.println("잔액 : " + account.getBalance());
-
-
     }
 
     @Override
