@@ -26,10 +26,9 @@ CREATE TABLE account
 CREATE TABLE accountHistory
 (
     accountHistoryId int auto_increment primary key,                                   # 거래내역의 고유 번호
-    transactionType  INT            NOT NULL check ( transactionType in (1, 2, 3, 4)), # 거래 유형 (예: 1 - 입금, 2 - 출금, 3 - 이자지급, 4 - 수수료 부과 등)
-    amount           DECIMAL(10, 2) NOT NULL,                                          # 거래 금액
+    transactionType  INT            NOT NULL check ( transactionType in (1, 2, 3, 4)), # 거래 유형 (예: 1 - 입금, 2 출금)
+    amount           DECIMAL(10, 2) NOT NULL,                                          # 거래 금액 (예금,출금시 money 값을 저장)
     balanceAfter     DECIMAL(10, 2) NOT NULL,                                          # 거래 후 잔액
-    transactionDate  TIMESTAMP default current_timestamp,                              # 거래시간, 기본값 : 현재 시간 자동 저장
     accountId        varchar(20)    NOT NULL,                                          # 계좌 번호
     foreign key (accountId) references account (accountId)                             # 계좌번호 외래키,
 );
@@ -62,9 +61,12 @@ values (4, 2, '3033', 100000, 3.0);
 INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
 VALUES (1, 10000.00, 10000.00, 'ACC0001'), -- ACC001 계좌에 대한 입금 거래
        (2, 5000.00, 5000.00, 'ACC0002'),   -- ACC002 계좌에 대한 출금 거래
-       (3, 200.00, 10200.00, 'ACC0001'); -- ACC001 계좌에 대한 이자지급 거래
+       (3, 200.00, 10200.00, 'ACC0001');
+-- ACC001 계좌에 대한 이자지급 거래
 
 # 조회
+select *
+from member;
 select *
 from account;
 select *
