@@ -25,10 +25,10 @@ CREATE TABLE account
 CREATE TABLE accountHistory
 (
     accountHistoryId INT AUTO_INCREMENT PRIMARY KEY,                             # 거래내역의 고유 번호
-    transactionType  INT            NOT NULL CHECK ( transactionType in (1, 2)), # 거래 유형 (예: 1 - 입금, 2 출금) #in 은 1 또는
+    transactionType  INT            NOT NULL CHECK ( transactionType =  1 or transactionType= 2), # 거래 유형 (예: 1 - 입금, 2 출금) #in 은 1 또는
     amount           DECIMAL(10, 2) NOT NULL,                                    # 거래 금액 (예금,출금시 money 값을 저장)
     balanceAfter     DECIMAL(10, 2) NOT NULL,                                    # 거래 후 잔액
-    accountId ㄴ       varchar(20)    NOT NULL,                                    # 계좌 번호
+    accountId        varchar(20)    NOT NULL,                                    # 계좌 번호
     FOREIGN KEY (accountId) REFERENCES account (accountId)                       # 계좌번호 외래키,
 );
 
