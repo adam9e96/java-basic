@@ -16,9 +16,9 @@ public class AccountManager implements IAccountManager {
     private final Scanner stdIn;
     private final AccountDao accountDAO;
     private ArrayList<Account> list;
-    private Connection connection = null;
     private Member member = new Member();
     private Account account = new Account();
+    private AccountHistory accountHistory = new AccountHistory();
 
 
     public AccountManager() {
@@ -118,6 +118,8 @@ public class AccountManager implements IAccountManager {
             } else {
                 // false : 출금 계좌
                 accountDAO.updateBalance(account.getAccountId(), -(money + money * account.getTypeRate()));
+//                accountDAO.insertAccountHistory(accountHistory.getAccountId());
+                //INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
             }
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");

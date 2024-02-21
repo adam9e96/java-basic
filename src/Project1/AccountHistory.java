@@ -14,6 +14,8 @@ public class AccountHistory {
     private double balanceAfter;
     private String accountId;
 
+    public AccountHistory(){}
+
     public AccountHistory(int accountHistoryId, int transactionType, double amount, double balanceAfter, String accountId) {
         this.accountHistoryId = accountHistoryId;
         this.transactionType = transactionType;
