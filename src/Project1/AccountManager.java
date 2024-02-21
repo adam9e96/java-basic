@@ -1,5 +1,6 @@
 package Project1;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +16,6 @@ public class AccountManager implements IAccountManager {
 
     private final Scanner stdIn;
     private final AccountDao accountDAO;
-    private ArrayList<Account> list;
     private Member member = new Member();
     private Account account = new Account();
     private AccountHistory accountHistory = new AccountHistory();
@@ -70,6 +70,8 @@ public class AccountManager implements IAccountManager {
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
                 if (isPart(account)) {
                     accountDAO.insertAccount(account);
+                    //INSERT INTO account (memberid, accountType, accountId, balance, typeRate)
+                    //VALUES (1, 1, 'ACC0001', 10000.00, 1.5);  이런느낌
                     System.out.println("계좌 등록이 되었습니다.");
                 } else {
                     System.out.println("이미 계좌가 개설되어 있습니다.");
@@ -102,6 +104,7 @@ public class AccountManager implements IAccountManager {
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
+
     }
 
     @Override
@@ -129,10 +132,24 @@ public class AccountManager implements IAccountManager {
     @Override
     public void viewHistory() { // case 5번
         System.out.print("계좌번호: ");
+//        String ad = stdIn.nextLine();
         account.setAccountId(stdIn.nextLine());
+        ArrayList<AccountHistory> list = null;
+
         if (isAccount(account.getAccountId())) {
+            for (int i = 0; i < accountHistory.getAccountHistoryId(); i++) {
+                list.add(accountHistory);
+            }
+        } else {
+            System.out.println("계좌 번호를 잘못 입력하셨습니다.");
 
         }
+        System.out.println(list);
+        for (AccountHistory accountHistory1 : list) {
+            System.out.println(accountHistory1.getTransactionType() + "\t" + accountHistory1.getAmount() + "\t" + accountHistory1.getBalanceAfter());
+        }
+        System.out.println("잔액 : " + account.getBalance());
+
 
     }
 

@@ -190,4 +190,7 @@ select * from account;
 
 select * from member;
 
-select count(*) from account where accountId='3033'
+select count(*) from account where accountId='3033';
+
+select * from account where accountId='ACC0001';
+
