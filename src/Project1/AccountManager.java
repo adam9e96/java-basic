@@ -146,7 +146,7 @@ public class AccountManager implements IAccountManager {
     }
 
     @Override
-    public boolean isPart(Account account) {
+    public boolean isPart(Account account) {    // 계좌 유형이 에금인지 출력인지 검사하는 메소드
 
         return false;
         // select count(accountType) from account where memberid = (
