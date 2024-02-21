@@ -40,7 +40,6 @@ public class AccountManager implements IAccountManager {
 
         // 회원가입 시 아이디 중복 검사
         if (isMember(member.getUserId())) {
-
             // 회원 등록
             accountDAO.insertMember(member);
 //           ㄴ INSERT INTO member (userId, name, age, addr) VALUES  ( 'test', '김유니', 25, '경북');
