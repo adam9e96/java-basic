@@ -153,3 +153,8 @@ WHERE memberid = (SELECT memberid
 
 select count(*) from account where accountId='3033';
 select count(accountNumber) from account where accountNumber=3033;
+
+select * from member;
+SELECT COUNT(*) AS UserCount
+FROM member
+WHERE userId = 'test';

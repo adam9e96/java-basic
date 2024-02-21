@@ -130,7 +130,10 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean isMember(String userId) { // 해당 아이디의 회원 개수를 반환
         if (accountDAO.selectMemberIdCnt(userId) == 1) {
-            // select count(*) from member where userId='test'; // test는 예시
+            //
+            //SELECT COUNT(*) AS UserCount
+            //FROM member
+            //WHERE userId = 'test';
             return true;
         }
         return false;
