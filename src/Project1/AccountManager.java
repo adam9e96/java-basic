@@ -96,11 +96,15 @@ public class AccountManager implements IAccountManager {
             if (isPart(account)) {
                 // true : 예금 계좌
                 accountDAO.updateBalance(account.getAccountId(), money);
-
             } else {
                 // false : 출금 계좌
                 accountDAO.updateBalance(account.getAccountId(), money + money * account.getTypeRate());
             }
+            accountHistory.setTransactionType(1); // 1: 입금
+            accountHistory.setAccountId(account.getAccountId());
+            accountHistory.setAmount(money);
+            accountHistory.setBalanceAfter(account.getBalance());
+            accountDAO.insertAccountHistory(accountHistory);
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
@@ -121,9 +125,12 @@ public class AccountManager implements IAccountManager {
             } else {
                 // false : 출금 계좌
                 accountDAO.updateBalance(account.getAccountId(), -(money + money * account.getTypeRate()));
-//                accountDAO.insertAccountHistory(accountHistory.getAccountId());
-                //INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
             }
+            accountHistory.setTransactionType(2); // 1: 출금
+            accountHistory.setAccountId(account.getAccountId());
+            accountHistory.setAmount(money);
+            accountHistory.setBalanceAfter(account.getBalance());
+            accountDAO.insertAccountHistory(accountHistory);
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }

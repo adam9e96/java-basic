@@ -55,6 +55,19 @@ VALUES (1, 1, 'ACC0001', 10000.00, 1.5), -- 예금계좌, 이자율 1.5%
        (2, 2, 'ACC0002', -5000.00, 2.0), -- 대출계좌, 수수료율 2.0%
        (3, 1, 'ACC0003', 15000.00, 1.2); -- 예금계좌, 이자율 1.2%
 
+insert into member ( userId, name, age, addr)
+VALUES ('test','test',25,'test');
+insert into account (memberid, accountType, accountId, balance, typeRate)
+VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
+select *
+from account;
+select *
+from member;
+insert into accountHistory (transactionType, amount, balanceAfter, accountId)
+VALUES (1, 2000, 12000, 'fpkm3033');
+select *
+from accountHistory;
+
 insert into account (memberid, accountType, accountId, balance, typeRate)
 values (4, 2, '3033', 100000, 3.0);
 
@@ -166,9 +179,6 @@ FROM member
 WHERE userId = 'test';
 
 
-
-
-
 # accountHistory 거래 내역 데이터 (테스트용)
 INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
 VALUES (1, 1000.00, 1000.00, 'ACC0001'), -- ACC0001에 대한 입금 거래
@@ -178,19 +188,28 @@ VALUES (1, 1000.00, 1000.00, 'ACC0001'), -- ACC0001에 대한 입금 거래
        (1, 2000.00, 2000.00, 'ACC0003'), -- ACC0003에 대한 입금 거래
        (2, 1000.00, 1000.00, 'ACC0003'), -- ACC0003에 대한 출금 거래
        (1, 3000.00, 3000.00, '3033'),    -- 3033에 대한 입금 거래
-       (2, 1500.00, 1500.00, '3033'); -- 3033에 대한 출금 거래
+       (2, 1500.00, 1500.00, '3033');
+-- 3033에 대한 출금 거래
 
 # case 5번
-select * from accountHistory where accountId='ACC0001';
+select *
+from accountHistory
+where accountId = 'ACC0001';
 # transactionType : 1  ==> 입금
 # transactionType : 2  ==> 출금
 
 
-select * from account;
+select *
+from account;
 
-select * from member;
+select *
+from member;
 
-select count(*) from account where accountId='3033';
+select count(*)
+from account
+where accountId = '3033';
 
-select * from account where accountId='ACC0001';
+select *
+from account
+where accountId = 'ACC0001';
 
