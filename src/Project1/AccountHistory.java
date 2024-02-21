@@ -12,15 +12,13 @@ public class AccountHistory {
     private int transactionType;    // 거래유형
     private double amount;
     private double balanceAfter;
-    private String transactionDate;
     private String accountId;
 
-    public AccountHistory(int accountHistoryId, int transactionType, double amount, double balanceAfter, String transactionDate, String accountId) {
+    public AccountHistory(int accountHistoryId, int transactionType, double amount, double balanceAfter, String accountId) {
         this.accountHistoryId = accountHistoryId;
         this.transactionType = transactionType;
         this.amount = amount;
         this.balanceAfter = balanceAfter;
-        this.transactionDate = transactionDate;
         this.accountId = accountId;
     }
 
@@ -54,14 +52,6 @@ public class AccountHistory {
 
     public void setBalanceAfter(double balanceAfter) {
         this.balanceAfter = balanceAfter;
-    }
-
-    public String getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(String transactionDate) {
-        this.transactionDate = transactionDate;
     }
 
     public String getAccountId() {

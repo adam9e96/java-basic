@@ -15,10 +15,10 @@ CREATE TABLE member
 CREATE TABLE account
 (
     memberid    INT,                                                               # 유저아이디
-    accountType INT           NOT NULL CHECK (accountType = 1 or accountType = 2), # (1 : 예금계좌, 2 : 대출계좌)
+    accountType INT           NOT NULL CHECK (accountType = 1 or accountType = 2), # (1 : 예금계좌, 2 : 대출계좌) # 종류
     accountId   VARCHAR(20)   NOT NULL UNIQUE,                                     # 계좌 번호 - UNIQUE 제약 조건 추가
     balance     DECIMAL(10, 2),                                                    # 잔액
-    typeRate    DECIMAL(5, 2) NULL,                                                # 이자율/ 수수료율
+    typeRate    DECIMAL(5, 2) NULL,                                                # 이자율/ 수수료율 # 비율
     PRIMARY KEY (memberid),
     FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
