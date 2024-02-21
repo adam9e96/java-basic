@@ -190,3 +190,5 @@ select * from accountHistory where accountId='ACC0001';
 select * from account;
 
 select * from member;
+
+select count(*) from account where accountId='3033'

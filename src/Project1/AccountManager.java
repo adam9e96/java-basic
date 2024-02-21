@@ -91,7 +91,14 @@ public class AccountManager implements IAccountManager {
         double money = stdIn.nextDouble();
 
         if (isAccount(member.getUserId())) {
-            accountDAO.updateBalance(account.getAccountNumber(), money);
+            if (isPart(account)) {
+                // true : 예금 계좌
+                accountDAO.updateBalance(account.getAccountNumber(), money);
+
+            } else {
+                // false : 출금 계좌
+                accountDAO.updateBalance(account.getAccountNumber(), money + money * account.getTypeRate());
+            }
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
@@ -104,8 +111,14 @@ public class AccountManager implements IAccountManager {
         System.out.print("출금액: ");
         double money = stdIn.nextDouble();
 
-        if (!isAccount(member.getUserId())) {
-            accountDAO.updateBalance(account.getAccountNumber(), money);
+        if (isAccount(member.getUserId())) {
+            if (isPart(account)) {
+                // true : 예금 계좌
+                accountDAO.updateBalance(account.getAccountNumber(), money);
+            } else {
+                // false : 출금 계좌
+                accountDAO.updateBalance(account.getAccountNumber(), -(money + money * account.getTypeRate()));
+            }
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
@@ -147,6 +160,6 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean isPart(Account account) { // 계좌 유형 중복검사
         return accountDAO.selectTypeRate(account) == 1; // DAO 클래스에서 만드는 편이 좋을듯 합니다.
-
+        // 반환값이 1이면 예금 0이면 출금으로
     }
 }
