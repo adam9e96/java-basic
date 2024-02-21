@@ -95,16 +95,17 @@ public class AccountManager implements IAccountManager {
 
         if (isAccount(member.getUserId())) {
             if (isPart(account)) {
-                // true : 예금 계좌
-                accountDAO.updateBalance(account.getAccountId(), money);
+                // true : 예금 계좌                    // 'fpkm3033'      10000 + (10000*0.1)
+                accountDAO.updateBalance(account.getAccountId(), money + (money * (account.getTypeRate() / 100)));
             } else {
-                // false : 출금 계좌
-                accountDAO.updateBalance(account.getAccountId(), money + money * account.getTypeRate());
+                // false : 대출 계좌                  // 'fpkm3033' 10000
+                accountDAO.updateBalance(account.getAccountId(), money);
             }
             accountHistory.setTransactionType(1); // 1: 입금
             accountHistory.setAccountId(account.getAccountId());
-            accountHistory.setAmount(money);
-            accountHistory.setBalanceAfter(account.getBalance());
+            accountHistory.setAmount(money);    // 거래액
+            accountHistory.setBalanceAfter(account.getBalance());   // 거래후 금액
+
             accountDAO.insertAccountHistory(accountHistory);
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
@@ -112,7 +113,7 @@ public class AccountManager implements IAccountManager {
     }
 
     @Override
-    public void withdraw() { // case 4번
+    public void withdraw() { // case 4번 출금
         System.out.print("계좌번호: ");
         account.setAccountId(stdIn.nextLine());
         System.out.print("출금액: ");
@@ -120,16 +121,17 @@ public class AccountManager implements IAccountManager {
 
         if (isAccount(account.getAccountId())) {
             if (isPart(account)) {
-                // true : 예금 계좌
-                accountDAO.updateBalance(account.getAccountId(), money);
+                // true : 예금 계좌                 // 'fpkm3033' 2000
+                accountDAO.updateBalance(account.getAccountId(), -money);
             } else {
-                // false : 출금 계좌
-                accountDAO.updateBalance(account.getAccountId(), -(money + money * account.getTypeRate()));
+                // false : 출금 계좌                    // 'fpkm3033'  -(2000 + 2000 * (10/100) )
+                accountDAO.updateBalance(account.getAccountId(), -(money + money * (account.getTypeRate()) / 100));
             }
-            accountHistory.setTransactionType(2); // 1: 출금
+            accountHistory.setTransactionType(2); // 2: 출금
             accountHistory.setAccountId(account.getAccountId());
-            accountHistory.setAmount(money);
-            accountHistory.setBalanceAfter(account.getBalance());
+            accountHistory.setAmount(money);    // 거래액
+            accountHistory.setBalanceAfter(account.getBalance());   // 거래후 금액
+
             accountDAO.insertAccountHistory(accountHistory);
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");

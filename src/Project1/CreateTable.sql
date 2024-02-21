@@ -29,7 +29,7 @@ CREATE TABLE accountHistory
     amount           DECIMAL(10, 2) NOT NULL,                                    # 거래 금액 (예금,출금시 money 값을 저장)
     balanceAfter     DECIMAL(10, 2) NOT NULL,                                    # 거래 후 잔액
     accountId        varchar(20)    NOT NULL,                                    # 계좌 번호
-    FOREIGN KEY (accountId) REFERENCES account (accountId)                       # 계좌번호 외래키,
+    FOREIGN KEY (accountId) REFERENCES account (accountId)                      # 계좌번호 외래키,
 );
 
 # 테스트용 데이터
