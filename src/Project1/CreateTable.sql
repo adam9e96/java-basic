@@ -121,7 +121,7 @@ select memberId
 from member
 where memberId = 2;
 
-select count(accountType)
+select accountType
 from account
 where memberid = (select memberId
                   from member
