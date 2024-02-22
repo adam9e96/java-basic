@@ -207,14 +207,12 @@ public class AccountDao implements IAccountDao {
     }
 
     public boolean selectIsAccountType(Account account) {
-        System.out.println(account.getAccountType()); // 테스트 코드
         if (account.getAccountType() == 1) {
             String sql = "SELECT accountType FROM account WHERE ( userId = ?  AND accountType = ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, account.getUserId());
                 preparedStatement.setInt(2, 1);
                 ResultSet resultSet = preparedStatement.executeQuery();
-
                 if (resultSet.next()) {
                     int cnt = resultSet.getInt(1);
                     if (cnt >= 1) {
@@ -234,7 +232,7 @@ public class AccountDao implements IAccountDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     int cnt = resultSet.getInt(1);
-                    if (cnt >= 2) {
+                    if (cnt >= 1) {
                         return true;
                     }
                 } else {

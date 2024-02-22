@@ -16,6 +16,13 @@ public class AccountHistory {
 
     public AccountHistory(){}
 
+    public AccountHistory(int transactionType, double amount, double balanceAfter, String accountId) {
+        this.transactionType = transactionType;
+        this.amount = amount;
+        this.balanceAfter = balanceAfter;
+        this.accountId = accountId;
+    }
+
     public AccountHistory(int accountHistoryId, int transactionType, double amount, double balanceAfter, String accountId) {
         this.accountHistoryId = accountHistoryId;
         this.transactionType = transactionType;
