@@ -106,14 +106,15 @@ public class AccountManager implements IAccountManager {
         System.out.print("입금액: ");
         double money = stdIn.nextDouble();
 
-        if (isAccount(accountid)) {
-            if (isPart(account)) {
+        if (isAccount(account.getAccountId())) {
+            if (!isPart(account)) {
                 // true : 예금 계좌                    // 'fpkm3033'      10000 + (10000*0.1)
                 accountDAO.updateBalance(account.getAccountId(), money + (money * (account.getTypeRate() / 100)));
             } else {
                 // false : 대출 계좌                  // 'fpkm3033' 10000
                 accountDAO.updateBalance(account.getAccountId(), money);
             }
+
             accountHistory.setTransactionType(1); // 1: 입금
             accountHistory.setAccountId(account.getAccountId());
             accountHistory.setAmount(money);    // 거래액

@@ -105,16 +105,13 @@ public class AccountDao implements IAccountDao {
     @Override
     public void updateBalance(String accountId, double balance) {
         String sql;
-        boolean flag = true;
-        if (flag) {
+        int cnt = 0;
             sql = "UPDATE account SET balance = ? where (accountID = ?)";
-        } else {
-            sql = "slkjfslk";
-        }
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
             preparedStatement.setDouble(1, balance);
             preparedStatement.setString(2, accountId);
+            cnt = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
