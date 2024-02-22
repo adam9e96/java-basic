@@ -9,7 +9,7 @@ package Project1;
  */
 
 public class Account {
-    private int memberid; // 유저ID
+    private String userId; // 유저ID
     private int accountType; // 계좌 유형 (1 : 예금계좌, 2 : 대출계좌)
     private String accountId; // 계좌 번호
     private double balance; // 잔액
@@ -17,20 +17,27 @@ public class Account {
 
     public Account(){}
 
-    public Account(int memberid, int accountType, String accountId, double balance, double typeRate) {
-        this.memberid = memberid;
+    public Account(int accountType, String accountId, double balance, double typeRate) {
         this.accountType = accountType;
         this.accountId = accountId;
         this.balance = balance;
         this.typeRate = typeRate;
     }
 
-    public int getMemberid() {
-        return memberid;
+    public Account(String userId, int accountType, String accountId, double balance, double typeRate) {
+        this.userId = userId;
+        this.accountType = accountType;
+        this.accountId = accountId;
+        this.balance = balance;
+        this.typeRate = typeRate;
     }
 
-    public void setMemberid(int memberid) {
-        this.memberid = memberid;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getAccountType() {

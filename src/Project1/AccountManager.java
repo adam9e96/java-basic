@@ -67,24 +67,22 @@ public class AccountManager implements IAccountManager {
         System.out.print("잔액: ");
         double balance = stdIn.nextDouble();
         double rate = 0.0;
-        int memberid = member.getMemberId();
 
         if (type == 1) {
             System.out.print("이자율: ");
-            rate = stdIn.nextDouble();
-        } else { // tpye == 2
+        } else if(type == 2) { // tpye == 2
             System.out.print("수수료율: ");
-            rate = stdIn.nextDouble();
         }                               // 1 , 1 , 12345, 10000, 1.0
-        account = new Account(memberid, type, accountid, balance, rate);
+        rate = stdIn.nextDouble();
+        account = new Account(userId, type, accountid, balance, rate);
 
         if (!isMember(userId)) { // 새로 입력한 fpkm3033
             // 사용중인 계좌 번호인지
             if (isAccount(account.getAccountId())) { // 12345 - String 타입
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
-                if (isPart(account)) {  // 대출/예금 => true
+                if (!isPart(account)) {  // 대출/예금 => true
                     accountDAO.insertAccount(account);
-                    // insert into account (memberid, accountType, accountId, balance, typeRate)
+                    // insert into account ( accountType, accountId, balance, typeRate)
                     // VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
                     //
                     System.out.println("계좌 등록이 되었습니다.");
@@ -103,11 +101,12 @@ public class AccountManager implements IAccountManager {
     @Override
     public void deposit() { // case 3번
         System.out.print("계좌번호: ");
-        account.setAccountId(stdIn.nextLine());
+        String accountid = stdIn.next();
+//        account.setAccountId(stdIn.nextLine());
         System.out.print("입금액: ");
         double money = stdIn.nextDouble();
 
-        if (isAccount(member.getUserId())) {
+        if (isAccount(accountid)) {
             if (isPart(account)) {
                 // true : 예금 계좌                    // 'fpkm3033'      10000 + (10000*0.1)
                 accountDAO.updateBalance(account.getAccountId(), money + (money * (account.getTypeRate() / 100)));
@@ -207,7 +206,7 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isPart(Account account) { // 계좌 유형 중복검사
-        return accountDAO.selectTypeRate(account) == 1; // DAO 클래스에서 만드는 편이 좋을듯 합니다.
+        return accountDAO.selectIsAccountType(account); // DAO 클래스에서 만드는 편이 좋을듯 합니다.
         // 반환값이 1이면 예금 0이면 출금으로     // todo 틀리면 0
         /*
         // 이런식

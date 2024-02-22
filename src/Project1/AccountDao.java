@@ -37,9 +37,10 @@ public class AccountDao implements IAccountDao {
     }
 
     @Override
-public boolean insertMember(Member member) {
+    public boolean insertMember(Member member) {
         String sql = "INSERT INTO member (userId, name, age, addr) VALUES (?,?,?,?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ;
 //            preparedStatement.setInt(1,0);
             preparedStatement.setString(1, member.getUserId());
             preparedStatement.setString(2, member.getName());
@@ -55,14 +56,14 @@ public boolean insertMember(Member member) {
     @Override
     public boolean insertAccount(Account account) {
         // VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
-            String sql = "INSERT INTO account (memberid,accountType, accountId, balance, typeRate)" +
-                    "VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO account (userId, accountType, accountId, balance, typeRate) " +
+                "VALUES (?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1,account.getMemberid());
-            preparedStatement.setInt(2,account.getAccountType());
+            preparedStatement.setString(1, account.getUserId());
+            preparedStatement.setInt(2, account.getAccountType());
             preparedStatement.setString(3, account.getAccountId());
             preparedStatement.setDouble(4, account.getBalance());
-            preparedStatement.setDouble(5, account.getAccountType());
+            preparedStatement.setDouble(5, account.getTypeRate());
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -129,14 +130,14 @@ public boolean insertMember(Member member) {
                 resultSet.next();
                 cnt = resultSet.getInt(1);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return cnt;
     }
 
     @Override
-public int selectMemberIdCnt(String memberId) {
+    public int selectMemberIdCnt(String memberId) {
         String sql = "SELECT COUNT(*) FROM member WHERE userId = ? ";
         int cnt = 0;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -145,14 +146,50 @@ public int selectMemberIdCnt(String memberId) {
                 resultSet.next();
                 cnt = resultSet.getInt(1);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return cnt;
     }
 
-    public int selectTypeRate(Account account) {
-        // 현재 계좌의 유형 중복검사
-        return 1;
+    public boolean selectIsAccountType(Account account) {
+        System.out.println(account.getAccountType()); // 테스트 코드
+        if (account.getAccountType() == 1) {
+            String sql = "SELECT accountType FROM account WHERE ( userId = ?  AND accountType = ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, account.getUserId());
+                preparedStatement.setInt(2, 1);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    int cnt = resultSet.getInt(1);
+                    if (cnt >= 1) {
+                        return true;
+                    }
+                } else {
+                    System.out.println("계좌 없음"); // 테스트 코드
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (account.getAccountType() == 2) {
+            String sql = "SELECT accountType FROM account WHERE (userId = ?  AND accountType = ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, account.getUserId());
+                preparedStatement.setInt(2, 2);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    int cnt = resultSet.getInt(1);
+                    if (cnt >= 1) {
+                        return true;
+                    }
+                } else {
+                    System.out.println("계좌 없음"); // 테스트 코드
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 }

@@ -5,7 +5,7 @@ CREATE TABLE member
 (
 #자동증가정수, 아이디, 이름, 나이, 거주지
     memberid int AUTO_INCREMENT PRIMARY KEY, #자동증가 #중복 불가   // 얘는 insert into로 따로 안해도 자동으로 생기고 증가됨
-    userId   VARCHAR(20) NOT NULL,           #유저아이디
+    userId   VARCHAR(20) NOT NULL unique ,           #유저아이디
     name     VARCHAR(20) NOT NULL,           #유저이름
     age      INT(3)      NOT NULL,           #유저나이
     addr     VARCHAR(20) NOT NULL            #유저거주지
@@ -16,31 +16,38 @@ CREATE TABLE member
 ## 계좌 테이블
 CREATE TABLE account
 (
-    memberid    INT           NOT NULL,                                            # 유저아이디
+    userId      VARCHAR(20)   NOT NULL,                                            # 유저아이디
     accountType INT           NOT NULL CHECK (accountType = 1 or accountType = 2), # (1 : 예금계좌, 2 : 대출계좌) # 종류
     accountId   VARCHAR(20) PRIMARY KEY,                                           # 계좌 번호
     balance     DECIMAL(10, 2),                                                    # 잔액
-    typeRate    DECIMAL(5, 2) NOT NULL                                            # 이자율/ 수수료율 # 비율
-#     FOREIGN KEY (memberid) REFERENCES member (memberid)
+    typeRate    DECIMAL(5, 2) NOT NULL,                                            # 이자율/ 수수료율 # 비율
+    FOREIGN KEY (userId) REFERENCES member (userId)
 );
-SELECT COUNT(*) FROM account WHERE accountId = 12345;
-select * from member;
-select * from account;
+SELECT COUNT(*)
+FROM account
+WHERE accountId = 12345;
+select *
+from member;
+select *
+from account;
 
 CREATE TABLE accountHistory
 (
-    accountHistoryId INT AUTO_INCREMENT PRIMARY KEY,                             # 거래내역의 고유 번호
-    transactionType  INT            NOT NULL CHECK ( transactionType =  1 or transactionType= 2), # 거래 유형 (예: 1 - 입금, 2 출금) #in 은 1 또는
-    amount           DECIMAL(10, 2) NOT NULL,                                    # 거래 금액 (예금,출금시 money 값을 저장)
-    balanceAfter     DECIMAL(10, 2) NOT NULL,                                    # 거래 후 잔액
-    accountId        varchar(20)    NOT NULL,                                    # 계좌 번호
-    FOREIGN KEY (accountId) REFERENCES account (accountId)                      # 계좌번호 외래키,
+    accountHistoryId INT AUTO_INCREMENT PRIMARY KEY,                                              # 거래내역의 고유 번호
+    transactionType  INT            NOT NULL CHECK ( transactionType = 1 or transactionType = 2), # 거래 유형 (예: 1 - 입금, 2 출금) #in 은 1 또는
+    amount           DECIMAL(10, 2) NOT NULL,                                                     # 거래 금액 (예금,출금시 money 값을 저장)
+    balanceAfter     DECIMAL(10, 2) NOT NULL,                                                     # 거래 후 잔액
+    accountId        varchar(20)    NOT NULL,                                                     # 계좌 번호
+    FOREIGN KEY (accountId) REFERENCES account (accountId)                                        # 계좌번호 외래키,
 );
-select * from member;
+select *
+from member;
 
 # 테스트용 데이터
-select * from member;
-select  * from account;
+select *
+from member;
+select *
+from account;
 select count(*)
 from member
 where userId = 'test';
@@ -68,7 +75,8 @@ insert into member (userId, name, age, addr)
 VALUES ('test', 'test', 25, 'test');
 insert into member (userId, name, age, addr)
 VALUES ('abc', '스몰더', 20, '경주');
-select * from member;
+select *
+from member;
 insert into account (memberid, accountType, accountId, balance, typeRate)
 VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
 insert into account (memberid, accountType, accountId, balance, typeRate)
@@ -146,8 +154,9 @@ where memberId = 2;
 
 select accountType
 from account
-where memberid = (
-select memberId from member where userId = 'abc'); # get으로 id 가져오기
+where memberid = (select memberId
+                  from member
+                  where accountId = '12345'); # get으로 id 가져오기
 
 
 select *
