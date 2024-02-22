@@ -1,8 +1,6 @@
 package Project1;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +10,7 @@ import java.util.ArrayList;
  * description    :
  * ===========================================================
  */
-public class AccountDao implements IAccountDao{
+public class AccountDao implements IAccountDao {
     private Connection connection = null;
 
     public AccountDao() {
@@ -40,12 +38,32 @@ public class AccountDao implements IAccountDao{
 
     @Override
     public boolean insertMember(Member member) {
-        return false;
+        String sql = "INSERT INTO account VALUES (?,?,?,?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, member.getMemberId());
+            preparedStatement.setString(2, member.getUserId());
+            preparedStatement.setString(3, member.getName());
+            preparedStatement.setInt(4, member.getAge());
+            preparedStatement.setString(5, member.getAddr());
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean insertAccount(Account account) {
-        return false;
+            String sql = "INSERT INTO account VALUES (?,?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, account.getMemberid());
+            preparedStatement.setString(2, account.getAccountId());
+            preparedStatement.setDouble(3, account.getBalance());
+
+            return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -60,7 +78,13 @@ public class AccountDao implements IAccountDao{
 
     @Override
     public void disConnect() {
-
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -75,18 +99,52 @@ public class AccountDao implements IAccountDao{
 
     @Override
     public void updateBalance(String accountId, double balance) {
+        String sql;
+        boolean flag = true;
+        if (flag) {
+            sql = "UPDATE account SET balance = ? where (accountID = ?)";
+        } else {
+            sql = "slkjfslk";
+        }
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setDouble(1, balance);
+            preparedStatement.setString(2, accountId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int selectAccountIdCnt(String accountId) {
-        return 0;
+        String sql = "SELECT COUNT(*) FROM account WHERE id = ? ";
+        int cnt;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, accountId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                resultSet.next();
+                cnt = resultSet.getInt(1);
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cnt;
     }
 
     @Override
     public int selectMemberIdCnt(String memberId) {
-        return 0;
-    }
+        String sql = "SELECT COUNT(*) FROM account WHERE id = ? ";
+        int cnt;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, memberId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                resultSet.next();
+                cnt = resultSet.getInt(1);
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cnt;    }
 
     public int selectTypeRate(Account account) {
         // 현재 계좌의 유형 중복검사

@@ -47,7 +47,8 @@ public class AccountView {
                     System.out.println("종료합니다"); // 프로그램 종료 메서드
                     accountManager.disConnect();
                     break;
-//                    default 피룡함
+                default:
+                    System.out.println("잘못입력하셨습니다.");
             }
         }
     }
