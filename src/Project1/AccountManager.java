@@ -70,7 +70,7 @@ public class AccountManager implements IAccountManager {
 
         if (type == 1) {
             System.out.print("이자율: ");
-        } else if(type == 2) { // tpye == 2
+        } else if (type == 2) { // tpye == 2
             System.out.print("수수료율: ");
         }                               // 1 , 1 , 12345, 10000, 1.0
         rate = stdIn.nextDouble();
@@ -101,14 +101,15 @@ public class AccountManager implements IAccountManager {
     @Override
     public void deposit() { // case 3번
         System.out.print("계좌번호: ");
-        String accountid = stdIn.next();
-//        account.setAccountId(stdIn.nextLine());
+//        String accountid = stdIn.next();
+        account.setAccountId(stdIn.next());
         System.out.print("입금액: ");
         double money = stdIn.nextDouble();
-
-        if (isAccount(account.getAccountId())) {
-            if (!isPart(account)) {
-                // true : 예금 계좌                    // 'fpkm3033'      10000 + (10000*0.1)
+        System.out.println(account.getTypeRate());
+        System.out.println(money + (money * account.getTypeRate() * 0.01));
+        if (!isAccount(account.getAccountId())) {
+            if (isPart(account)) {
+                // true : 예금 계좌                    // 'fpkm3033'    // 1000  + (1000 * 1.0)   1.0
                 accountDAO.updateBalance(account.getAccountId(), money + (money * (account.getTypeRate() / 100)));
             } else {
                 // false : 대출 계좌                  // 'fpkm3033' 10000

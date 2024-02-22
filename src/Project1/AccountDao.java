@@ -106,12 +106,12 @@ public class AccountDao implements IAccountDao {
     public void updateBalance(String accountId, double balance) {
         String sql;
         int cnt = 0;
-            sql = "UPDATE account SET balance = ? where (accountID = ?)";
-
+        sql = "UPDATE account SET balance = ? where (accountID = ?)";
+        System.out.println(sql);
         try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
             preparedStatement.setDouble(1, balance);
             preparedStatement.setString(2, accountId);
-            cnt = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -43,6 +43,7 @@ CREATE TABLE accountHistory
 select *
 from member;
 
+UPDATE account SET balance = 100000 where accountID = '1234';
 # 테스트용 데이터
 select *
 from member;
