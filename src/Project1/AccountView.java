@@ -12,8 +12,6 @@ import java.util.Scanner;
  */
 public class AccountView {
 
-    private static Connection connection = null;
-
     public static void main(String[] args) {
 
         AccountManager accountManager = new AccountManager(); // DTO 인스턴스 생성
@@ -34,15 +32,12 @@ public class AccountView {
                 case 3:
                     accountManager.deposit();// 입금 처리
                     break;
-
                 case 4:
                     accountManager.withdraw();// 입금 처리
                     break;
-
                 case 5:
                     accountManager.viewHistory();// 잔액및 거래내역 조회
                     break;
-
                 case 6:
                     System.out.println("종료합니다"); // 프로그램 종료 메서드
                     accountManager.disConnect();

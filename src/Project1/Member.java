@@ -5,15 +5,14 @@ package Project1;
  * fileName       : Member
  * date           : 2024-02-20
  * description    : Member DTO
- * Member DTO 최종.
  * ===========================================================
  */
 public class Member {
-    private int memberId; // 유저_일련번호
-    private String userId; // 유저_아이디
-    private String name;    // 유저_이름
-    private int age;    // 유저_나이
-    private String addr; //유저_거주지
+    private int memberId; // 일련번호
+    private String userId; // 아이디
+    private String name;    //이름
+    private int age;    // 나이
+    private String addr; //거주지
 
     // 기본 생성자
     public Member() {

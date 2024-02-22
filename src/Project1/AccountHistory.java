@@ -8,11 +8,11 @@ package Project1;
  * ===========================================================
  */
 public class AccountHistory {
-    private int accountHistoryId;  // 거래내역 일련 번호
-    private int transactionType;    // 거래유형
-    private double amount;
-    private double balanceAfter;
-    private String accountId;
+    private int accountHistoryId;  // 거래내역번호
+    private int transactionType;    // 거래 유형
+    private double amount; // 거래 금액
+    private double balanceAfter; // 거래 후 잔액
+    private String accountId; //  accountId
 
     public AccountHistory(){}
 

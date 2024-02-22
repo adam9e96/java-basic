@@ -65,7 +65,7 @@ VALUES ('user02', '홍길동', 30, '서울');
 INSERT INTO member (userId, name, age, addr)
 VALUES ('fpkm', '홍길순', 25, '경기'); # memberid : 1번
 
-INSERT INTO account (memberid, accountType, accountId, balance, typeRate)
+INSERT INTO account (userId, accountType, accountId, balance, typeRate)
 VALUES (1, 1, 'ACC0001', 10000.00, 1.5), -- 예금계좌, 이자율 1.5%
        (2, 2, 'ACC0002', -5000.00, 2.0), -- 대출계좌, 수수료율 2.0%
        (3, 1, 'ACC0003', 15000.00, 1.2);
@@ -78,16 +78,16 @@ insert into member (userId, name, age, addr)
 VALUES ('abc', '스몰더', 20, '경주');
 select *
 from member;
-insert into account (memberid, accountType, accountId, balance, typeRate)
+insert into account (userId, accountType, accountId, balance, typeRate)
 VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
-insert into account (memberid, accountType, accountId, balance, typeRate)
+insert into account (userId, accountType, accountId, balance, typeRate)
 VALUES (2, 2, 'list9999', 1000, 5.0);
 insert into accountHistory (transactionType, amount, balanceAfter, accountId)
 VALUES (1, 2000, 12000, 'fpkm3033');
 # 테스트 코드 end !!!
 
 
-insert into account (memberid, accountType, accountId, balance, typeRate)
+insert into account (userId, accountType, accountId, balance, typeRate)
 values (4, 2, '3033', 100000, 3.0);
 
 INSERT INTO accountHistory (transactionType, amount, balanceAfter, accountId)
@@ -117,7 +117,7 @@ where accountId = 3033;
 
 select *
 from account
-where memberid = (select member.memberId
+where userId = (select member.memberId
                   from member
                   where memberId = 1);
 
@@ -125,7 +125,7 @@ where memberid = (select member.memberId
 select *
 from member b
 where b.memberid in ( # get으로 현재 memberid 가져오기
-    select c.memberid
+    select c.userId
     from account c
     where c.accountType = 1); # get으로 현재 타입 가져오기
 
@@ -155,14 +155,14 @@ where memberId = 2;
 
 select accountType
 from account
-where memberid = (select memberId
+where userId = (select memberId
                   from member
                   where accountId = '12345'); # get으로 id 가져오기
 
 
 select *
 from account
-where memberid = (SELECT member.memberId
+where userId = (SELECT member.memberId
                   FROM member
                   WHERE userid = 'test1');
 # 테스트 (중복검사 관련 )
@@ -217,17 +217,3 @@ where accountId = 'ACC0001';
 # transactionType : 1  ==> 입금
 # transactionType : 2  ==> 출금
 
-
-select *
-from account;
-
-select *
-from member;
-
-select count(*)
-from account
-where accountId = '3033';
-
-select *
-from account
-where accountId = 'ACC0001';

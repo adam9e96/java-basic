@@ -30,29 +30,22 @@ public class AccountManager implements IAccountManager {
     public void addMember() { // choice : 1 일때
         System.out.print("아이디: ");    // 유저_아이디
         String userId = stdIn.next();
-//        member.setUserId(stdIn.nextLine()); // test (문자열형식) // String
         System.out.print("이름: "); // 유저_이름
         String name = stdIn.next();
-//        member.setName(stdIn.nextLine()); // 김유니    // String
         System.out.print("나이: "); // 유저_나이
         int age = stdIn.nextInt();
-//        member.setAge(stdIn.nextInt()); // 25   // int
         System.out.print("거주지: "); // 유저_거주지
         String addr = stdIn.next();
-//        member.setAddr(stdIn.nextLine()); // 경북 // String
         member = new Member(userId, name, age, addr);
 
         // 회원가입 시 아이디 중복 검사
         if (isMember(member.getUserId())) {
             // 회원 등록
             accountDAO.insertMember(member);
-//           ㄴ INSERT INTO member (userId, name, age, addr) VALUES  ( 'test', '김유니', 25, '경북');
-            // 이렇식으로
             System.out.println("회원 등록이 되었습니다.");
         } else { // 중복검사해서 중복이 나온 경우
             System.out.println(member.getUserId() + "는 사용중인 아이디입니다.");
         }
-
     }
 
     @Override
@@ -70,13 +63,13 @@ public class AccountManager implements IAccountManager {
 
         if (type == 1) {
             System.out.print("이자율: ");
-        } else if (type == 2) { // tpye == 2
+        } else if (type == 2) {
             System.out.print("수수료율: ");
-        }                               // 1 , 1 , 12345, 10000, 1.0
+        }
         rate = stdIn.nextDouble();
         account = new Account(userId, type, accountid, balance, rate);
 
-        if (!isMember(userId)) { // 새로 입력한 fpkm3033
+        if (!isMember(userId)) {
             // 사용중인 계좌 번호인지
             if (isAccount(account.getAccountId())) { // 12345 - String 타입
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
@@ -97,7 +90,6 @@ public class AccountManager implements IAccountManager {
             }
         } else {
             System.out.println(userId + "는 없는아이디입니다.");
-
         }
     }
 
@@ -131,7 +123,6 @@ public class AccountManager implements IAccountManager {
                 acHistory = new AccountHistory(1, money, account.getBalance() + money, accountNum);
                 accountDAO.insertAccountHistory(acHistory);
             }
-
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
@@ -140,14 +131,14 @@ public class AccountManager implements IAccountManager {
     @Override
     public void withdraw() { // case 4번 출금
         System.out.print("계좌번호: ");
-        String accountNum = stdIn.next();
+        String inputAccountNum = stdIn.next();
 
         System.out.print("출금액: ");
-        double money = stdIn.nextDouble();
+        double inputMoney = stdIn.nextDouble();
 
-        account = accountDAO.selectAccount(accountNum); //account DB를 받아옴
+        account = accountDAO.selectAccount(inputAccountNum); //account DB를 받아옴
 
-        if (money > account.getBalance()){
+        if (inputMoney > account.getBalance()){
             System.out.println("출금하려는 금액이 입금액 보다 큽니다.");
             return;
         }
@@ -156,16 +147,16 @@ public class AccountManager implements IAccountManager {
             AccountHistory acHistory = null;
             if (account.getAccountType() == 1) {
                 // true : 예금 계좌
-                accountDAO.updateBalance(account.getAccountId(), account.getBalance() - money);
-                acHistory = new AccountHistory(2, money, account.getBalance() - money, accountNum);
+                accountDAO.updateBalance(account.getAccountId(), account.getBalance() - inputMoney);
+                acHistory = new AccountHistory(2, inputMoney, account.getBalance() - inputMoney, inputAccountNum);
                 accountDAO.insertAccountHistory(acHistory);
             } else if (account.getAccountType() == 2){
                 // false : 대출 계좌                  // 'fpkm3033' 10000
-                accountDAO.updateBalance(account.getAccountId(), account.getBalance() - money - (money * account.getTypeRate()));
-                acHistory = new AccountHistory(2, money, account.getBalance() - money, accountNum);
+                accountDAO.updateBalance(account.getAccountId(), account.getBalance() - inputMoney - (inputMoney * account.getTypeRate()));
+                acHistory = new AccountHistory(2, inputMoney, account.getBalance() - inputMoney, inputAccountNum);
                 accountDAO.insertAccountHistory(acHistory);
-                acHistory = new AccountHistory(2, money * account.getTypeRate(),
-                        account.getBalance() - money - (money * account.getTypeRate()), accountNum);
+                acHistory = new AccountHistory(2, inputMoney * account.getTypeRate(),
+                        account.getBalance() - inputMoney - (inputMoney * account.getTypeRate()), inputAccountNum);
                 accountDAO.insertAccountHistory(acHistory);
             }
         } else {
@@ -193,7 +184,7 @@ public class AccountManager implements IAccountManager {
             } else {
                 type = "출금";
             }
-            System.out.println(type + "\t" + accountHistory1.getAmount() + " \t" + accountHistory1.getBalanceAfter());
+            System.out.println(type+"    " + accountHistory1.getAmount() + "    " + accountHistory1.getBalanceAfter());
         }
         System.out.println("잔액 : " + accountDAO.selectBalance(account.getAccountId()));
     }
@@ -207,7 +198,6 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean isMember(String userId) { // 해당 아이디의 회원 개수를 반환
         if (accountDAO.selectMemberIdCnt(userId) == 0) {
-            //   select count(*) from member where userId = 'test';
             return true;
         }
         return false;
@@ -215,8 +205,7 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isAccount(String accountId) {    // 해당 계좌번호의 계좌 개수를 반환
-        if (accountDAO.selectAccountIdCnt(accountId) == 0) {    // 0 : 해당 계좌 번호의 계좌가 없다.
-            //select count(*) from account where accountId = '12345';
+        if (accountDAO.selectAccountIdCnt(accountId) == 0) {
             return true;
         }
         return false;
@@ -224,17 +213,6 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isPart(Account account) { // 계좌 유형 중복검사
-        return accountDAO.selectIsAccountType(account); // DAO 클래스에서 만드는 편이 좋을듯 합니다.
-        // 반환값이 1이면 예금 0이면 출금으로     // todo 틀리면 0
-        /*
-        // 이런식
-       select accountType
-       from account
-       where memberid = (
-       select memberId from member where userId = 'test'); # get으로 id 가져오기
-
-       반환값이 true : 예금계좌
-       반환값이 false : 출금계좌
-         */
+        return accountDAO.selectIsAccountType(account);
     }
 }
