@@ -67,6 +67,7 @@ public class AccountManager implements IAccountManager {
         System.out.print("잔액: ");
         double balance = stdIn.nextDouble();
         double rate = 0.0;
+        int memberid = member.getMemberId();
 
         if (type == 1) {
             System.out.print("이자율: ");
@@ -75,13 +76,13 @@ public class AccountManager implements IAccountManager {
             System.out.print("수수료율: ");
             rate = stdIn.nextDouble();
         }                               // 1 , 1 , 12345, 10000, 1.0
-        account = new Account(member.getMemberId(), type, accountid, balance, rate);
+        account = new Account(memberid, type, accountid, balance, rate);
 
         if (!isMember(userId)) { // 새로 입력한 fpkm3033
             // 사용중인 계좌 번호인지
-            if (isAccount(account.getAccountId())) { // 12345 - String 타입 // todo 여기까지 검증
+            if (isAccount(account.getAccountId())) { // 12345 - String 타입
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
-                if (isPart(account)) {
+                if (isPart(account)) {  // 대출/예금 => true
                     accountDAO.insertAccount(account);
                     // insert into account (memberid, accountType, accountId, balance, typeRate)
                     // VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);

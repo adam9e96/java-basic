@@ -1,4 +1,5 @@
 create database sample_java;
+use sample_java;
 #회원등록 테이블
 CREATE TABLE member
 (
@@ -19,12 +20,13 @@ CREATE TABLE account
     accountType INT           NOT NULL CHECK (accountType = 1 or accountType = 2), # (1 : 예금계좌, 2 : 대출계좌) # 종류
     accountId   VARCHAR(20) PRIMARY KEY,                                           # 계좌 번호
     balance     DECIMAL(10, 2),                                                    # 잔액
-    typeRate    DECIMAL(5, 2) NOT NULL,                                            # 이자율/ 수수료율 # 비율
-    FOREIGN KEY (memberid) REFERENCES member (memberid)
+    typeRate    DECIMAL(5, 2) NOT NULL                                            # 이자율/ 수수료율 # 비율
+#     FOREIGN KEY (memberid) REFERENCES member (memberid)
 );
 SELECT COUNT(*) FROM account WHERE accountId = 12345;
 select * from member;
 select * from account;
+
 CREATE TABLE accountHistory
 (
     accountHistoryId INT AUTO_INCREMENT PRIMARY KEY,                             # 거래내역의 고유 번호
