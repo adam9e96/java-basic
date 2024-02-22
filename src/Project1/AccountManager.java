@@ -28,15 +28,19 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public void addMember() { // choice : 1 일때
-
         System.out.print("아이디: ");    // 유저_아이디
-        member.setUserId(stdIn.nextLine()); // test (문자열형식) // String
+        String userId =  stdIn.next();
+//        member.setUserId(stdIn.nextLine()); // test (문자열형식) // String
         System.out.print("이름: "); // 유저_이름
-        member.setName(stdIn.nextLine()); // 김유니    // String
+        String name =  stdIn.next();
+//        member.setName(stdIn.nextLine()); // 김유니    // String
         System.out.print("나이: "); // 유저_나이
-        member.setAge(stdIn.nextInt()); // 25   // int
+        int age = stdIn.nextInt();
+//        member.setAge(stdIn.nextInt()); // 25   // int
         System.out.print("거주지: "); // 유저_거주지
-        member.setAddr(stdIn.nextLine()); // 경북 // String
+        String addr = stdIn.next();
+//        member.setAddr(stdIn.nextLine()); // 경북 // String
+        member = new Member(userId,name,age,addr);
 
         // 회원가입 시 아이디 중복 검사
         if (isMember(member.getUserId())) {
@@ -175,7 +179,7 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isMember(String userId) { // 해당 아이디의 회원 개수를 반환
-        if (accountDAO.selectMemberIdCnt(userId) == 1) {
+        if (accountDAO.selectMemberIdCnt(userId) != 1) {
             //   select count(*) from member where userId = 'test';
             return true;
         }

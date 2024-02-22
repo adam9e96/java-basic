@@ -19,6 +19,13 @@ public class Member {
     public Member() {
     }
 
+    public Member(String userId, String name, int age, String addr) {
+        this.userId = userId;
+        this.name = name;
+        this.age = age;
+        this.addr = addr;
+    }
+
     public Member(int memberId, String userId, String name, int age, String addr) {
         this.memberId = memberId;
         this.userId = userId;

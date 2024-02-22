@@ -37,14 +37,14 @@ public class AccountDao implements IAccountDao {
     }
 
     @Override
-    public boolean insertMember(Member member) {
-        String sql = "INSERT INTO account VALUES (?,?,?,?,?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, member.getMemberId());
-            preparedStatement.setString(2, member.getUserId());
-            preparedStatement.setString(3, member.getName());
-            preparedStatement.setInt(4, member.getAge());
-            preparedStatement.setString(5, member.getAddr());
+public boolean insertMember(Member member) {
+        String sql = "INSERT INTO member (userId, name, age, addr) VALUES (?,?,?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {;
+//            preparedStatement.setInt(1,0);
+            preparedStatement.setString(1, member.getUserId());
+            preparedStatement.setString(2, member.getName());
+            preparedStatement.setInt(3, member.getAge());
+            preparedStatement.setString(4, member.getAddr());
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -132,9 +132,9 @@ public class AccountDao implements IAccountDao {
     }
 
     @Override
-    public int selectMemberIdCnt(String memberId) {
-        String sql = "SELECT COUNT(*) FROM account WHERE id = ? ";
-        int cnt;
+public int selectMemberIdCnt(String memberId) {
+        String sql = "SELECT COUNT(*) FROM member WHERE userId = ? ";
+        int cnt = 0;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, memberId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -144,7 +144,8 @@ public class AccountDao implements IAccountDao {
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return cnt;    }
+        return cnt;
+    }
 
     public int selectTypeRate(Account account) {
         // 현재 계좌의 유형 중복검사

@@ -1,3 +1,4 @@
+create database sample_java;
 #회원등록 테이블
 CREATE TABLE member
 (
@@ -31,9 +32,11 @@ CREATE TABLE accountHistory
     accountId        varchar(20)    NOT NULL,                                    # 계좌 번호
     FOREIGN KEY (accountId) REFERENCES account (accountId)                      # 계좌번호 외래키,
 );
+select * from member;
 
 # 테스트용 데이터
-
+select * from member;
+select  * from account;
 select count(*)
 from member
 where userId = 'test';
