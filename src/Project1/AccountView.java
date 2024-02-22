@@ -19,8 +19,8 @@ public class AccountView {
         AccountManager accountManager = new AccountManager(); // DTO 인스턴스 생성
         Scanner scanner = new Scanner(System.in);
 
-
-        while (true) {
+        boolean isRun = true;
+        while (isRun) {
             printMenu();    // 콘솔 화면
             System.out.print("선택:");
             int choice = scanner.nextInt();
@@ -46,6 +46,7 @@ public class AccountView {
                 case 6:
                     System.out.println("종료합니다"); // 프로그램 종료 메서드
                     accountManager.disConnect();
+                    isRun = false;
                     break;
                 default:
                     System.out.println("잘못입력하셨습니다.");

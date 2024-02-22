@@ -71,4 +71,15 @@ public class Account {
     public void setTypeRate(double typeRate) {
         this.typeRate = typeRate;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "userId='" + userId + '\'' +
+                ", accountType=" + accountType +
+                ", accountId='" + accountId + '\'' +
+                ", balance=" + balance +
+                ", typeRate=" + typeRate +
+                '}';
+    }
 }

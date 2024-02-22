@@ -63,4 +63,15 @@ public class AccountHistory {
     public void setAccountId(String accountId) {
         this.accountId = accountId;
     }
+
+    @Override
+    public String toString() {
+        return "AccountHistory{" +
+                "accountHistoryId=" + accountHistoryId +
+                ", transactionType=" + transactionType +
+                ", amount=" + amount +
+                ", balanceAfter=" + balanceAfter +
+                ", accountId='" + accountId + '\'' +
+                '}';
+    }
 }

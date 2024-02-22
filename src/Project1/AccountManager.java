@@ -105,23 +105,33 @@ public class AccountManager implements IAccountManager {
         account.setAccountId(stdIn.next());
         System.out.print("입금액: ");
         double money = stdIn.nextDouble();
-        System.out.println(account.getTypeRate());
-        System.out.println(money + (money * account.getTypeRate() * 0.01));
+
+        account = accountDAO.selectAccount(account.getAccountId()); //account DB를 받아옴
+        System.out.println(account); //
+
+        System.out.println(account.getTypeRate()); // 테스트 코드
+        System.out.println(money + (account.getBalance()+money * account.getTypeRate() * 0.01)); // 테스트 코드
+
         if (!isAccount(account.getAccountId())) {
             if (isPart(account)) {
                 // true : 예금 계좌                    // 'fpkm3033'    // 1000  + (1000 * 1.0)   1.0
-                accountDAO.updateBalance(account.getAccountId(), money + (money * (account.getTypeRate() / 100)));
+                accountDAO.updateBalance(account.getAccountId(),account.getBalance()+ money + (money * (account.getTypeRate())));
             } else {
                 // false : 대출 계좌                  // 'fpkm3033' 10000
-                accountDAO.updateBalance(account.getAccountId(), money);
+                accountDAO.updateBalance(account.getAccountId(), account.getBalance()+money);
             }
+
 
             accountHistory.setTransactionType(1); // 1: 입금
             accountHistory.setAccountId(account.getAccountId());
             accountHistory.setAmount(money);    // 거래액
-            accountHistory.setBalanceAfter(account.getBalance());   // 거래후 금액
-
+            accountHistory.setBalanceAfter(account.getBalance() + money);   // 거래후 금액
             accountDAO.insertAccountHistory(accountHistory);
+
+//            accountHistory.setAmount(money * account.getTypeRate());
+//            accountHistory.setBalanceAfter(account.getBalance() + money + (money * account.getTypeRate()));
+//            accountDAO.insertAccountHistory(accountHistory);
+
         } else {
             System.out.println("해당 계좌번호가 존재하지 않습니다.");
         }
@@ -130,26 +140,52 @@ public class AccountManager implements IAccountManager {
     @Override
     public void withdraw() { // case 4번 출금
         System.out.print("계좌번호: ");
-        account.setAccountId(stdIn.nextLine());
+//        String accountid = stdIn.next();
+        account.setAccountId(stdIn.next());
         System.out.print("출금액: ");
         double money = stdIn.nextDouble();
 
-        if (isAccount(account.getAccountId())) {
-            if (isPart(account)) {
-                // true : 예금 계좌                 // 'fpkm3033' 2000
-                accountDAO.updateBalance(account.getAccountId(), -money);
-            } else {
-                // false : 출금 계좌                    // 'fpkm3033'  -(2000 + 2000 * (10/100) )
-                accountDAO.updateBalance(account.getAccountId(), -(money + money * (account.getTypeRate()) / 100));
-            }
-            accountHistory.setTransactionType(2); // 2: 출금
-            accountHistory.setAccountId(account.getAccountId());
-            accountHistory.setAmount(money);    // 거래액
-            accountHistory.setBalanceAfter(account.getBalance());   // 거래후 금액
+        account = accountDAO.selectAccount(account.getAccountId()); //account DB를 받아옴
+        System.out.println(account); //
 
-            accountDAO.insertAccountHistory(accountHistory);
+        System.out.println(account.getTypeRate()); // 테스트 코드
+//        System.out.println(money + (account.getBalance()+money * account.getTypeRate() * 0.01)); // 테스트 코드
+
+        if (money > account.getBalance()){
+            System.out.println("출금하려는 금액이 입금액 보다 큽니다.");
+
         } else {
-            System.out.println("해당 계좌번호가 존재하지 않습니다.");
+            if (!isAccount(account.getAccountId())) {
+                System.out.println("ispart"+isPart(account));
+                if (isPart(account)) {
+                    // true : 예금 계좌
+                    accountDAO.updateBalance(account.getAccountId(), (account.getBalance()- money));
+                } else {
+                    // false : 대출 계좌                  // 'fpkm3033' 10000
+                    accountDAO.updateBalance(account.getAccountId(), account.getBalance() -money - (money * account.getTypeRate()  ));
+                }
+
+//                accountHistory.setTransactionType(2); // 1: 출금
+//                accountHistory.setAccountId(account.getAccountId());
+//                accountHistory.setAmount(money);    // 거래액
+//                accountHistory.setBalanceAfter(account.getBalance());   // 거래후 금액
+
+                accountDAO.insertAccountHistory(accountHistory);
+
+                accountHistory.setTransactionType(2); // 1: 입금
+                accountHistory.setAccountId(account.getAccountId());
+                accountHistory.setAmount(money);    // 거래액
+                accountHistory.setBalanceAfter(account.getBalance() - money);   // 거래후 금액
+                accountDAO.insertAccountHistory(accountHistory);
+
+//                accountHistory.setAmount(money * account.getTypeRate());
+//                accountHistory.setBalanceAfter(account.getBalance() - money -
+//                        (money * account.getTypeRate()));
+//                accountDAO.insertAccountHistory(accountHistory);
+
+            } else {
+                System.out.println("해당 계좌번호가 존재하지 않습니다.");
+            }
         }
     }
 
@@ -159,8 +195,18 @@ public class AccountManager implements IAccountManager {
 
         System.out.print("계좌번호: ");
 //        String ad = stdIn.nextLine();
-        account.setAccountId(stdIn.nextLine());
-        ArrayList<AccountHistory> list = null;
+        account.setAccountId(stdIn.next()); //1234
+
+        ArrayList<AccountHistory> list = accountDAO.selectAccountHistories(account.getAccountId());
+
+        System.out.println("계좌번호"+account.getAccountId()); // 테스트 코드 //
+        System.out.println(account.toString());
+        // 여기서 부터 해야 됨 todo 2
+        for (AccountHistory acHistory : list) {
+            System.out.println(acHistory);
+        }
+
+        System.out.println("arraylist"+list); // 테스트 코드 [] 나왔음
 
         if (isAccount(account.getAccountId())) {
             for (int i = 0; i < accountHistory.getAccountHistoryId(); i++) {
@@ -172,14 +218,14 @@ public class AccountManager implements IAccountManager {
         }
         System.out.println(list);
         for (AccountHistory accountHistory1 : list) {
-            if (accountHistory1.getAccountHistoryId() == 1) {
+            if (accountHistory1.getTransactionType() == 1) {
                 type = "입금";
             } else {
                 type = "출금";
             }
-            System.out.println(type + "\t" + accountHistory1.getAmount() + "\t" + accountHistory1.getBalanceAfter());
+            System.out.println(type + "\t" + accountHistory1.getAmount() + " \t" + accountHistory1.getBalanceAfter());
         }
-        System.out.println("잔액 : " + account.getBalance());
+        System.out.println("잔액 : " + accountDAO.selectBalance(account.getAccountId()));
     }
 
     @Override

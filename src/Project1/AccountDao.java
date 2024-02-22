@@ -73,12 +73,40 @@ public class AccountDao implements IAccountDao {
 
     @Override
     public void insertAccountHistory(AccountHistory accountHistory) {
-
+        String sql = "INSERT INTO accountHistory VALUES (?,?,?,?,?) ";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, accountHistory.getAccountHistoryId());
+            preparedStatement.setInt(2, accountHistory.getTransactionType());
+            preparedStatement.setDouble(3, accountHistory.getAmount());
+            preparedStatement.setDouble(4, accountHistory.getBalanceAfter());
+            preparedStatement.setString(5, accountHistory.getAccountId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public ArrayList<AccountHistory> selectAccountHistories(String accountId) {
-        return null;
+        String sql = "SELECT * FROM accountHistory WHERE (accountId = ?) ORDER BY accountHistoryId DESC";
+        ArrayList arrayList = new ArrayList<>();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, accountId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    AccountHistory accountHistory = new AccountHistory();
+                    accountHistory.setAccountHistoryId(resultSet.getInt("accountHistoryId"));
+                    accountHistory.setTransactionType(resultSet.getInt("transactionType"));
+                    accountHistory.setAmount(resultSet.getDouble("amount"));
+                    accountHistory.setBalanceAfter(resultSet.getDouble("balanceAfter"));
+                    accountHistory.setAccountId(resultSet.getString("accountId"));
+                    arrayList.add(accountHistory);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return arrayList;
     }
 
     @Override
@@ -94,12 +122,41 @@ public class AccountDao implements IAccountDao {
 
     @Override
     public Account selectAccount(String accountId) {
-        return null;
+        Account account = new Account();
+        String sql = " SELECT * FROM account WHERE accountID = ? ";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, accountId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    account.setUserId(resultSet.getString("userId"));
+                    account.setAccountType(resultSet.getInt("accountType"));
+                    account.setAccountId(resultSet.getString("accountId"));
+                    account.setBalance(resultSet.getDouble("balance"));
+                    account.setTypeRate(resultSet.getDouble("typeRate"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
     }
+
 
     @Override
     public double selectBalance(String accountId) {
-        return 0;
+        double balance = 0;
+        String sql = " SELECT * FROM account WHERE accountId = ? ";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, accountId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()) {
+                    balance = resultSet.getDouble("balance");
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return balance;
     }
 
     @Override
@@ -177,7 +234,7 @@ public class AccountDao implements IAccountDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     int cnt = resultSet.getInt(1);
-                    if (cnt >= 1) {
+                    if (cnt >= 2) {
                         return true;
                     }
                 } else {
