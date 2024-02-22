@@ -54,11 +54,15 @@ public boolean insertMember(Member member) {
 
     @Override
     public boolean insertAccount(Account account) {
-            String sql = "INSERT INTO account VALUES (?,?,?)";
+        // VALUES (1, 1, 'fpkm3033', 10000.0, 10.0);
+            String sql = "INSERT INTO account (memberid,accountType, accountId, balance, typeRate)" +
+                    "VALUES (?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, account.getMemberid());
-            preparedStatement.setString(2, account.getAccountId());
-            preparedStatement.setDouble(3, account.getBalance());
+            preparedStatement.setInt(1,account.getMemberid());
+            preparedStatement.setInt(2,account.getAccountType());
+            preparedStatement.setString(3, account.getAccountId());
+            preparedStatement.setDouble(4, account.getBalance());
+            preparedStatement.setDouble(5, account.getAccountType());
 
             return preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -117,8 +121,8 @@ public boolean insertMember(Member member) {
 
     @Override
     public int selectAccountIdCnt(String accountId) {
-        String sql = "SELECT COUNT(*) FROM account WHERE id = ? ";
-        int cnt;
+        String sql = "SELECT COUNT(*) FROM account WHERE (accountId = ?) ";
+        int cnt;// select count(*) from account where accountId = 'fpkm3033';
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, accountId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

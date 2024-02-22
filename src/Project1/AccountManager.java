@@ -29,10 +29,10 @@ public class AccountManager implements IAccountManager {
     @Override
     public void addMember() { // choice : 1 일때
         System.out.print("아이디: ");    // 유저_아이디
-        String userId =  stdIn.next();
+        String userId = stdIn.next();
 //        member.setUserId(stdIn.nextLine()); // test (문자열형식) // String
         System.out.print("이름: "); // 유저_이름
-        String name =  stdIn.next();
+        String name = stdIn.next();
 //        member.setName(stdIn.nextLine()); // 김유니    // String
         System.out.print("나이: "); // 유저_나이
         int age = stdIn.nextInt();
@@ -40,7 +40,7 @@ public class AccountManager implements IAccountManager {
         System.out.print("거주지: "); // 유저_거주지
         String addr = stdIn.next();
 //        member.setAddr(stdIn.nextLine()); // 경북 // String
-        member = new Member(userId,name,age,addr);
+        member = new Member(userId, name, age, addr);
 
         // 회원가입 시 아이디 중복 검사
         if (isMember(member.getUserId())) {
@@ -59,18 +59,27 @@ public class AccountManager implements IAccountManager {
     public void addAccount() { // choice : 2 일 때 
 
         System.out.print("아이디: ");
-        member.setUserId(stdIn.nextLine());    // 유저_아이디
+        String userId = stdIn.next(); // 유저 아이디
         System.out.print("계좌종류: (1: 예금계좌, 2: 대출계좌): ");
-        account.setAccountType(stdIn.nextInt()); // 1 혹은 2만 입력 가능하도록 제약을 걸어두었음
+        int type = stdIn.nextInt(); // 1 혹은 2만 입력 가능하도록 제약을 걸어두었음
         System.out.print("계좌번호: ");
-        account.setAccountId(stdIn.nextLine());
+        String accountid = stdIn.next();
         System.out.print("잔액: ");
-        account.setBalance(stdIn.nextDouble());
-//
-        // 사용중인 아이디인지
-        if (isMember(member.getUserId())) {
+        double balance = stdIn.nextDouble();
+        double rate = 0.0;
+
+        if (type == 1) {
+            System.out.print("이자율: ");
+            rate = stdIn.nextDouble();
+        } else { // tpye == 2
+            System.out.print("수수료율: ");
+            rate = stdIn.nextDouble();
+        }                               // 1 , 1 , 12345, 10000, 1.0
+        account = new Account(member.getMemberId(), type, accountid, balance, rate);
+
+        if (!isMember(userId)) { // 새로 입력한 fpkm3033
             // 사용중인 계좌 번호인지
-            if (isAccount(account.getAccountId())) {
+            if (isAccount(account.getAccountId())) { // 12345 - String 타입 // todo 여기까지 검증
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
                 if (isPart(account)) {
                     accountDAO.insertAccount(account);
@@ -85,7 +94,7 @@ public class AccountManager implements IAccountManager {
                 System.out.println(account.getAccountId() + "는 사용중인 계좌번호입니다.");
             }
         } else {
-            System.out.println(member.getUserId() + "는 없는아이디입니다.");
+            System.out.println(userId + "는 없는아이디입니다.");
 
         }
     }
@@ -179,7 +188,7 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isMember(String userId) { // 해당 아이디의 회원 개수를 반환
-        if (accountDAO.selectMemberIdCnt(userId) != 1) {
+        if (accountDAO.selectMemberIdCnt(userId) == 0) {
             //   select count(*) from member where userId = 'test';
             return true;
         }
@@ -188,8 +197,8 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isAccount(String accountId) {    // 해당 계좌번호의 계좌 개수를 반환
-        if (accountDAO.selectAccountIdCnt(accountId) == 1) {
-            //select count(*) from account where accountId = 'fpkm3033';
+        if (accountDAO.selectAccountIdCnt(accountId) == 0) {    // 0 : 해당 계좌 번호의 계좌가 없다.
+            //select count(*) from account where accountId = '12345';
             return true;
         }
         return false;
@@ -198,7 +207,7 @@ public class AccountManager implements IAccountManager {
     @Override
     public boolean isPart(Account account) { // 계좌 유형 중복검사
         return accountDAO.selectTypeRate(account) == 1; // DAO 클래스에서 만드는 편이 좋을듯 합니다.
-        // 반환값이 1이면 예금 0이면 출금으로
+        // 반환값이 1이면 예금 0이면 출금으로     // todo 틀리면 0
         /*
         // 이런식
        select accountType
