@@ -34,7 +34,7 @@ CREATE TABLE accountHistory
     FOREIGN KEY (accountId) REFERENCES account (accountId)                                        # 계좌번호 외래키,
 );
 
-
+select count(*) from account where accountId = 1234;
 select *
 from member;
 SELECT * FROM accountHistory WHERE accountId = '1234';

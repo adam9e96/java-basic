@@ -177,7 +177,7 @@ public class AccountDao implements IAccountDao {
     @Override
     public int selectAccountIdCnt(String accountId) {
         String sql = "SELECT COUNT(*) FROM account WHERE (accountId = ?) ";
-        int cnt;// select count(*) from account where accountId = 'fpkm3033';
+        int cnt;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, accountId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
