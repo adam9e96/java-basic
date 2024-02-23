@@ -164,7 +164,7 @@ public class AccountDao implements IAccountDao {
         String sql;
         int cnt = 0;
         sql = "UPDATE account SET balance = ? where (accountID = ?)";
-        System.out.println(sql);
+//        System.out.println(sql); // 테스트 코드
         try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
             preparedStatement.setDouble(1, balance);
             preparedStatement.setString(2, accountId);

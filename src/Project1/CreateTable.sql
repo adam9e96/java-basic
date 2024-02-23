@@ -1,5 +1,7 @@
 create database sample_java;
 use sample_java;
+
+
 #회원등록 테이블
 CREATE TABLE member
 (
@@ -10,8 +12,6 @@ CREATE TABLE member
     age      INT(3)      NOT NULL,           #유저나이
     addr     VARCHAR(20) NOT NULL            #유저거주지
 );
-# userid는 Unique 걸어 놓지 않았음
-# 로직에서 중복검사를 돌리기 떄문에
 
 ## 계좌 테이블
 CREATE TABLE account
@@ -23,13 +23,6 @@ CREATE TABLE account
     typeRate    DECIMAL(5, 2) NOT NULL,                                            # 이자율/ 수수료율 # 비율
     FOREIGN KEY (userId) REFERENCES member (userId)
 );
-SELECT COUNT(*)
-FROM account
-WHERE accountId = 12345;
-select *
-from member;
-select *
-from account;
 
 CREATE TABLE accountHistory
 (
@@ -40,6 +33,8 @@ CREATE TABLE accountHistory
     accountId        varchar(20)    NOT NULL,                                                     # 계좌 번호
     FOREIGN KEY (accountId) REFERENCES account (accountId)                                        # 계좌번호 외래키,
 );
+
+
 select *
 from member;
 SELECT * FROM accountHistory WHERE accountId = '1234';

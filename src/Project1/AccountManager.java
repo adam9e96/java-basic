@@ -67,9 +67,10 @@ public class AccountManager implements IAccountManager {
             System.out.print("수수료율: ");
         }
         rate = stdIn.nextDouble();
+//        System.out.println(account); null 상태임
         account = new Account(userId, type, accountid, balance, rate);
 
-        if (!isMember(userId)) {
+        if (!isMember(userId)) {    // 없는 아이디는 생성이 안되야 하므로 isMember NOT 처리
             // 사용중인 계좌 번호인지
             if (isAccount(account.getAccountId())) { // 12345 - String 타입
                 // 해당 아이디가 같은 계좌 종류를 사용 하는지
@@ -108,8 +109,10 @@ public class AccountManager implements IAccountManager {
 
             if (account.getAccountType() == 1) {
                 // true : 예금 계좌
+//                System.out.println("account.getAccountId():"+account.getAccountId()+ "account.getBalance() + money + (money * account.getTypeRate():"+account.getBalance() + money + (money * account.getTypeRate()));
                 accountDAO.updateBalance(account.getAccountId(),account.getBalance() + money + (money * account.getTypeRate()));
-
+//                System.out.println("계좌원금: " + account.getBalance()); // 테스트 코드
+//                System.out.println("입금액: " + money); // 테스트 코드
                 acHistory = new AccountHistory(1, money, account.getBalance() + money, accountNum);
                 accountDAO.insertAccountHistory(acHistory);
                 acHistory = new AccountHistory(1, account.getTypeRate() * money,
@@ -117,8 +120,8 @@ public class AccountManager implements IAccountManager {
                 accountDAO.insertAccountHistory(acHistory);
             } else if (account.getAccountType() == 2){
                 // false : 대출 계좌
-                System.out.println("계좌원금: " + account.getBalance());
-                System.out.println("입금액: " + money);
+//                System.out.println("계좌원금: " + account.getBalance()); // 테스트 코드
+//                System.out.println("입금액: " + money); // 테스트 코드
                 accountDAO.updateBalance(account.getAccountId(), account.getBalance() + money);
                 acHistory = new AccountHistory(1, money, account.getBalance() + money, accountNum);
                 accountDAO.insertAccountHistory(acHistory);
@@ -197,6 +200,7 @@ public class AccountManager implements IAccountManager {
 
     @Override
     public boolean isMember(String userId) { // 해당 아이디의 회원 개수를 반환
+//        System.out.println(accountDAO.selectMemberIdCnt(userId)); // 없는 아이디의 경우 0으로 반환됨
         if (accountDAO.selectMemberIdCnt(userId) == 0) {
             return true;
         }
