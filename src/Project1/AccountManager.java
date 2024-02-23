@@ -102,9 +102,17 @@ public class AccountManager implements IAccountManager {
         System.out.print("입금액: ");
         double money = stdIn.nextDouble();
 
+
+
         account = accountDAO.selectAccount(accountNum); //account DB를 받아옴
 //        System.out.println(account); // 테스트 코드
-        if (!isAccount(account.getAccountId())) {
+
+        if (isAccount(account.getAccountId())) {
+            System.out.println("계좌 번호를 잘못 입력하셨습니다.");
+            return;
+        }
+
+//        if (!isAccount(account.getAccountId())) {
             AccountHistory acHistory = null;
 
             if (account.getAccountType() == 1) {
@@ -126,9 +134,7 @@ public class AccountManager implements IAccountManager {
                 acHistory = new AccountHistory(1, money, account.getBalance() + money, accountNum);
                 accountDAO.insertAccountHistory(acHistory);
             }
-        } else {
-            System.out.println("해당 계좌번호가 존재하지 않습니다.");
-        }
+
     }
 
     @Override
@@ -141,12 +147,16 @@ public class AccountManager implements IAccountManager {
 
         account = accountDAO.selectAccount(inputAccountNum); //account DB를 받아옴
 
+        if (isAccount(account.getAccountId())) {
+            System.out.println("계좌 번호를 잘못 입력하셨습니다.");
+            return;
+        }
+
         if (inputMoney > account.getBalance()) {
             System.out.println("출금하려는 금액이 입금액 보다 큽니다.");
             return;
         }
 
-        if (!isAccount(account.getAccountId())) {
             AccountHistory acHistory = null;
             if (account.getAccountType() == 1) {
                 // true : 예금 계좌
@@ -162,9 +172,7 @@ public class AccountManager implements IAccountManager {
                         account.getBalance() - inputMoney - (inputMoney * account.getTypeRate()), inputAccountNum);
                 accountDAO.insertAccountHistory(acHistory);
             }
-        } else {
-            System.out.println("해당 계좌번호가 존재하지 않습니다.");
-        }
+
     }
 
     @Override
