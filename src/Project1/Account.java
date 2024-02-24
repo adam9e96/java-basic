@@ -5,6 +5,7 @@ package Project1;
  * fileName       : Account
  * date           : 2024-02-20
  * description    : Account DTO
+ * 테이블에 저장할 데이터를 미리 담아 놓는 용도
  * ===========================================================
  */
 
