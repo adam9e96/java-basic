@@ -1,54 +1,55 @@
-package chapter25_jdbc.bookExample;
+package chapter25_jdbc.book;
 
 import java.util.Scanner;
 
 /**
  * ===========================================================
- * fileName       : BookView
+ * fileName       : bookView
  * date           : 2024-02-25
  * description    :
  * ===========================================================
  */
 public class BookView {
     public static void main(String[] args) {
-        BookManager manager = new BookManager();
-
+        BookManager bookManager = new BookManager();
         Scanner scanner = new Scanner(System.in);
+
         while (true) {
-
-
             printMenu();
+            System.out.print("선택: ");
             int choice = scanner.nextInt();
+
             switch (choice) {
                 case 1:
-                    manager.insertBook();
+                    bookManager.insertBook();
                     break;
                 case 2:
-                    manager.searchByKeyWord();
+                    bookManager.searchKeyWord();
                     break;
                 case 3:
-                    manager.rentBook();
+                    bookManager.rentBook();
                     break;
                 case 4:
-                    manager.returnBook();
+                    bookManager.returnBook();
                     break;
                 case 5:
-                    manager.printAll();
+                    bookManager.printAll();
                     break;
                 case 6:
                     System.out.println("종료합니다.");
-                    manager.close();
                     scanner.close();
-                    return;
-                default:
-                    System.out.println("잚좃누르셨습니다. \n다시 선택해주세요.");
+
                     break;
+                default:
+                    System.out.println("잘못누르셨습니다. \n 다시입력해주세요.");
+                    break;
+
             }
         }
     }
 
     public static void printMenu() {
-        System.out.println("============Menu============");
+        System.out.println("메뉴");
         System.out.println("1. 책 등록");
         System.out.println("2. 책 검색");
         System.out.println("3. 책 대여");
@@ -56,5 +57,6 @@ public class BookView {
         System.out.println("5. 책 전체출력");
         System.out.println("6. 종료");
         System.out.println();
+        System.out.print(">>> ");
     }
 }
