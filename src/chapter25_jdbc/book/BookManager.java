@@ -45,7 +45,9 @@ public class BookManager {
         System.out.println("책이 등록되었습니다.");
         System.out.println(bookArrayList.size()); // 테스트
         System.out.println(book);
-
+        /*
+            insertBook 이 호출될 떄마다 새로운 Book 객체가 생성되고 bookArrayList에 추가된다.
+         */
 
     }
 
@@ -74,10 +76,12 @@ public class BookManager {
 //                System.out.println(book.getCode() + "/" + book.getTitle() + "/" + book.getAuthor() + "/" + book.getStock()+"권");
 //            }
 //        }
-
+        /*
+            이 메소드가 호출될때마다 새로운 searList 가 생성되어 검색결과를 담게 된다.
+         */
     }
 
-    public void rentBook() {
+    public void rentBook() {    // 객체 생성 X
         /* 책 대여 */
         System.out.println(bookArrayList); // 테스트 코드
         System.out.println("대여할 책의 코드를 입력해 주세요.");
@@ -109,8 +113,8 @@ public class BookManager {
 //        System.out.println(bookArrayList.hashCode());
     }
 
-    public void returnBook() {
-        // 책 반납
+    public void returnBook() {    // 객체 생성 X
+        /* 책 반납 */
         System.out.println("반납할 책의 정보를 입력해 주세요.");
         System.out.print("코드 : ");
         int code = scanner.nextInt();
@@ -126,7 +130,9 @@ public class BookManager {
         System.out.println(stock + "권이 반납되었습니다.");
     }
 
-    private Book searchBook(int code) {
+    private Book searchBook(int code) { // rentBook, returnBook 에서 코드로 책을 조사하는 기능을 묶음    // 객체 생성 X
+        /* 코드로 책 찾기 */
+        // 이 메소드에선 새로운 Book 객체를 생성하지는 않지만, 이미 생성된 Book 객체의 참조를 반환한다.
         Book resultBook = null; // Book 타입의 변수 생성 및 초기화
         for (Book book : bookArrayList) {
             if (book.getCode() == code) {
@@ -140,13 +146,15 @@ public class BookManager {
         return resultBook;
     }
 
-    public void printAll() {
-
+    public void printAll() {    // 객체 생성 X
+        /* 전체 목록 출력 */
         for (Book book : bookArrayList) {
-
-//            System.out.println(book.getCode() + "/" + book.getTitle() + "/" + book.getAuthor() + "/" + book.getStock()+"권");
+//            System.out.println(book.getCode() + "/" + book.getTitle() + "/" + book.getAuthor() + "/" + book.getStock()+"권"); // Book DTO toString 오버라이딩함
             System.out.println(book);
         }
+    }
+    public void close() {
+        scanner.close();
     }
 }
 

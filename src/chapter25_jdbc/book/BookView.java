@@ -37,6 +37,7 @@ public class BookView {
                     break;
                 case 6:
                     System.out.println("종료합니다.");
+                    bookManager.close();
                     scanner.close();
 
                     break;
