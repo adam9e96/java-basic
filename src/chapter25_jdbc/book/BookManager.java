@@ -19,6 +19,7 @@ public class BookManager {
         this.bookArrayList = new ArrayList<>();
         bookArrayList.add(new Book(12345, "title", "author", 3));
         bookArrayList.add(new Book(1324, "title2", "Stephen King", 10));
+        bookArrayList.add(new Book(3333, "AAAA", "Lists", 20));
     }
 
     public void insertBook() {
@@ -150,6 +151,7 @@ public class BookManager {
             System.out.println(book);
         }
     }
+
     public void close() {
         scanner.close();
     }

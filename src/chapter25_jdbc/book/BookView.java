@@ -15,6 +15,7 @@ public class BookView {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+//            System.out.println("scanner 참조"+scanner);
             printMenu();
             System.out.print("선택: ");
             int choice = scanner.nextInt();
@@ -39,7 +40,6 @@ public class BookView {
                     System.out.println("종료합니다.");
                     bookManager.close();
                     scanner.close();
-
                     break;
                 default:
                     System.out.println("잘못누르셨습니다. \n 다시입력해주세요.");
