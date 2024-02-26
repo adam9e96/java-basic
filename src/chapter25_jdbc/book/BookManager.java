@@ -1,8 +1,5 @@
 package chapter25_jdbc.book;
 
-import chapter13.test.A;
-import chapter15.parent.Parent;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
