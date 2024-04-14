@@ -3,9 +3,8 @@ package chapter23.hashMap01;/*
  * fileName       : HashMap01
  * date           : 2024-01-29
  * description    :
- 자바에서  `HashMap` 을 사용하여 문자열 키와 정수 값을 저장하고
- 다양한 방식으로 데이터에 접근한느 방식이다.
-
+ * HashMap은 Map 인터페이스를 구현한 컬렉션 클래스 중 하나로, 키(key)와 값(value)의 쌍으로 요소를 저장한다.
+ *
  * ===========================================================
  */
 import java.util.HashMap;
@@ -21,7 +20,7 @@ public class HashMap01 {
         // <String, Integer> -> String 을 키로, Integer 를 값으로 사용
         // Map 컬렉션은 키와 값을 제네릭으로 지정해줘야한다.
 
-        // 객체 저장
+        // 객체 저장(요소 추가)
         map.put("신용권", 85);
         map.put("홍길동", 90); // insert 방식임.
         map.put("동장군", 80); // put 자체가 add기능만 있는게 아니라 변경하고 싶으면 수정도 할 수 있음.
