@@ -1,4 +1,4 @@
-package chapter1;
+package chapter1_HelloWorld;
 
 /*
  * ===========================================================
@@ -11,9 +11,9 @@ package chapter1;
 public class HelloWorld01 {
     // 프로그램 실행 진입점
     public static void main(String[] args) {
-        System.out.println("Hello Java!");
-        System.out.println('h'); // char 문자 자료형 2byte
-        System.out.println("h"); // 1글자라도 가능함 ""을 사용하면 문자열임
+        System.out.println("Hello Java1!");
+        System.out.println("Hello Java2!");
+        System.out.println("Hello Java3!");
 
         // 1. 프로그램은 줄 단위로 위에서 아래로 실행.
         // 2. 한줄이 실행되고 다음 줄로 이동을 하며, 이전 줄의 내용은 기억을 할 수 없음
@@ -29,5 +29,10 @@ public class HelloWorld01 {
         /*
          * 여러줄 주석
          */
+        // Hello Java1!
+        // Hello Java2!
+        // Hello Java3!
+        // Hello Java!
+
     }
 }
