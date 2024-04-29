@@ -1,5 +1,7 @@
 create database sample_java;
 use sample_java;
+show tables ;
+use sample_java;
 
 
 #회원등록 테이블
