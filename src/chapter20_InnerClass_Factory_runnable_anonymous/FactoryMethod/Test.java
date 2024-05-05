@@ -1,4 +1,4 @@
-package chapter20_InnerClass.FactoryMethod;
+package chapter20_InnerClass_Factory_runnable_anonymous.FactoryMethod;
 
 // todo 팩토리 메소드연습1
 

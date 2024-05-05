@@ -1,4 +1,4 @@
-package chapter20_InnerClass.anonymousClass01;
+package chapter20_InnerClass_Factory_runnable_anonymous.anonymousClass01;
 
 /*
  * ===========================================================
@@ -24,7 +24,7 @@ class Outter {
                 System.out.println(i);
                 System.out.println(num);
             }
-        };  // 클래스 끝에 ; 사용
+        };  // 익명 내부 클래스는 실행코드 {}마지막에 ; 사용
     }
 
     Runnable runnable = new Runnable() {    // 2) 참조 변수에 대입할 때 new 예약어를 사용하여 생성.
@@ -38,4 +38,12 @@ class Outter {
 
 public class Main {
     // 못ㅈ거음
+    public static void main(String[] args) {
+        Outter outter = new Outter();
+        outter.getRunnable(1);
+        outter.getRunnable(2);
+        Runnable r = outter.getRunnable(3);
+        r.run();
+
+    }
 }

@@ -1,4 +1,4 @@
-package chapter20_InnerClass.runnable_class;
+package chapter20_InnerClass_Factory_runnable_anonymous.runnable_class;
 
 /**
  * ===========================================================
@@ -13,7 +13,6 @@ package chapter20_InnerClass.runnable_class;
  * ===========================================================
  */
 /*
-    todo #2 봐야할거
     로컬 내부 클래스 : 외부 클래스의 메서드 내에서 정의된 클래스.
     메서드 호출 시에 생성되고 복귀하면 소멸
 

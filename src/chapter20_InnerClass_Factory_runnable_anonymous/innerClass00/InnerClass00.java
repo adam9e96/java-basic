@@ -1,4 +1,4 @@
-package chapter20_InnerClass.innerClass00;
+package chapter20_InnerClass_Factory_runnable_anonymous.innerClass00;
 
 /*
  * ===========================================================
