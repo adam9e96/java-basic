@@ -19,6 +19,7 @@ import java.util.List;
  * ArrayList는 동적으로 크기를 조정할 수 있다는 점 등을 언급할 수 있습니다.
  * ===========================================================
  */
+
 public class ArrayList01 {
     // String 객체를 저장하는 ArrayList
     public static void main(String[] args) {
