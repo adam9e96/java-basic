@@ -23,5 +23,6 @@ public class HashSet01 {
         // 중복된 문자열은 제거되고 출력 순서와 입력 순서는 상관없음.
         System.out.println(hashSet);
         System.out.println(hashSet.size());
+
     }
 }
