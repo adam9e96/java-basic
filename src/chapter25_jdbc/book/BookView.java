@@ -1,12 +1,13 @@
 package chapter25_jdbc.book;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * ===========================================================
  * fileName       : bookView
  * date           : 2024-02-25
- * description    :
+ * description    : JDBC를 다루기 전 연습
  * ===========================================================
  */
 public class BookView {
@@ -18,7 +19,14 @@ public class BookView {
 //            System.out.println("scanner 참조"+scanner);
             printMenu();
             System.out.print("선택: ");
-            int choice = scanner.nextInt();
+            int choice;
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("잘못입력했습니다. 숫자만 입력해주세요");
+                scanner.nextLine();
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -40,7 +48,7 @@ public class BookView {
                     System.out.println("종료합니다.");
                     bookManager.close();
                     scanner.close();
-                    break;
+                    return; // 루프 종료
                 default:
                     System.out.println("잘못누르셨습니다. \n 다시입력해주세요.");
                     break;
@@ -49,7 +57,7 @@ public class BookView {
         }
     }
 
-    public static void printMenu() {
+    private static void printMenu() {
         System.out.println("메뉴");
         System.out.println("1. 책 등록");
         System.out.println("2. 책 검색");

@@ -3,24 +3,28 @@ package chapter11;
 public class Method_20 {
 
 	/*
-	 * ë©”ì„œë“œ ë‚´ì—ì„œì˜ ë©”ì„œë“œ í˜¸ì¶œ ë©”ì„œë“œì—ì„œ ë‹¤ë¥¸ ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ë©´ ë©”ì„œë“œëŠ” ë™ì‘ì„ ë©ˆì¶”ê³ , ë‹¤ë¥¸ ë©”ì„œë“œê°€ ì¢…ë£Œ í•  ë–„ ê¹Œì§€ ê¸°ë‹¤ë¦¼. í˜¸ì¶œí•œ
-	 * ë©”ì„œë“œê°€ ì¢…ë£Œê°€ ë˜ë©´ ë‚˜ë¨¸ì§€ ì½”ë“œê°€ ì‹¤í–‰ ë¨. main() -> firstMethod() -> secondMethod()
+	 * ¸Ş¼­µå ³»¿¡¼­ÀÇ ¸Ş¼­µå È£Ãâ ¸Ş¼­µå¿¡¼­ ´Ù¸¥ ¸Ş¼­µå¸¦ È£ÃâÇÏ¸é ¸Ş¼­µå´Â µ¿ÀÛÀ» ¸ØÃß°í, ´Ù¸¥ ¸Ş¼­µå°¡ Á¾·á ÇÒ ¤Ô¤¨¤Â¤Ô ±îÁö ±â´Ù¸². È£ÃâÇÑ
+	 * ¸Ş¼­µå°¡ Á¾·á°¡ µÇ¸é ³ª¸ÓÁö ÄÚµå°¡ ½ÇÇà µÊ. main() -> firstMethod() -> secondMethod()
 	 */
+	/**
+	 * 
+	 */
+	
 	public static void main(String[] args) {
-		System.out.println("main(String[] args)ì´ ì‹œì‘ë˜ì—ˆìŒ");	// 1
+		System.out.println("main(String[] args)ÀÌ ½ÃÀÛµÇ¾úÀ½");	// 1
 		firstMethod(); 	
-		System.out.println("main(String[] args)ì´ ëë‚¬ìŒ"); // 6 
+		System.out.println("main(String[] args)ÀÌ ³¡³µÀ½"); // 6 
 	}
 
 	static void firstMethod() {
-		System.out.println("firstMethod()ì´ ì‹œì‘ë˜ì—ˆìŒ"); // 2
+		System.out.println("firstMethod()ÀÌ ½ÃÀÛµÇ¾úÀ½"); // 2
 		secondMethod();
-		System.out.println("firstMethod() ì´ ëë‚¬ìŒ"); // 5
+		System.out.println("firstMethod() ÀÌ ³¡³µÀ½"); // 5
 	}
 
 	static void secondMethod() {
-		System.out.println("secondMethod()ì´ ì‹œì‘ë˜ì—ˆìŒ"); // 3
-		System.out.println("secondMethod()ì´ ëë‚¬ìŒ"); // 4
+		System.out.println("secondMethod()ÀÌ ½ÃÀÛµÇ¾úÀ½"); // 3
+		System.out.println("secondMethod()ÀÌ ³¡³µÀ½"); // 4
 	}
 
 }

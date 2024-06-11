@@ -17,6 +17,8 @@ public class BookManager {
     public BookManager() {
         this.scanner = new Scanner(System.in);
         this.bookArrayList = new ArrayList<>();
+
+        // 테스트용
         bookArrayList.add(new Book(12345, "title", "author", 3));
         bookArrayList.add(new Book(1324, "title2", "Stephen King", 10));
         bookArrayList.add(new Book(3333, "AAAA", "Lists", 20));
@@ -39,9 +41,9 @@ public class BookManager {
         System.out.print("재고 : ");
         book.setStock(scanner.nextInt());
 
-        bookArrayList.add(book);
+        bookArrayList.add(book); // bookArrayList에 입력한 정보를 담은 Book 객체를 추가
         System.out.println("책이 등록되었습니다.");
-        System.out.println(bookArrayList.size()); // 테스트
+        System.out.println("현재 저장된 책 권수 :"+bookArrayList.size()); // 테스트
         System.out.println(book);
         /*
             insertBook 이 호출될 떄마다 새로운 Book 객체가 생성되고 bookArrayList에 추가된다.
@@ -56,6 +58,7 @@ public class BookManager {
         String title = scanner.next();
 
         ArrayList<Book> searchList = new ArrayList<>();
+
         for (Book book : bookArrayList) {
             if (book.getTitle().contains(title)) { // 검색어가 포함된 책을 찾음
                 searchList.add(book);
