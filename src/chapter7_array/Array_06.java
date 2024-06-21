@@ -1,15 +1,10 @@
-package chapter7;
+package chapter7_array;
 
 /**
- * ===========================================================
- * fileName       : Array_06
- * date           : 2024-02-06
- * description    : 배열연습_06
  * 주어진 배열의 항목에서 최대값을 구하는 JAVA 프로그램2
  * 만약 배열의 요소 중에 음수가 있다면?
  * 초기에 `max`를 0으로 설정하는 것은 부적절하다.
  * 왜냐하면 음수가 최대값일 수 있기 때문이다. 따라서 초기값을 배열의 첫 번째 요소로 설정하여 해결할 수 있다.
- * ===========================================================
  */
 public class Array_06 {
     public static void main(String[] args) {
@@ -18,7 +13,7 @@ public class Array_06 {
 //        int max = array[0]; // 배열의 첫 번째 요소로 초기화.
         int max = 0;    // 0으로 초기화
         for (int j : array) {
-            if (max < j) {
+            if (max < j) { // max 값을 0 으로 초기화 하면 항상 false 가 됨.
                 max = j;
                 System.out.println(max);
             }

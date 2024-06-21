@@ -1,4 +1,4 @@
-package chapter7;
+package chapter7_array;
 /**
  * ===========================================================
  * fileName       : Array_Ex03

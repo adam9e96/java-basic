@@ -1,4 +1,4 @@
-package chapter7;
+package chapter7_array;
 
 public class Array_07_ReferenceVariableCompareExample {
 	public static void main(String[] args) {
