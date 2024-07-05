@@ -1,4 +1,4 @@
-package chapter12;
+package chapter12.area;
 /*
     클래스 메서드는 객체를 생성하지 않아도 호출이 가능. -> 객체를 선언안해도 사용가능함.
     인스턴스 메서드는 객체를 생성해야만 호출이 가능.
@@ -9,7 +9,7 @@ package chapter12;
     static 이 붙으면 글꼴이 기울여지는 특징도 있다.
      */
 
-public class AreaTest {
+public class AreaDemo {
     public static void main(String[] args) {
         Area.manual(); // 클래스 메서드 접근 가능
 //        Area.triangle(3, 5); // 에러 발생

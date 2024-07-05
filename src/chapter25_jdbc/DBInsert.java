@@ -3,13 +3,8 @@ package chapter25_jdbc;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-/**
- * ===========================================================
- * fileName       : DBInsert
- * date           : 2024-02-14
- * description    :
- * ===========================================================
- */ // insert into 테이블명 (필드) values (값); 값넣을때
+
+// insert into 테이블명 (필드) values (값); 값넣을때
 public class DBInsert extends DB {
     private User setUser() throws SQLException {    // setUser() 메서드의 반환형이 User
         // setUser 의 메소드는 콘솔로 입력받는 기능만 있다.

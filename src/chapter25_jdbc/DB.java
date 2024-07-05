@@ -3,20 +3,17 @@ package chapter25_jdbc;
 import java.sql.*;
 
 /**
- * ===========================================================
- * fileName       : DB
- * date           : 2024-02-14
- * description    :
- * DBMS 와 연결하기 및 해제하는 로직
- * ===========================================================
+ * 데이터베이스 연결과 자원을 관리하는 메인 클래스
+ *
+ * @since 2024-06-12
  */
 
 public class DB {
     // 사용할 객체를 위한 참조변수 선언.
     // 클래스 내의 여러 메서드에서 사용해야 되서 인스턴스 변수로 선언.
-    Connection conn = null; // DB와 자바프로그램과 연결을 하기 위해 사용
-    PreparedStatement preparedStatement = null; // 쿼리문을 임시로 저장하는 ? 용도? 일단을 이해 .저장 및 실행?
-    ResultSet resultSet = null; // 쿼리시에 결과를 저장하는 용도로 사용. select 에 주로 사용 // 쿼리문을 실행하고 저장하는 용도
+    Connection conn = null; // DB와 자바프로그램의 연결을 관리
+    PreparedStatement preparedStatement = null; // SQL 쿼리를 임시로 저장하고 실행한다.
+    ResultSet resultSet = null; // SQL 쿼리의 결과를 저장한다 ( 주로 select 에 주로 사용)
 
     // 데이터베이스 접속 정보 상수
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
@@ -27,6 +24,11 @@ public class DB {
     private static final String DB_USER = "root";
     private static final String DB_PASS = "3033";
 
+    /**
+     * JDBC 드라이버를 등록하는 메서드.
+     * 데이터베이스 연결을 설정한다.
+     * 연결 성공 시 메시지를 출력한다.
+     */
     public void connectDB() {
         /* 데이터 베이스 연결 */
         // URL 양식 동일함 e.g) http://naver.com:443/
@@ -52,6 +54,9 @@ public class DB {
 
     }
 
+    /**
+     * resultSet, preparedStatement, conn을 닫아 자원을 해제하고 연결을 종료
+     */
     public void closeDB() {
         /* 데이터베이스 연결 해제 */
 //                System.out.println("result 객체주소 : "+resultSet);  // 테스트 코드

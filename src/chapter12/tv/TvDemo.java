@@ -1,6 +1,6 @@
-package chapter12;
+package chapter12.tv;
 
-public class TvTest {
+public class TvDemo {
     public static void main(String[] args) {
     /*
     참조 변수의 복사
@@ -8,10 +8,10 @@ public class TvTest {
         Tv t1 = new Tv();
         Tv t2 = new Tv();
         System.out.println("t1.toString()값은 " + t1.toString() + "입니다.");
-//        t1.toString()값은 chapter12.Tv@e9e54c2입니다. 10진수- > 245,257,410
+//        t1.toString()값은 chapter12.tv.Tv@e9e54c2입니다. 10진수- > 245,257,410
 //        패키지명.클래스명@16진수값
         System.out.println("t2.toString()값은 " + t2.toString() + "입니다.");
-//        t2.toString()값은 chapter12.Tv@7cca494b입니다.
+//        t2.toString()값은 chapter12.tv.Tv@7cca494b입니다.
         System.out.println("t1의 channel 값은 " + t1.channel + "입니다.");
         System.out.println("t2의 channel 값은 " + t2.channel + "입니다.");
         System.out.println();
@@ -22,15 +22,14 @@ public class TvTest {
         System.out.println("t2의 channel 값은 " + t2.channel + "입니다."); // 8
         System.out.println();
 
-//        System.out.println(t1);
-//        System.out.println(t2);
+
         t1 = t2; // t1의 참조 주소값을 지우고 t2가 참조하고 있는 주소값을 복사한다.
 
         System.out.println("t1.toString()값은 " + t1.toString() + "입니다.");
-//        t1.toString()값은 chapter12.Tv@7cca494b입니다. 10진수- > 245,257,410
+//        t1.toString()값은 chapter12.tv.Tv@7cca494b입니다. 10진수- > 245,257,410
 //        패키지명.클래스명@16진수값
         System.out.println("t2.toString()값은 " + t2.toString() + "입니다.");
-//       t2.toString()값은 chapter12.Tv@7cca494b입니다.
+//       t2.toString()값은 chapter12.tv.Tv@7cca494b입니다.
 
 
         t1.channel = 27;

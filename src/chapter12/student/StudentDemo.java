@@ -1,6 +1,6 @@
 package chapter12.student;
 
-public class StudentTest {
+public class StudentDemo {
     public static void main(String[] args) {
          /*
         학생을 나타내는 클래스 Student 을(를) 만든다.
@@ -16,5 +16,14 @@ public class StudentTest {
         학생의 나이 : 20
         Student 객체가 생성되었습니다.
          */
+
+
+        /**
+         * 학생의 학번 출력
+         */
+        System.out.println("학생의 학번만 출력 : "+student.getRollNo());
+
+        student.setRollNo("0002");
+        System.out.println("학생의 학번 변경 : "+student.getRollNo());
     }
 }

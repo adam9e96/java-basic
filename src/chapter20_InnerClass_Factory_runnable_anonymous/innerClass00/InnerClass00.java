@@ -1,12 +1,5 @@
 package chapter20_InnerClass_Factory_runnable_anonymous.innerClass00;
 
-/*
- * ===========================================================
- * fileName       : InnerClass00
- * date           : 2024-01-29
- * description    :
- * ===========================================================
- */
 
 class A {
     // 인스턴스 멤버 클래스(B)

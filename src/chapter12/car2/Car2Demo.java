@@ -1,6 +1,6 @@
 package chapter12.car2;
 
-public class Car2Example {
+public class Car2Demo {
     public static void main(String[] args) {
         //Car2 객체 생성
         Car2 car = new Car2();
@@ -9,12 +9,12 @@ public class Car2Example {
         car.setGas(5);
 
         // isLeftGas() 메소드를 호출해서 받은 리턴값이 true 일 경우 if 블록 실행
-        if (car.isLeftGas()){
+        if (car.hasGas()) {
             System.out.println("출발합니다.");
 
             // 리턴값이 없는 run() 메소드 호출
             car.run();
         }
-        System.out.println("gas를 주입하세요.");
+        car.hasGas();
     }
 }

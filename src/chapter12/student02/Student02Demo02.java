@@ -1,6 +1,6 @@
-package chapter12;
+package chapter12.student02;
 
-public class Class02 {
+public class Student02Demo02 {
     public static void main(String[] args) {
     /*
     멤버 변수로 접근하는 방법
@@ -16,5 +16,4 @@ public class Class02 {
         student2.setStudentName("홍길동");
         System.out.println(student2.getStudentName());
     }
-
 }

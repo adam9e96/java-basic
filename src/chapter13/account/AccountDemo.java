@@ -1,6 +1,6 @@
 package chapter13.account;
 
-public class AccountTest {
+public class AccountDemo {
     public static void main(String[] args) {
         Account account = new Account();
         account.setName("Tom");
@@ -15,8 +15,10 @@ public class AccountTest {
         account.setName("김유식");
         account.setBalance(0); // 원래는 초기화 값이 0이라 안해줘도 됨
         account.setBalance(100);
-        System.out.println("이름은 " +account.getName() + "통장 잔고는 "+account.getBalance()
-        + "이고 계좌 번호는 "+ account.getRegNumber());
+        System.out.println("이름은 " + account.getName() + ", 통장 잔고는 " + account.getBalance()
+                + "이고, 계좌 번호는 " + account.getRegNumber());
+        System.out.println("====================");
+
     }
 }
 /*

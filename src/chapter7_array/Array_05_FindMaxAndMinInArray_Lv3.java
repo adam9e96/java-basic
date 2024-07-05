@@ -6,7 +6,7 @@ package chapter7_array;
  * 초기에 `max`를 0으로 설정하는 것은 부적절하다.
  * 왜냐하면 음수가 최대값일 수 있기 때문이다. 따라서 초기값을 배열의 첫 번째 요소로 설정하여 해결할 수 있다.
  */
-public class Array_06 {
+public class Array_05_FindMaxAndMinInArray_Lv3 {
     public static void main(String[] args) {
 //        int[] array = {1, 5, 3, 8, 2}; // 크기는 5 index 는 4
         int[] array = {-1, -5, -3, -8, -2}; // 크기는 5 index 는 4  // 배열의 요소에 음수로 초기화

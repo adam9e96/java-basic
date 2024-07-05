@@ -1,7 +1,9 @@
 package chapter8;
 
-//created : 2024-01-9
-//updated : 2024-01-10
+
+/**
+ * 자바에서 배열을 초기화하고, 배열의 요소를 랜덤하게 섞는 방법
+ */
 public class Array_11 {
     public static void main(String[] args) {
 
@@ -21,9 +23,9 @@ public class Array_11 {
 //			위에 거가 소수를 이용할 수 있어서 알 고 있어야 한다.
 
             // swap
-            int temp = number[0];
-            number[0] = number[n];
-            number[n] = temp;
+            int temp = number[0]; // 0번째 값을 temp 변수에 저장
+            number[0] = number[n]; // n번째 값을 0번 자리에 저장
+            number[n] = temp; // temp 값을 n 번째 자리에 저장
 //			System.out.println("temp :"+temp);
         }
         for (int i = 0; i < number.length; i++) {
