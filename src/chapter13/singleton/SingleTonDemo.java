@@ -1,6 +1,6 @@
 package chapter13.singleton;
 
-public class SingleTonTest {
+public class SingleTonDemo {
     public static void main(String[] args) {
         /*
         생성자의 접근제한자가 private 여서 실행이 안됨.

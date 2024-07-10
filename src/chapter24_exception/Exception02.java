@@ -1,12 +1,5 @@
 package chapter24_exception;
 
-/**
- * ===========================================================
- * fileName       : Exception02
- * date           : 2024-02-02
- * description    :
- * ===========================================================
- */
 public class Exception02 {
     public static void main(String[] args) {
         int[] arr = {10,20,30};
