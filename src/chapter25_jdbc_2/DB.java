@@ -2,11 +2,19 @@ package chapter25_jdbc_2;
 
 import java.sql.*;
 
+/**
+ * DB 클래스는 MariaDB 데이터베이스와 연결을 관리하는 클래스.
+ * 데이터베이스와 연결, 쿼리 실행, 결과 처리 및 연결 해제 기능을 제공
+ */
 public class DB {
-    Connection conn = null; // DB와 자바프로그램과 연결을 하기 위해 사용
-    PreparedStatement preparedStatement = null; // 쿼리문을 임시로 저장하는 ? 용도? 일단을 이해 .저장 및 실행?
-    ResultSet resultSet = null; // 쿼리시에 결과를 저장하는 용도로 사용. select 에 주로 사용 // 쿼리문을 실행하고 저장하는 용도
+    private Connection conn = null; // DB와 자바 프로그램을 연결하는 데 사용
+    private PreparedStatement preparedStatement = null; // 쿼리문을 임시로 저장하고 실행하는 데 사용
+    private ResultSet resultSet = null; // 쿼리 결과를 저장하는 데 사용. 주로 SELECT 문에서 사용
 
+    /**
+     * 데이터베이스에 연결합니다.
+     * MariaDB JDBC 드라이버를 로드하고 데이터베이스 URL, 사용자 이름, 비밀번호를 사용하여 연결을 설정합니다.
+     */
     public void connectDB() {
         final String driver = "org.mariadb.jdbc.Driver";
         final String DB_HOST = "127.0.0.1"; // localhost 주소
@@ -31,6 +39,10 @@ public class DB {
 
     }
 
+    /**
+     * 데이터베이스 연결을 해제합니다.
+     * 연결된 ResultSet, PreparedStatement, Connection 객체를 닫습니다.
+     */
     public void closeDB() {
         /* 데이터베이스 연결 해제 */
 //                System.out.println("result 객체주소 : "+resultSet);  // 테스트 코드
