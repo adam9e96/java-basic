@@ -1,0 +1,22 @@
+package chapter_24_jdbc;
+
+import chapter_24_jdbc.jdbc_01.DBSelect;
+
+import java.sql.SQLException;
+
+/**
+ * ===========================================================
+ * fileName       : SelectUser
+ * date           : 2024-02-15
+ * description    :
+ * ===========================================================
+ */
+public class SelectUser {
+    public static void main(String[] args) throws SQLException {
+        DBSelect myDB = new DBSelect();
+        myDB.connectDB();
+        myDB.getAllUser();  // 직접 구현한 코드1 <-- 이거는 했고
+        myDB.getOneUser();  // 직접 구현한 코드2
+        myDB.closeDB();
+    }
+}

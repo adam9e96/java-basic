@@ -1,6 +1,6 @@
 package test.chapter18.abstract03;
 
-import chapter18.abstract03.student.Student;
+import chapter_17_abstract.abstract03.student.Student;
 
 public class Main {
     public static void main(String[] args) {
