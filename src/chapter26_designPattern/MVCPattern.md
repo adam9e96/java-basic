@@ -41,7 +41,7 @@ View
     사용자 인터페이스
 
     역할 : user interaction
-        User 입력 받기
+        chapter_20_collection_list 입력 받기
         사용자에게 피드백 주기
 
 Controller
