@@ -40,13 +40,12 @@ class Person {
      * Builder 클래스 <br>
      * Builder 클래스는 정적 내부 클래스(Static Inner Class)이다.<br>
      * 이렇게 하면 Builder 클래스는 외부 클래스의 인스턴스 없이도 생성될 수 있다.<br>
-     *
+     * <p>
      * 정적 내부 클래스로 정의하면 외부 클래스의 모든 인스턴스 멤버에 접근할 수 없지만, 외부
      * 클래스의 인스턴스화 없이도 `Builder` 객체를 생성할 수 있는 장점도 있다. <br>
-     *
+     * <p>
      * Builder 클래스의 인스턴스 생성방법 <br>
      * builder 클래스는 외부 클래스인 Person 의 private 생성자를 통해 인스턴스를 생성한다.
-     *
      */
     public static class Builder { // 정적 내부 클래스
         private String firstName;
@@ -104,6 +103,9 @@ public class Main {
                 .build(); // 이 줄에서 Person 객체가 1개 생성됨
 
         System.out.println(person);
+
+        Person person1 = new Person.Builder().build();
+        System.out.println(person1);
 
     }
 }

@@ -1,28 +1,51 @@
 package chapter_18_interface.interface00;
 
 /**
- * Java 인터페이스 (Interface)
- * 인터페이스는 다른 클래스들이 구현해야 하는 메소드들을 선언하는 일종의 청사진입니다.
- * 인터페이스는 객체 지향 프로그래밍에서 다형성을 제공하고,
- * 클래스들이 특정 동작을 보장하도록 강제하는 데 사용됩니다.
- * <p>
- * 기본 개념
- * 인터페이스 선언: interface 키워드를 사용하여 선언합니다.
- * 추상 메소드: 인터페이스 내의 메소드는 기본적으로 추상 메소드입니다. 따라서 인터페이스를 구현하는 클래스는 이 메소드들을 반드시 재정의해야 합니다.
- * 구현: implements 키워드를 사용하여 인터페이스를 구현합니다.
- * 다중 상속: 한 클래스가 여러 인터페이스를 구현할 수 있습니다.
+ * {@code RemoteControl} 인터페이스는 다양한 장치들이 공통적으로 가져야 할
+ * 전원 제어 기능을 정의하는 인터페이스입니다. 이 인터페이스를 구현하는 클래스는
+ * 반드시 {@code turnOn()} 메서드를 구현해야 합니다.
+ *
+ * <p> 주요 특징:
+ * <ul>
+ *   <li>인터페이스 선언: {@code interface} 키워드를 통해 선언됩니다.</li>
+ *   <li>추상 메서드: 모든 인터페이스 메서드는 추상적이며, 구현 클래스에서
+ *       반드시 구현해야 합니다.</li>
+ *   <li>다중 상속: 자바 클래스는 여러 인터페이스를 구현할 수 있습니다.</li>
+ * </ul>
+ *
+ * <p> 예시:
+ * <pre>
+ * public class Television implements RemoteControl {
+ *     {@literal @}Override
+ *     public void turnOn() {
+ *         System.out.println("TV를 켭니다.");
+ *     }
+ * }
+ * </pre>
  *
  * @since 2024.07.30
  */
+public interface RemoteControl {
 
-public interface RemoteControl { // RemoteControl 인터페이스 선언
-
-    public void turnOn(); // public 추상 메소드
+    /**
+     * 장치를 켜는 기능을 제공합니다. 이 메서드는 {@code RemoteControl}을 구현하는
+     * 모든 클래스에서 필수적으로 구현해야 합니다.
+     */
+    public void turnOn();
 }
 
-class Television implements RemoteControl { // RemoteControl 을 구현한 클래스
+/**
+ * {@code Television} 클래스는 {@code RemoteControl} 인터페이스를 구현하며,
+ * 텔레비전 장치의 전원을 켜는 구체적인 기능을 제공합니다.
+ */
+class Television implements RemoteControl {
+
+    /**
+     * {@code turnOn()} 메서드를 구현하여, TV가 켜졌을 때의 동작을 정의합니다.
+     * TV가 켜졌음을 알리는 메시지를 출력합니다.
+     */
     @Override
-    public void turnOn() { // 인터페이스에 선언된 turnOn() 추상 메소드 재정의
+    public void turnOn() {
         System.out.println("TV를 켭니다.");
     }
 }

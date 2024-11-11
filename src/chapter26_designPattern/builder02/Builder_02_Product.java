@@ -77,7 +77,7 @@ class SportsCarBuilder implements CarBuilder {
 
 // Director
 class CarDirector {
-    private CarBuilder carBuilder;
+    private final CarBuilder carBuilder;
 
     public CarDirector(CarBuilder carBuilder) {
         this.carBuilder = carBuilder;

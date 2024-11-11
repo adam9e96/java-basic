@@ -1,23 +1,18 @@
 package chapter26_designPattern.builder;
 
 /**
- * ===========================================================
- * fileName       : Account
- * date           : 2024-02-16
- * description    : Builder 패턴 연습01
- * ===========================================================
+ * Account 빌더 클래스
  */
 public class Account {  // 계좌라는 클래스를 만들고
     /*
     객체 생성 과정과 표현 방법을 분리하여 동일한 생성 절차에서 서로 다른 표현 결과를 얻을 수 있게 하는 패턴을 의미.
     Java 에서 객체의 초기화와 생성을 캡슐화하는 데 유용하게 사용.
      */
-    private int accID;  // 계좌ID
-    private int balance;    // 잔 액
-    private String cusName;     // 고객 이름
+    private final int accID;  // 계좌ID
+    private final int balance;    // 잔 액
+    private final String cusName;     // 고객 이름
     // 계좌 클래스를 외부에서 사용하려면 초기화 필요. -> 생성자를 통해 초기화
-    //
-    //
+
 
     // 필드가 10개 이상이 된다면.
     // 모든 필드를 사용하는 생성자가 필요
