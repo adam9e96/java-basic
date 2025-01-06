@@ -122,7 +122,7 @@ class Champion {
 
     private void levelUp() {
         level++;
-        System.out.println("레벨업함 " + level + "!");
+        System.out.println("\n=== 레벨업! 레벨 " + level + "에 도달했습니다! ===\n");
         calculateStats();
         chooseSkill();
         // 증가되는 다음 레벨업 경험치
@@ -152,7 +152,7 @@ class Champion {
                 return;
         }
         skills.add(newSkill);
-        System.out.println("스킬을 배웠습니다 " + newSkill.getName() + " 스킬 데미지 : " + newSkill.getDamage());
+        System.out.println("스킬을 배웠습니다: \"" + newSkill.getName() + "\" (데미지: " + String.format("%.2f", newSkill.getDamage()) + ")");
     }
 
     public void displayStats() {
@@ -251,6 +251,7 @@ public class Main {
             System.out.println("1. 미니언을 공격");
             System.out.println("2. 상태 보기");
             System.out.println("3. 나가기");
+            System.out.println("4. 스킬 데미지 보기");
             System.out.print("Enter choice: ");
             String choice = scanner.nextLine();
 
@@ -295,6 +296,12 @@ public class Main {
                     running = false;
                     System.out.println("게임 종료.");
                     break;
+                case "4":
+                    System.out.println("===== 보유한 스킬 정보 =====");
+                    for (Skill skill : zeri.skills) {
+                        System.out.println(skill.getName() + ": " + skill.getDamage());
+                    }
+                    System.out.println("===========================");
                 default:
                     System.out.println("잘못된 선택. 다시선택하세요.");
             }
